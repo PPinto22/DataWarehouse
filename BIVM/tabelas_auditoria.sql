@@ -1,3 +1,5 @@
+use bivm;
+
 drop table if exists auditProduto;
 create table auditProduto (
 	id int not null primary key auto_increment,

@@ -27,6 +27,19 @@ create table preDimUtilizador (
     primary key(source,source_id)
 );
 
+drop table if exists predimutilizador_update;
+create table predimutilizador_update (
+    source int,
+    source_id varchar(15),
+    email varchar(75),
+    nome varchar(75),
+    profissao varchar(45),
+    genero varchar(45),
+    data_nascimento date,    
+    data_update Datetime,
+    primary key(source,source_id)
+);
+
 drop table if exists predimmaquina;
 create table preDimMaquina (
     source int,
@@ -39,6 +52,22 @@ create table preDimMaquina (
     cidade varchar(45),
     distrito varchar(45),
     pais varchar(45),    
+    primary key(source,source_id)
+);
+
+drop table if exists predimmaquina_update;
+create table predimmaquina_update (
+    source int,
+    source_id varchar(15),
+    modelo varchar(75),
+    renda decimal(6,2),
+    capacidade int,
+    cod_postal varchar(10),
+    freguesia varchar(75),
+    cidade varchar(45),
+    distrito varchar(45),
+    pais varchar(45),
+    data_update Datetime,
     primary key(source,source_id)
 );
 
