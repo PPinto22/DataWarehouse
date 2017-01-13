@@ -520,6 +520,18 @@
           <column_name>nome</column_name>
           <stream_name>nome</stream_name>
         </field>
+        <field>
+          <column_name>pais</column_name>
+          <stream_name>pais</stream_name>
+        </field>
+        <field>
+          <column_name>precoA</column_name>
+          <stream_name>precoA</stream_name>
+        </field>
+        <field>
+          <column_name>precoV</column_name>
+          <stream_name>precoV</stream_name>
+        </field>
     </fields>
     <cluster_schema/>
     <remotesteps>
@@ -531,67 +543,6 @@
     <GUI>
       <xloc>224</xloc>
       <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Eliminar Repetidos</name>
-    <type>UniqueRowsByHashSet</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <store_values>N</store_values>
-      <reject_duplicate_row>N</reject_duplicate_row>
-      <error_description>Registo repetido</error_description>
-    <fields>      <field>        <name>nome</name>
-        </field>      </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>PreDimProduto</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, nome&#xd;&#xa;FROM predimproduto&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -665,67 +616,6 @@
     </step>
 
   <step>
-    <name>Eliminar Repetidos 2</name>
-    <type>UniqueRowsByHashSet</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <store_values>N</store_values>
-      <reject_duplicate_row>N</reject_duplicate_row>
-      <error_description>Registo repetido</error_description>
-    <fields>      <field>        <name>email</name>
-        </field>      </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>PreDimUtilizador</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, email&#xd;&#xa;, nome&#xd;&#xa;, profissao&#xd;&#xa;, genero&#xd;&#xa;, data_nascimento&#xd;&#xa;FROM predimutilizador&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
     <name>Carregar LTMaquina</name>
     <type>TableOutput</type>
     <description/>
@@ -778,6 +668,65 @@
     </step>
 
   <step>
+    <name>Eliminar Repetidos</name>
+    <type>UniqueRowsByHashSet</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <store_values>N</store_values>
+      <reject_duplicate_row>N</reject_duplicate_row>
+      <error_description>Registo repetido</error_description>
+    <fields>      <field>        <name>nome</name>
+        </field>      <field>        <name>pais</name>
+        </field>      </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Eliminar Repetidos 2</name>
+    <type>UniqueRowsByHashSet</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <store_values>N</store_values>
+      <reject_duplicate_row>N</reject_duplicate_row>
+      <error_description>Registo repetido</error_description>
+    <fields>      <field>        <name>email</name>
+        </field>      </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
     <name>PreDimMaquina</name>
     <type>TableInput</type>
     <description/>
@@ -809,10 +758,74 @@
     </GUI>
     </step>
 
+  <step>
+    <name>PreDimProduto</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, nome&#xd;&#xa;, pais&#xd;&#xa;, precoV&#xd;&#xa;, precoA&#xd;&#xa;FROM predimproduto&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>PreDimUtilizador</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, email&#xd;&#xa;, nome&#xd;&#xa;, profissao&#xd;&#xa;, genero&#xd;&#xa;, data_nascimento&#xd;&#xa;FROM predimutilizador&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
   <step_error_handling>
       <error>
         <source_step>Eliminar Repetidos</source_step>
-        <target_step>Quarentena</target_step>
+        <target_step/>
         <is_enabled>Y</is_enabled>
         <nr_valuename/>
         <descriptions_valuename>descricao</descriptions_valuename>

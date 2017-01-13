@@ -5,6 +5,8 @@ create table auditProduto (
 	id int not null primary key auto_increment,
 	id_produto int not null,
     Nome varchar(75) not null,
+    PrecoA decimal(6,2) not null,
+    PrecoV decimal(6,2) not null,
     DataOp DateTime not null default now(),
     Op char(1) not null
 );
@@ -45,11 +47,23 @@ create trigger tg_insert_auditProduto
 	after insert on produto 
     for each row
 BEGIN
-    insert into auditproduto (id_produto,nome,op) values
-		(new.id,new.nome,'I');
+    insert into auditproduto (id_produto,nome,precoA,precoV,op) values
+		(new.id,new.nome,new.precoA,new.precoV,'I');
         
 END$$
 DELIMITER ;
+
+drop trigger if exists tg_update_auditProduto;
+DELIMITER $$
+create trigger tg_update_auditProduto
+	after update on produto 
+    for each row
+BEGIN
+	insert into auditproduto (id_produto,nome,precoA,precoV,op) values
+		(new.id,new.nome,new.precoA,new.precoV,'I');
+END$$
+DELIMITER ;
+
 
 drop trigger if exists tg_insert_auditUtilizador;
 DELIMITER $$

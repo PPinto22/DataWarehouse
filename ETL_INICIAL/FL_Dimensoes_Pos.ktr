@@ -468,76 +468,6 @@
     </hop>
   </order>
   <step>
-    <name>LT Produtos</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>insert into LTProduto &#x28;&#xd;&#xa;	select Dim.id, Pre.source, Pre.source_id &#xd;&#xa;		from dimproduto as Dim inner join predimproduto as Pre &#xd;&#xa;			on  Dim.nome &#x3d; Pre.nome&#xd;&#xa;	&#x29;&#x3b;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>PreDimMaquina</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  M.id&#xd;&#xa;, modelo&#xd;&#xa;, renda&#xd;&#xa;, capacidade&#xd;&#xa;, cod_postal&#xd;&#xa;, freguesia&#xd;&#xa;, cidade&#xd;&#xa;, distrito&#xd;&#xa;, pais&#xd;&#xa;FROM predimmaquina as Pre INNER JOIN&#xd;&#xa;	LTMaquina as M On Pre.source &#x3d; M.source and Pre.source_id &#x3d; M.source_id&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
     <name>Carregar DimMaquina</name>
     <type>TableOutput</type>
     <description/>
@@ -602,6 +532,10 @@
           <column_name>id</column_name>
           <stream_name>id</stream_name>
         </field>
+        <field>
+          <column_name>rua</column_name>
+          <stream_name>rua</stream_name>
+        </field>
     </fields>
     <cluster_schema/>
     <remotesteps>
@@ -613,6 +547,44 @@
     <GUI>
       <xloc>304</xloc>
       <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>LT Produtos</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>insert into LTProduto &#x28;&#xd;&#xa;	select Dim.id, Pre.source, Pre.source_id &#xd;&#xa;		from dimproduto as Dim inner join predimproduto as Pre &#xd;&#xa;			on  Dim.nome &#x3d; Pre.nome and Dim.Pais &#x3d; Pre.Pais&#xd;&#xa;	&#x29;&#x3b;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -650,6 +622,38 @@
     </remotesteps>
     <GUI>
       <xloc>688</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>PreDimMaquina</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <sql>SELECT&#xd;&#xa;  M.id&#xd;&#xa;, modelo&#xd;&#xa;, renda&#xd;&#xa;, capacidade&#xd;&#xa;, cod_postal&#xd;&#xa;, freguesia&#xd;&#xa;, rua&#xd;&#xa;, cidade&#xd;&#xa;, distrito&#xd;&#xa;, pais&#xd;&#xa;FROM predimmaquina as Pre INNER JOIN&#xd;&#xa;	LTMaquina as M On Pre.source &#x3d; M.source and Pre.source_id &#x3d; M.source_id&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
