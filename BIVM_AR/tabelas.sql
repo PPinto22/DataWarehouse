@@ -69,7 +69,7 @@ drop table if exists LTutilizador;
 create table LTutilizador (
     id int not null,
     source int not null,
-    source_id varchar(15) not null,
+    source_id varchar(75) not null,
     primary key (id,source,source_id)
 );
 
@@ -128,5 +128,57 @@ create table preFactVendas (
     utilizador varchar(15),
     maquina varchar(15),
     produto varchar(15)
+);
+
+drop table if exists histproduto;
+create table histProduto (
+    id int,
+    nome_anterior varchar(45),
+    nome varchar(45),
+    pais_anterior varchar(45),
+    pais varchar(45),
+    precoV_anterior decimal(6,2),
+    precoV decimal(6,2),
+    precoA_anterior decimal(6,2),
+    precoA decimal(6,2),
+	data_update datetime
+);
+
+drop table if exists histutilizador;
+create table histUtilizador (
+    id int,
+    email_anterior varchar(75),
+    email varchar(75),
+    nome_anterior varchar(75),
+    nome varchar(75),
+    profissao_anterior varchar(45),
+    profissao varchar(45),
+    data_nascimento_anterior date,
+    data_nascimento date,
+    genero_anterior varchar(45),
+    genero varchar(45),
+	data_update datetime
+);
+
+drop table if exists histmaquina;
+create table histMaquina (
+    id int,
+    renda_anterior decimal(6,2),
+	renda decimal(6,2),
+    capacidade_anterior int,
+	capacidade int,
+    cod_postal_anterior varchar(10),
+    cod_postal varchar(10),
+    freguesia_anterior varchar(75),
+    freguesia varchar(75),
+    rua_anterior varchar(75),
+    rua varchar(75),
+    cidade_anterior varchar(45),
+    cidade varchar(45),
+    distrito_anterior varchar(45),
+    distrito varchar(45),
+    pais_anterior varchar(45),
+    pais varchar(45),
+    data_update datetime
 );
 

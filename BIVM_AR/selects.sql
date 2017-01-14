@@ -1,5 +1,12 @@
 use bivm_ar;
 
+select * from histproduto;
+select * from histmaquina;
+select * from dimmaquina where id = 1;
+
+select * from histmaquina where id =1;
+select * from histutilizador;
+
 select * from predimproduto;
 select * from predimmaquina;
 select * from predimutilizador;
@@ -20,3 +27,7 @@ select * from quarutilizador;
 
 select * from prefactvendas;
 select * from factvendas;
+
+select * from bivm.auditproduto;
+select * from bivm.auditutilizador;
+select * from bivm.auditmaquina;

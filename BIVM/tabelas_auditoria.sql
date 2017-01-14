@@ -1,5 +1,9 @@
 use bivm;
 
+-- select * from bivm.auditProduto;
+-- select * from bivm.auditMaquina;
+-- select * from bivm.auditUtilizador;
+
 drop table if exists auditProduto;
 create table auditProduto (
 	id int not null primary key auto_increment,
@@ -114,7 +118,6 @@ create trigger tg_update_auditMaquina
     for each row
 BEGIN
     IF 
-        new.modelo <> old.modelo OR
         new.renda <> old.renda OR
         new.capacidade <> old.capacidade OR
         new.morada <> old.morada

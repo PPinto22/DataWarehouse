@@ -1,3 +1,7 @@
+delete from bivm.auditproduto;
+delete from bivm.auditutilizador;
+delete from bivm.auditmaquina;
+
 insert into bivm.produto (id,Nome,PrecoV,PrecoA) values
 (20,'lanCHe',1.0,2.0),(21,'LANCHE',3.14,3.14);
 
@@ -45,4 +49,3 @@ update bivm.morada set pais = 'Franca'
     
 update bivm.morada set pais = 'Portugal' 
 	where pais = 'Franca';
-    

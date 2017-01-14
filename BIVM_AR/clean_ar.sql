@@ -29,5 +29,9 @@ delete from quarproduto;
 delete from quarutilizador;
 delete from quarmaquina;
 
+delete from histproduto;
+delete from histutilizador;
+delete from histmaquina;
+
 delete from etl;
 insert into etl values(null,null);
