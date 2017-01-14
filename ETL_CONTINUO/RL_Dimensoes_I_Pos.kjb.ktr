@@ -431,7 +431,7 @@
     <created_date>2017&#x2f;01&#x2f;14 16&#x3a;13&#x3a;56.159</created_date>
     <modified_user>-</modified_user>
     <modified_date>2017&#x2f;01&#x2f;14 16&#x3a;13&#x3a;56.159</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -553,6 +553,44 @@
     </step>
 
   <step>
+    <name>LTUtilizador</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>insert into LTUtilizador &#x28;&#xd;&#xa;	select Dim.id, Pre.source, Pre.source_id &#xd;&#xa;		from dimutilizador as Dim inner join predimutilizador as Pre &#xd;&#xa;			on  Dim.email &#x3d; Pre.email&#xd;&#xa;	&#x29;&#x3b;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>448</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
     <name>PreDimMaquina_Inserts</name>
     <type>TableInput</type>
     <description/>
@@ -579,6 +617,44 @@
     </remotesteps>
     <GUI>
       <xloc>224</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>LTProduto</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>insert into LTProduto &#x28;&#xd;&#xa;	select Dim.id, Pre.source, Pre.source_id &#xd;&#xa;		from dimproduto as Dim inner join predimproduto as Pre &#xd;&#xa;			on  Dim.nome &#x3d; Pre.nome and Dim.Pais &#x3d; Pre.Pais&#xd;&#xa;	&#x29;&#x3b;</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
