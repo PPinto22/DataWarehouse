@@ -613,6 +613,31 @@
       <to>Capitalizar Nome 2</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Extrair Atributos Maquina</from>
+      <to>Extrair Morada</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>MongoDB Input</from>
+      <to>Extrair Atributos Maquina</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Extrair Morada</from>
+      <to>Adicionar Source</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Adicionar Source</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Carregar PreDimMaquina</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Capitalizar Nome</name>
@@ -1349,6 +1374,119 @@
     </step>
 
   <step>
+    <name>Email</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>email</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>lower</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Email Invalido</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>descricao</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>&#x22;Email invalido&#x22;</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>880</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Email Valido&#x3f;</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+<fieldname>email_valido</fieldname>
+<use_contains>N</use_contains>
+<case_value_type>String</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step>Capitalizar Nome 2</default_target_step>
+<cases><case><value>N</value>
+<target_step>Email Invalido</target_step>
+</case></cases>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
     <name>Extrair Datas</name>
     <type>CsvInput</type>
     <description/>
@@ -1849,6 +1987,86 @@
     </step>
 
   <step>
+    <name>Quarenta </name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <schema/>
+    <table>quarutilizador</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>source</column_name>
+          <stream_name>source</stream_name>
+        </field>
+        <field>
+          <column_name>source_id</column_name>
+          <stream_name>source_id</stream_name>
+        </field>
+        <field>
+          <column_name>email</column_name>
+          <stream_name>email</stream_name>
+        </field>
+        <field>
+          <column_name>nome</column_name>
+          <stream_name>nome</stream_name>
+        </field>
+        <field>
+          <column_name>profissao</column_name>
+          <stream_name>profissao</stream_name>
+        </field>
+        <field>
+          <column_name>genero</column_name>
+          <stream_name>genero</stream_name>
+        </field>
+        <field>
+          <column_name>data_nascimento</column_name>
+          <stream_name>data_nascimento</stream_name>
+        </field>
+        <field>
+          <column_name>op</column_name>
+          <stream_name>op</stream_name>
+        </field>
+        <field>
+          <column_name>descricao</column_name>
+          <stream_name>descricao</stream_name>
+        </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>880</xloc>
+      <yloc>560</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
     <name>Rua</name>
     <type>StringOperations</type>
     <description/>
@@ -1938,46 +2156,6 @@
     </step>
 
   <step>
-    <name>Email</name>
-    <type>StringOperations</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>email</in_stream_name>
-        <out_stream_name/>
-        <trim_type>none</trim_type>
-        <lower_upper>lower</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>720</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
     <name>Validar Email</name>
     <type>RegexEval</type>
     <description/>
@@ -2017,8 +2195,8 @@
     </step>
 
   <step>
-    <name>Email Valido&#x3f;</name>
-    <type>SwitchCase</type>
+    <name>Extrair Atributos Maquina</name>
+    <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -2027,95 +2205,102 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-<fieldname>email_valido</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>String</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>Capitalizar Nome 2</default_target_step>
-<cases><case><value>N</value>
-<target_step>Email Invalido</target_step>
-</case></cases>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>720</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Quarenta </name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <schema/>
-    <table>quarutilizador</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>N</ignoreMissingPath>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
     <fields>
-        <field>
-          <column_name>source</column_name>
-          <stream_name>source</stream_name>
-        </field>
-        <field>
-          <column_name>source_id</column_name>
-          <stream_name>source_id</stream_name>
-        </field>
-        <field>
-          <column_name>email</column_name>
-          <stream_name>email</stream_name>
-        </field>
-        <field>
-          <column_name>nome</column_name>
-          <stream_name>nome</stream_name>
-        </field>
-        <field>
-          <column_name>profissao</column_name>
-          <stream_name>profissao</stream_name>
-        </field>
-        <field>
-          <column_name>genero</column_name>
-          <stream_name>genero</stream_name>
-        </field>
-        <field>
-          <column_name>data_nascimento</column_name>
-          <stream_name>data_nascimento</stream_name>
-        </field>
-        <field>
-          <column_name>op</column_name>
-          <stream_name>op</stream_name>
-        </field>
-        <field>
-          <column_name>descricao</column_name>
-          <stream_name>descricao</stream_name>
-        </field>
+      <field>
+        <name>renda</name>
+        <path>renda</path>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>modelo</name>
+        <path>modelo</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>capacidade</name>
+        <path>capacidade</path>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_id</name>
+        <path>idMaquina</path>
+        <type>Integer</type>
+        <format>&#x23;</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>morada</name>
+        <path>morada</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
     </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>json</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -2124,14 +2309,231 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>880</xloc>
-      <yloc>560</yloc>
+      <xloc>1424</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>Email Invalido</name>
+    <name>MongoDB Input</name>
+    <type>MongoDbInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <hostname>localhost</hostname>
+    <port>27017</port>
+    <use_all_replica_members>N</use_all_replica_members>
+    <db_name>BIVM</db_name>
+    <fields_name>&#x7b;&#x7d;</fields_name>
+    <collection>maquinas</collection>
+    <json_field_name>json</json_field_name>
+    <json_query/>
+    <auth_database/>
+    <auth_user/>
+    <auth_password>Encrypted </auth_password>
+    <auth_mech/>
+    <auth_kerberos>N</auth_kerberos>
+    <connect_timeout/>
+    <socket_timeout/>
+    <read_preference>primary</read_preference>
+    <output_json>Y</output_json>
+    <query_is_pipeline>N</query_is_pipeline>
+    <execute_for_each_row>N</execute_for_each_row>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1424</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Extrair Morada</name>
+    <type>JsonInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>N</ignoreMissingPath>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>freguesia</name>
+        <path>Freguesia</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>rua</name>
+        <path>Rua</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>cidade</name>
+        <path>Cidade</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>distrito</name>
+        <path>Distrito</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>cod_postal</name>
+        <path>Cod_Postal</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>pais</name>
+        <path>Pais</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>morada</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1424</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>      <field>        <name>source</name>
+      </field>      <field>        <name>source_id</name>
+      </field>      <field>        <name>modelo</name>
+      </field>      <field>        <name>renda</name>
+      </field>      <field>        <name>capacidade</name>
+      </field>      <field>        <name>cod_postal</name>
+      </field>      <field>        <name>freguesia</name>
+      </field>      <field>        <name>rua</name>
+      </field>      <field>        <name>cidade</name>
+      </field>      <field>        <name>distrito</name>
+      </field>      <field>        <name>pais</name>
+      </field>      <field>        <name>Op</name>
+      </field>      <field>        <name>cod_postal_valido</name>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1424</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Adicionar Source</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -2143,13 +2545,37 @@
     </partitioning>
     <fields>
       <field>
-        <name>descricao</name>
+        <name>source</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>Op</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>&#x22;Email invalido&#x22;</nullif>
+        <nullif>I</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>cod_postal_valido</name>
+        <type>Boolean</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -2163,8 +2589,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>880</xloc>
-      <yloc>448</yloc>
+      <xloc>1424</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
