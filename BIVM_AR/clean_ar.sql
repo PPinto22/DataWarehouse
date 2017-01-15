@@ -8,10 +8,8 @@ delete from dimhora;
 ALTER TABLE dimhora AUTO_INCREMENT = 1;
 
 delete from dimproduto;
-ALTER TABLE dimproduto AUTO_INCREMENT = 1;
 delete from dimmaquina;
 delete from dimutilizador;
-ALTER TABLE dimutilizador AUTO_INCREMENT = 1;
 
 delete from prefactvendas;
 delete from factvendas;
@@ -23,15 +21,17 @@ delete from predimmaquina;
 delete from ltmaquina;
 ALTER TABLE ltmaquina AUTO_INCREMENT = 1;
 delete from ltproduto;
+ALTER TABLE ltproduto AUTO_INCREMENT = 1;
 delete from ltutilizador;
+ALTER TABLE ltutilizador AUTO_INCREMENT = 1;
 
 delete from quarproduto;
 delete from quarutilizador;
 delete from quarmaquina;
 
-delete from histproduto;
-delete from histutilizador;
-delete from histmaquina;
+delete from updateProduto;
+delete from updateUtilizador;
+delete from updateMaquina;
 
 delete from etl;
 insert into etl values(null,null);

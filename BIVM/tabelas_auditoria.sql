@@ -57,14 +57,20 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- Pequena alteracao, nao testado
 drop trigger if exists tg_update_auditProduto;
 DELIMITER $$
 create trigger tg_update_auditProduto
 	after update on produto 
     for each row
 BEGIN
-	insert into auditproduto (id_produto,nome,precoA,precoV,op) values
-		(new.id,new.nome,new.precoA,new.precoV,'I');
+    IF 
+        new.precoA <> old.precoA OR
+        new.precoV <> old.precoV
+	THEN
+		insert into auditproduto (id_produto,nome,precoA,precoV,op) values
+			(new.id,new.nome,new.precoA,new.precoV,'I');
+	END IF;
 END$$
 DELIMITER ;
 
@@ -99,7 +105,6 @@ create trigger tg_update_auditUtilizador
     for each row
 BEGIN
     IF 
-        new.email <> old.email OR
         new.nome <> old.nome OR
         new.profissao <> old.profissao OR
         new.genero <> old.genero OR
@@ -118,6 +123,7 @@ create trigger tg_update_auditMaquina
     for each row
 BEGIN
     IF 
+		new.modelo <> old.modelo OR
         new.renda <> old.renda OR
         new.capacidade <> old.capacidade OR
         new.morada <> old.morada

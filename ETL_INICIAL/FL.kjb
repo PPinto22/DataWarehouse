@@ -329,23 +329,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>80</xloc>
-      <yloc>144</yloc>
-    </entry>
-    <entry>
-      <name>Set last_try</name>
-      <description/>
-      <type>SQL</type>
-      <sql>update etl set last_try &#x3d; now&#x28;&#x29;&#x3b;</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>bivm_ar</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>336</xloc>
+      <xloc>208</xloc>
       <yloc>144</yloc>
     </entry>
     <entry>
@@ -454,20 +438,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>208</xloc>
+      <xloc>336</xloc>
       <yloc>144</yloc>
     </entry>
   </entries>
   <hops>
-    <hop>
-      <from>Set last_try</from>
-      <to>Dimensoes</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>Dimensoes</from>
       <to>Tabela Factos</to>
@@ -497,7 +472,7 @@
     </hop>
     <hop>
       <from>Check Empty</from>
-      <to>Set last_try</to>
+      <to>Dimensoes</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

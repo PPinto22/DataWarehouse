@@ -595,7 +595,7 @@
       <schema_name/>
     </partitioning>
     <connection>source_bivm</connection>
-    <sql>SELECT&#xd;&#xa;  1 As source&#xd;&#xa;, PrecoV&#xd;&#xa;, PrecoA&#xd;&#xa;, &#x28;PrecoV - PrecoA&#x29; As lucro&#xd;&#xa;, Date&#x28;Data&#x29; As Data&#xd;&#xa;, Time&#x28;Data&#x29; As Hora&#xd;&#xa;, R.Validade&#xd;&#xa;, Floor&#x28;&#x28;DATEDIFF&#x28;V.data, U.data_nascimento&#x29;&#x2f;365.25&#x29;&#x29; as idade&#xd;&#xa;, Utilizador&#xd;&#xa;, V.Maquina&#xd;&#xa;, R.Produto&#xd;&#xa;FROM venda as V&#xd;&#xa;	JOIN Utilizador as U on V.utilizador &#x3d; U.id&#xd;&#xa;	JOIN Remessa as R on R.id &#x3d; V.Remessa&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  1 As source&#xd;&#xa;, PrecoV&#xd;&#xa;, PrecoA&#xd;&#xa;, &#x28;PrecoV - PrecoA&#x29; As lucro&#xd;&#xa;, Date&#x28;Data&#x29; As Data&#xd;&#xa;, Time&#x28;Data&#x29; As Hora&#xd;&#xa;, DATEDIFF&#x28;R.Validade,Data&#x29; as Validade&#xd;&#xa;, Floor&#x28;&#x28;DATEDIFF&#x28;V.data, U.data_nascimento&#x29;&#x2f;365.25&#x29;&#x29; as idade&#xd;&#xa;, Utilizador&#xd;&#xa;, V.Maquina&#xd;&#xa;, R.Produto&#xd;&#xa;FROM venda as V&#xd;&#xa;	JOIN Utilizador as U on V.utilizador &#x3d; U.id&#xd;&#xa;	JOIN Remessa as R on R.id &#x3d; V.Remessa&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

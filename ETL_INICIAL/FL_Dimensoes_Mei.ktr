@@ -462,270 +462,21 @@
   </connection>
   <order>
     <hop>
-      <from>Eliminar Repetidos</from>
+      <from>PreDimProduto</from>
       <to>Carregar DimProduto</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>PreDimProduto</from>
-      <to>Eliminar Repetidos</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Eliminar Repetidos 2</from>
+      <from>PreDimUtilizador</from>
       <to>Carregar DimUtilizador</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>PreDimUtilizador</from>
-      <to>Eliminar Repetidos 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>PreDimMaquina</from>
-      <to>Carregar LTMaquina</to>
+      <to>Carregar DimMaquina</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Carregar DimProduto</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <schema/>
-    <table>dimproduto</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>nome</column_name>
-          <stream_name>nome</stream_name>
-        </field>
-        <field>
-          <column_name>pais</column_name>
-          <stream_name>pais</stream_name>
-        </field>
-        <field>
-          <column_name>precoA</column_name>
-          <stream_name>precoA</stream_name>
-        </field>
-        <field>
-          <column_name>precoV</column_name>
-          <stream_name>precoV</stream_name>
-        </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Carregar DimUtilizador</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <schema/>
-    <table>dimutilizador</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>id</column_name>
-          <stream_name>source_id</stream_name>
-        </field>
-        <field>
-          <column_name>email</column_name>
-          <stream_name>email</stream_name>
-        </field>
-        <field>
-          <column_name>nome</column_name>
-          <stream_name>nome</stream_name>
-        </field>
-        <field>
-          <column_name>profissao</column_name>
-          <stream_name>profissao</stream_name>
-        </field>
-        <field>
-          <column_name>genero</column_name>
-          <stream_name>genero</stream_name>
-        </field>
-        <field>
-          <column_name>data_nascimento</column_name>
-          <stream_name>data_nascimento</stream_name>
-        </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Carregar LTMaquina</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <schema/>
-    <table>ltmaquina</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>source_id</column_name>
-          <stream_name>source_id</stream_name>
-        </field>
-        <field>
-          <column_name>source</column_name>
-          <stream_name>source</stream_name>
-        </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Eliminar Repetidos</name>
-    <type>UniqueRowsByHashSet</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <store_values>N</store_values>
-      <reject_duplicate_row>N</reject_duplicate_row>
-      <error_description>Registo repetido</error_description>
-    <fields>      <field>        <name>nome</name>
-        </field>      <field>        <name>pais</name>
-        </field>      </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Eliminar Repetidos 2</name>
-    <type>UniqueRowsByHashSet</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <store_values>N</store_values>
-      <reject_duplicate_row>N</reject_duplicate_row>
-      <error_description>Registo repetido</error_description>
-    <fields>      <field>        <name>email</name>
-        </field>      </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
   <step>
     <name>PreDimMaquina</name>
     <type>TableInput</type>
@@ -738,7 +489,7 @@
       <schema_name/>
     </partitioning>
     <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;FROM predimmaquina&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, modelo&#xd;&#xa;, renda&#xd;&#xa;, capacidade&#xd;&#xa;, cod_postal&#xd;&#xa;, freguesia&#xd;&#xa;, rua&#xd;&#xa;, cidade&#xd;&#xa;, distrito&#xd;&#xa;, pais&#xd;&#xa;FROM predimmaquina&#xd;&#xa;WHERE op &#x3d; &#x27;I&#x27;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -822,19 +573,145 @@
     </GUI>
     </step>
 
+  <step>
+    <name>Carregar DimProduto</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <execute_each_row>Y</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>call sp_insert_produto&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;&#x3b;</sql>
+    <set_params>Y</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+       <argument><name>source</name></argument>
+       <argument><name>source_id</name></argument>
+       <argument><name>nome</name></argument>
+       <argument><name>pais</name></argument>
+       <argument><name>precoA</name></argument>
+       <argument><name>precoV</name></argument>
+    </arguments>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Carregar DimUtilizador</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <execute_each_row>Y</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>call sp_insert_utilizador&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;&#x3b;</sql>
+    <set_params>Y</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+       <argument><name>source</name></argument>
+       <argument><name>source_id</name></argument>
+       <argument><name>email</name></argument>
+       <argument><name>nome</name></argument>
+       <argument><name>profissao</name></argument>
+       <argument><name>genero</name></argument>
+       <argument><name>data_nascimento</name></argument>
+    </arguments>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Carregar DimMaquina</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <execute_each_row>Y</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>call sp_insert_maquina&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;&#x3b;</sql>
+    <set_params>Y</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+       <argument><name>source</name></argument>
+       <argument><name>source_id</name></argument>
+       <argument><name>modelo</name></argument>
+       <argument><name>renda</name></argument>
+       <argument><name>capacidade</name></argument>
+       <argument><name>cod_postal</name></argument>
+       <argument><name>freguesia</name></argument>
+       <argument><name>rua</name></argument>
+       <argument><name>cidade</name></argument>
+       <argument><name>distrito</name></argument>
+       <argument><name>pais</name></argument>
+    </arguments>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
   <step_error_handling>
-      <error>
-        <source_step>Eliminar Repetidos</source_step>
-        <target_step/>
-        <is_enabled>Y</is_enabled>
-        <nr_valuename/>
-        <descriptions_valuename>descricao</descriptions_valuename>
-        <fields_valuename/>
-        <codes_valuename/>
-        <max_errors/>
-        <max_pct_errors/>
-        <min_pct_rows/>
-      </error>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>

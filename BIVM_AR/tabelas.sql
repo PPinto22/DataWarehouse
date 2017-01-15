@@ -2,15 +2,14 @@ use bivm_ar;
 
 drop table if exists etl;
 create table etl (
-    last_load DATETIME,
-    last_try DATETIME
+    last_load DATETIME
 );
-insert into etl value(null,null);
+insert into etl value(null);
 
 drop table if exists predimproduto;
 create table preDimProduto (
     source int,
-    source_id varchar(15),
+    source_id varchar(75),
     nome varchar(45),
     pais varchar(45),
     precoV decimal(6,2),
@@ -59,24 +58,28 @@ create table LTmaquina (
 
 drop table if exists LTproduto;
 create table LTproduto (
-    id int not null,
+    id int not null auto_increment,
     source int not null,
     source_id varchar(45) not null,
-    primary key (id,source,source_id)
+    nome varchar(45) not null,
+    pais varchar(45) not null,
+    primary key (id,source,source_id,nome,pais)
 );
 
 drop table if exists LTutilizador;
 create table LTutilizador (
-    id int not null,
+    id int not null auto_increment,
     source int not null,
     source_id varchar(75) not null,
-    primary key (id,source,source_id)
+    email varchar(75) not null,
+    primary key (id,source,source_id,email)
 );
 
 drop table if exists QuarProduto;
 create table QuarProduto (
+	quar_id int primary key auto_increment,
     source int,
-    source_id varchar(15),
+    source_id varchar(75),
     nome varchar(45),
     pais varchar(45),
     precoV decimal(6,2),
@@ -88,6 +91,7 @@ create table QuarProduto (
 
 drop table if exists QuarUtilizador;
 create table QuarUtilizador (
+	quar_id int primary key auto_increment,
     source int,
     source_id varchar(45),
     email varchar(75),
@@ -102,6 +106,7 @@ create table QuarUtilizador (
 
 drop table if exists QuarMaquina;
 create table QuarMaquina(
+	quar_id int primary key auto_increment,
     source int,
     source_id varchar(15),
     modelo varchar(75),
@@ -126,62 +131,45 @@ create table preFactVendas (
     lucro decimal (6,2),
     data Date,
     hora Time,
-    validade date,
+    validade int,
     idade int,
     utilizador varchar(15),
     maquina varchar(15),
     produto varchar(15)
 );
 
-drop table if exists histproduto;
-create table histProduto (
-    id int,
-    nome_anterior varchar(45),
-    nome varchar(45),
-    pais_anterior varchar(45),
-    pais varchar(45),
-    precoV_anterior decimal(6,2),
+drop table if exists updateProduto;
+create table updateProduto (
+	id int primary key auto_increment,
+    produto int,
     precoV decimal(6,2),
-    precoA_anterior decimal(6,2),
     precoA decimal(6,2),
 	data_update datetime
 );
 
--- Tirar historico de email?
-drop table if exists histutilizador;
-create table histUtilizador (
-    id int,
-    email_anterior varchar(75),
-    email varchar(75),
-    nome_anterior varchar(75),
+drop table if exists updateUtilizador;
+create table updateUtilizador (
+	id int primary key auto_increment,
+    utilizador int,
     nome varchar(75),
-    profissao_anterior varchar(45),
     profissao varchar(45),
-    data_nascimento_anterior date,
     data_nascimento date,
-    genero_anterior varchar(45),
     genero varchar(45),
 	data_update datetime
 );
 
-drop table if exists histmaquina;
-create table histMaquina (
-    id int,
-    renda_anterior decimal(6,2),
+drop table if exists updateMaquina;
+create table updateMaquina (
+	id int primary key auto_increment,
+    maquina int,
+    modelo varchar(45),
 	renda decimal(6,2),
-    capacidade_anterior int,
 	capacidade int,
-    cod_postal_anterior varchar(10),
     cod_postal varchar(10),
-    freguesia_anterior varchar(75),
     freguesia varchar(75),
-    rua_anterior varchar(75),
     rua varchar(75),
-    cidade_anterior varchar(45),
     cidade varchar(45),
-    distrito_anterior varchar(45),
     distrito varchar(45),
-    pais_anterior varchar(45),
     pais varchar(45),
     data_update datetime
 );
