@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>RL_Dimensoes_I_Mei</name>
+    <name>RL_Dimensoes_U</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,18 +428,18 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017&#x2f;01&#x2f;14 16&#x3a;13&#x3a;05.354</created_date>
+    <created_date>2017&#x2f;01&#x2f;14 16&#x3a;20&#x3a;01.471</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017&#x2f;01&#x2f;14 16&#x3a;13&#x3a;05.354</modified_date>
+    <modified_date>2017&#x2f;01&#x2f;14 16&#x3a;20&#x3a;01.471</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>Replicar envio para quarentena no primeiro carregamento</note>
-      <xloc>448</xloc>
-      <yloc>32</yloc>
-      <width>466</width>
+      <note>TODO&#x3a; Chamar procedimentos de update</note>
+      <xloc>112</xloc>
+      <yloc>384</yloc>
+      <width>341</width>
       <heigth>34</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -484,119 +484,18 @@
   </connection>
   <order>
     <hop>
-      <from>PreDimProduto</from>
-      <to>Carregar DimProduto</to>
+      <from>PreDimMaquina_Updates</from>
+      <to>Ordenar Por Data</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>PreDimUtilizador</from>
-      <to>Carregar DimUtilizador</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>PreDimMaquina</from>
-      <to>Carregar DimMaquina</to>
+      <from>Ordenar Por Data</from>
+      <to>Atualizar Historico e DimMaquina</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>PreDimMaquina</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, modelo&#xd;&#xa;, renda&#xd;&#xa;, capacidade&#xd;&#xa;, cod_postal&#xd;&#xa;, freguesia&#xd;&#xa;, rua&#xd;&#xa;, cidade&#xd;&#xa;, distrito&#xd;&#xa;, pais&#xd;&#xa;FROM predimmaquina&#xd;&#xa;WHERE op &#x3d; &#x27;I&#x27;&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>272</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>PreDimProduto</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, nome&#xd;&#xa;, pais&#xd;&#xa;, precoV&#xd;&#xa;, precoA&#xd;&#xa;FROM predimproduto&#xd;&#xa;where op &#x3d; &#x27;I&#x27;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>PreDimUtilizador</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, email&#xd;&#xa;, nome&#xd;&#xa;, profissao&#xd;&#xa;, genero&#xd;&#xa;, data_nascimento&#xd;&#xa;FROM predimutilizador where op &#x3d; &#x27;I&#x27;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>688</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Carregar DimProduto</name>
+    <name>Atualizar Historico e DimMaquina</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -611,105 +510,13 @@
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>call sp_insert_produto&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;</sql>
+    <sql>insert into histmaquina &#x28;id, renda_anterior, capacidade_anterior, cod_postal_anterior, freguesia_anterior,rua_anterior,cidade_anterior,distrito_anterior,pais_anterior,&#xd;&#xa;							 renda,capacidade,cod_postal,freguesia,rua,cidade,distrito,pais,data_update&#x29; &#xd;&#xa;select 	Ant.id, Ant.renda as renda_anterior, &#xd;&#xa;		Ant.capacidade as capacidade_anterior, Ant.cod_postal as cod_postal_anterior,&#xd;&#xa;        Ant.freguesia as freguesia_anterior, Ant.rua as rua_anterior, Ant.cidade as cidade_anterior,&#xd;&#xa;        Ant.distrito as distrito_anterior, Ant.pais as pais_anterior,&#xd;&#xa;		&#x3f;, &#x3f;, &#x3f;, &#x3f;, &#x3f;, &#x3f;, &#x3f;, &#x3f;, &#x3f;&#xd;&#xa;from DimMaquina as Ant where id &#x3d; &#x28;&#xd;&#xa;		select id from LTMaquina as LT where LT.source&#x3d;&#x3f; and LT.source_id&#x3d;&#x3f;&#xd;&#xa;    &#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;update dimmaquina set &#xd;&#xa;	renda &#x3d; &#x3f;,&#xd;&#xa;	capacidade &#x3d; &#x3f;,&#xd;&#xa;	cod_postal &#x3d; &#x3f;,&#xd;&#xa;	freguesia &#x3d; &#x3f;,&#xd;&#xa;	rua &#x3d; &#x3f;,&#xd;&#xa;	cidade &#x3d; &#x3f;,&#xd;&#xa;	distrito &#x3d; &#x3f;,&#xd;&#xa;	pais &#x3d; &#x3f;&#xd;&#xa;where &#x3f; is not null and id in &#x28;&#xd;&#xa;		select id from LTMaquina as LT where LT.source&#x3d;&#x3f; and LT.source_id&#x3d;&#x3f;&#xd;&#xa;    &#x29;&#x3b;</sql>
     <set_params>Y</set_params>
     <insert_field/>
     <update_field/>
     <delete_field/>
     <read_field/>
     <arguments>
-       <argument><name>source</name></argument>
-       <argument><name>source_id</name></argument>
-       <argument><name>nome</name></argument>
-       <argument><name>pais</name></argument>
-       <argument><name>precoA</name></argument>
-       <argument><name>precoV</name></argument>
-    </arguments>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>544</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Carregar DimUtilizador</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <execute_each_row>Y</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>call sp_insert_utilizador&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;&#x3b;</sql>
-    <set_params>Y</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-       <argument><name>source</name></argument>
-       <argument><name>source_id</name></argument>
-       <argument><name>email</name></argument>
-       <argument><name>nome</name></argument>
-       <argument><name>profissao</name></argument>
-       <argument><name>genero</name></argument>
-       <argument><name>data_nascimento</name></argument>
-    </arguments>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>688</xloc>
-      <yloc>544</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Carregar DimMaquina</name>
-    <type>ExecSQL</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <execute_each_row>Y</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>call sp_insert_maquina&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;&#x3b;</sql>
-    <set_params>Y</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-       <argument><name>source</name></argument>
-       <argument><name>source_id</name></argument>
-       <argument><name>modelo</name></argument>
        <argument><name>renda</name></argument>
        <argument><name>capacidade</name></argument>
        <argument><name>cod_postal</name></argument>
@@ -718,6 +525,9 @@
        <argument><name>cidade</name></argument>
        <argument><name>distrito</name></argument>
        <argument><name>pais</name></argument>
+       <argument><name>data_update</name></argument>
+       <argument><name>source</name></argument>
+       <argument><name>source_id</name></argument>
     </arguments>
     <cluster_schema/>
     <remotesteps>
@@ -728,7 +538,81 @@
     </remotesteps>
     <GUI>
       <xloc>272</xloc>
-      <yloc>544</yloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Ordenar Por Data</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>data_update</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>PreDimMaquina_Updates</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, modelo&#xd;&#xa;, renda&#xd;&#xa;, capacidade&#xd;&#xa;, cod_postal&#xd;&#xa;, freguesia&#xd;&#xa;, rua&#xd;&#xa;, cidade&#xd;&#xa;, distrito&#xd;&#xa;, pais&#xd;&#xa;, data_update&#xd;&#xa;, op&#xd;&#xa;FROM predimmaquina&#xd;&#xa;where op &#x3d; &#x27;U&#x27;&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
     </step>

@@ -78,6 +78,9 @@ create table QuarProduto (
     source int,
     source_id varchar(15),
     nome varchar(45),
+    pais varchar(45),
+    precoV decimal(6,2),
+    precoA decimal(6,2),
     descricao varchar(150),
 	op char(1),
     data datetime default now()
@@ -144,6 +147,7 @@ create table histProduto (
 	data_update datetime
 );
 
+-- Tirar historico de email?
 drop table if exists histutilizador;
 create table histUtilizador (
     id int,
