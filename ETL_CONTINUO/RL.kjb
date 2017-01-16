@@ -37,6 +37,33 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>source_bivm</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>bivm</database>
+    <port>3306</port>
+    <username>root</username>
+    <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
     <slaveservers>
     </slaveservers>
       <job-log-table>
@@ -329,14 +356,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>176</xloc>
+      <xloc>128</xloc>
       <yloc>176</yloc>
     </entry>
     <entry>
       <name>Cleanup</name>
       <description/>
       <type>SQL</type>
-      <sql>use bivm_ar&#x3b;&#xa;&#xa;delete from prefactvendas&#x3b;&#xa;delete from predimproduto&#x3b;&#xa;delete from predimutilizador&#x3b;&#xa;delete from predimmaquina&#x3b;</sql>
+      <sql>delete from prefactvendas&#x3b;&#xa;delete from predimproduto&#x3b;&#xa;delete from predimutilizador&#x3b;&#xa;delete from predimmaquina&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -345,7 +372,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>304</xloc>
+      <xloc>432</xloc>
       <yloc>176</yloc>
     </entry>
     <entry>
@@ -380,22 +407,6 @@
       <yloc>176</yloc>
     </entry>
     <entry>
-      <name>Set last_try</name>
-      <description/>
-      <type>SQL</type>
-      <sql>update etl set last_try &#x3d; now&#x28;&#x29;&#x3b;</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>bivm_ar</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>432</xloc>
-      <yloc>176</yloc>
-    </entry>
-    <entry>
       <name>Set last_load</name>
       <description/>
       <type>SQL</type>
@@ -408,7 +419,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>832</xloc>
+      <xloc>848</xloc>
       <yloc>176</yloc>
     </entry>
     <entry>
@@ -417,7 +428,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;RL_Tabela_Factos.kjb</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;RL_TF.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -443,57 +454,54 @@
       <yloc>176</yloc>
     </entry>
     <entry>
-      <name>Limpar AuditTables</name>
+      <name>Clear AuditTables</name>
       <description/>
-      <type>SHELL</type>
-      <filename/>
-      <work_directory/>
-      <arg_from_previous>N</arg_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <set_append_logfile>N</set_append_logfile>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <insertScript>N</insertScript>
-      <script/>
-      <loglevel>Basic</loglevel>
+      <type>SQL</type>
+      <sql>delete from auditmaquina&#x3b;&#xd;&#xa;delete from auditproduto&#x3b;&#xd;&#xa;delete from auditutilizador</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>source_bivm</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>992</xloc>
       <yloc>176</yloc>
     </entry>
+    <entry>
+      <name>Set Variables</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>filename</specification_method>
+      <job_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;RL_Variables.kjb</filename>
+      <jobname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>272</xloc>
+      <yloc>176</yloc>
+    </entry>
   </entries>
   <hops>
-    <hop>
-      <from>START</from>
-      <to>Cleanup</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Cleanup</from>
-      <to>Set last_try</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Set last_try</from>
-      <to>Dimensoes</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>Dimensoes</from>
       <to>Tabela Factos</to>
@@ -514,7 +522,34 @@
     </hop>
     <hop>
       <from>Set last_load</from>
-      <to>Limpar AuditTables</to>
+      <to>Clear AuditTables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Cleanup</from>
+      <to>Dimensoes</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Set Variables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Set Variables</from>
+      <to>Cleanup</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -524,11 +559,11 @@
   </hops>
   <notepads>
     <notepad>
-      <note>Limpar audit tables&#xa;</note>
+      <note>Limpar audit tables do mongo&#x3f;&#x3f;</note>
       <xloc>928</xloc>
-      <yloc>144</yloc>
-      <width>161</width>
-      <heigth>59</heigth>
+      <yloc>112</yloc>
+      <width>269</width>
+      <heigth>34</heigth>
       <fontname/>
       <fontsize>-1</fontsize>
       <fontbold>N</fontbold>

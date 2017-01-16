@@ -164,8 +164,8 @@ BEGIN
 START TRANSACTION;
 	set @id = (select id FROM ltmaquina WHERE source = in_source and source_id = in_source_id);
 	IF @id is not null THEN
-		INSERT INTO updateMaquina (modelo,renda,capacidade,cod_postal,freguesia,rua,cidade,distrito,pais,data_update) values
-			(in_modelo,in_renda,in_capacidade,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais,in_data_update);
+		INSERT INTO updateMaquina (maquina,modelo,renda,capacidade,cod_postal,freguesia,rua,cidade,distrito,pais,data_update) values
+			(@id,in_modelo,in_renda,in_capacidade,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais,in_data_update);
 	ELSE 
 		INSERT INTO quarmaquina  (source,source_id,modelo,renda,capacidade,cod_postal,freguesia,rua,cidade,distrito,pais,descricao,op) value
 			(in_source,in_source_id,in_modelo,in_renda,in_capacidade,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais,

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>TESTE_JOB</name>
+  <name>RL_TF</name>
   <description/>
   <extended_description/>
   <job_version/>
+  <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2017&#x2f;01&#x2f;13 11&#x3a;12&#x3a;25.221</created_date>
+  <created_date>2017&#x2f;01&#x2f;11 22&#x3a;27&#x3a;43.411</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2017&#x2f;01&#x2f;13 11&#x3a;12&#x3a;25.221</modified_date>
+  <modified_date>2017&#x2f;01&#x2f;11 22&#x3a;27&#x3a;43.411</modified_date>
     <parameters>
     </parameters>
     <slaveservers>
@@ -287,70 +288,115 @@
    <shared_objects_file/>
   <entries>
     <entry>
-      <name>Set last_try</name>
+      <name>START</name>
       <description/>
-      <type>SQL</type>
-      <sql>update etl set last_try &#x3d; now&#x28;&#x29;&#x3b;</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>521</xloc>
-      <yloc>198</yloc>
+      <xloc>192</xloc>
+      <yloc>160</yloc>
     </entry>
     <entry>
-      <name>Tabela Factos</name>
+      <name>Pre</name>
       <description/>
-      <type>JOB</type>
+      <type>TRANS</type>
       <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;FL_Tabela_Factos.kjb</filename>
-      <jobname/>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;RL_TF_Pre.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
       <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>825</xloc>
-      <yloc>198</yloc>
+      <xloc>352</xloc>
+      <yloc>160</yloc>
     </entry>
     <entry>
-      <name>Set last_load</name>
+      <name>Mei</name>
       <description/>
-      <type>SQL</type>
-      <sql>update etl set last_load &#x3d; now&#x28;&#x29;&#x3b;</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;RL_TF_Mei.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>969</xloc>
-      <yloc>198</yloc>
+      <xloc>528</xloc>
+      <yloc>160</yloc>
     </entry>
   </entries>
   <hops>
+    <hop>
+      <from>START</from>
+      <to>Pre</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Pre</from>
+      <to>Mei</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
   </notepads>

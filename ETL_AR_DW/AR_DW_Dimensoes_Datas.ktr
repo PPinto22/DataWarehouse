@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>RL_Dimensoes_I_Pos</name>
+    <name>AR_DW_Dimensoes_Datas</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,9 +428,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017&#x2f;01&#x2f;14 16&#x3a;13&#x3a;56.159</created_date>
+    <created_date>2017&#x2f;01&#x2f;16 01&#x3a;06&#x3a;13.648</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017&#x2f;01&#x2f;14 16&#x3a;13&#x3a;56.159</modified_date>
+    <modified_date>2017&#x2f;01&#x2f;16 01&#x3a;06&#x3a;13.648</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -461,11 +461,41 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>bivm_dw</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>bivm_dw</database>
+    <port>3306</port>
+    <username>root</username>
+    <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
+    <hop>
+      <from>Extrair DimData</from>
+      <to>Carregar DimData</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
-    <name>LTProduto</name>
-    <type>ExecSQL</type>
+    <name>Carregar DimData</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -474,19 +504,53 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>bivm_ar</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>insert into LTProduto &#x28;&#xd;&#xa;	select Dim.id, Pre.source, Pre.source_id &#xd;&#xa;		from dimproduto as Dim inner join predimproduto as Pre &#xd;&#xa;			on  Dim.nome &#x3d; Pre.nome and Dim.Pais &#x3d; Pre.Pais&#xd;&#xa;	&#x29;&#x3b;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
+    <connection>bivm_dw</connection>
+    <schema/>
+    <table>dimdata</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>id</column_name>
+          <stream_name>id</stream_name>
+        </field>
+        <field>
+          <column_name>data</column_name>
+          <stream_name>data</stream_name>
+        </field>
+        <field>
+          <column_name>ano</column_name>
+          <stream_name>ano</stream_name>
+        </field>
+        <field>
+          <column_name>mes</column_name>
+          <stream_name>mes</stream_name>
+        </field>
+        <field>
+          <column_name>dia_mes</column_name>
+          <stream_name>dia_mes</stream_name>
+        </field>
+        <field>
+          <column_name>dia_semana</column_name>
+          <stream_name>dia_semana</stream_name>
+        </field>
+        <field>
+          <column_name>fim_de_semana</column_name>
+          <stream_name>fim_de_semana</stream_name>
+        </field>
+    </fields>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -495,15 +559,15 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>144</yloc>
+      <xloc>272</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>LTUtilizador</name>
-    <type>ExecSQL</type>
+    <name>Extrair DimData</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -513,18 +577,12 @@
       <schema_name/>
     </partitioning>
     <connection>bivm_ar</connection>
+    <sql>SELECT&#xd;&#xa;  id&#xd;&#xa;, data&#xd;&#xa;, ano&#xd;&#xa;, mes&#xd;&#xa;, dia_mes&#xd;&#xa;, dia_semana&#xd;&#xa;, fim_de_semana&#xd;&#xa;FROM dimdata&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
     <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>insert into LTUtilizador &#x28;&#xd;&#xa;	select Dim.id, Pre.source, Pre.source_id &#xd;&#xa;		from dimutilizador as Dim inner join predimutilizador as Pre &#xd;&#xa;			on  Dim.email &#x3d; Pre.email&#xd;&#xa;	&#x29;&#x3b;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -533,8 +591,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>144</yloc>
+      <xloc>272</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
     </step>

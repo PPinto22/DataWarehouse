@@ -26,12 +26,19 @@ delete from ltutilizador;
 ALTER TABLE ltutilizador AUTO_INCREMENT = 1;
 
 delete from quarproduto;
+ALTER TABLE quarproduto AUTO_INCREMENT = 1;
 delete from quarutilizador;
+ALTER TABLE quarutilizador AUTO_INCREMENT = 1;
 delete from quarmaquina;
+ALTER TABLE quarmaquina AUTO_INCREMENT = 1;
 
 delete from updateProduto;
+ALTER TABLE updateProduto AUTO_INCREMENT = 1;
 delete from updateUtilizador;
+ALTER TABLE updateUtilizador AUTO_INCREMENT = 1;
 delete from updateMaquina;
+ALTER TABLE updateMaquina AUTO_INCREMENT = 1;
+
 
 delete from etl;
-insert into etl values(null,null);
+insert into etl values(null);

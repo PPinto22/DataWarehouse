@@ -57,7 +57,6 @@ BEGIN
 END$$
 DELIMITER ;
 
--- Pequena alteracao, nao testado
 drop trigger if exists tg_update_auditProduto;
 DELIMITER $$
 create trigger tg_update_auditProduto
@@ -69,7 +68,7 @@ BEGIN
         new.precoV <> old.precoV
 	THEN
 		insert into auditproduto (id_produto,nome,precoA,precoV,op) values
-			(new.id,new.nome,new.precoA,new.precoV,'I');
+			(new.id,new.nome,new.precoA,new.precoV,'U');
 	END IF;
 END$$
 DELIMITER ;
