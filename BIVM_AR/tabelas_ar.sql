@@ -103,6 +103,29 @@ create table LTutilizador (
     primary key (id,source,source_id,email)
 );
 
+drop table if exists QuarFactVendas;
+create table QuarFactVendas (
+	quar_id int primary key auto_increment,
+	source int,
+    precoV decimal(6,2),
+    precoA decimal(6,2),
+    lucro decimal(6,2),
+    source_data date,
+    data int,
+    source_hora time,
+    hora int,
+    source_utilizador varchar(75),
+    utilizador int,
+    source_maquina varchar(15),
+    maquina int,
+    source_produto varchar(45),
+    produto int,
+    validade int,
+    idade int,
+	quar_descricao varchar(150),
+    quar_insercao datetime default now()
+);
+
 drop table if exists QuarProduto;
 create table QuarProduto (
 	quar_id int primary key auto_increment,
@@ -161,9 +184,9 @@ create table preFactVendas (
     hora Time,
     validade int,
     idade int,
-    utilizador varchar(15),
+    utilizador varchar(75),
     maquina varchar(15),
-    produto varchar(15)
+    produto varchar(45)
 );
 
 drop table if exists updateProduto;

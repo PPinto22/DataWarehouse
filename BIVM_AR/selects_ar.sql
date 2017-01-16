@@ -21,6 +21,7 @@ select * from bivm_ar.ltutilizador;
 select * from bivm_ar.quarproduto;
 select * from bivm_ar.quarmaquina;
 select * from bivm_ar.quarutilizador;
+select * from bivm_ar.quarfactvendas;
 
 select * from bivm_ar.prefactvendas;
 select * from bivm_ar.factvendas;

@@ -31,6 +31,8 @@ delete from quarutilizador;
 ALTER TABLE quarutilizador AUTO_INCREMENT = 1;
 delete from quarmaquina;
 ALTER TABLE quarmaquina AUTO_INCREMENT = 1;
+delete from quarfactvendas;
+ALTER TABLE quarfactvendas AUTO_INCREMENT = 1;
 
 delete from updateProduto;
 ALTER TABLE updateProduto AUTO_INCREMENT = 1;

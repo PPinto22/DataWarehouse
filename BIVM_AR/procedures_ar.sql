@@ -1,5 +1,43 @@
 use bivm_ar;
 
+-- Testes
+-- select * from factvendas;
+-- select * from quarfactvendas;
+-- call sp_insert_venda(1,1.0,0.5,0.5,'2000-01-01','01:00:00',1,4,1,100,22);
+
+
+drop procedure if exists sp_insert_venda;
+DELIMITER $$
+create procedure sp_insert_venda(in in_source int, in in_precoV decimal(6,2), in in_precoA decimal(6,2),
+	in in_lucro decimal(6,2), in in_data date, in in_hora time, in in_utilizador varchar(75),
+    in in_maquina varchar(15), in in_produto varchar(45), in in_validade int, in in_idade int)
+BEGIN
+	set @data = (select id from dimdata where data = in_data limit 1);
+    set @hora = (select id from dimhora where tempo = in_hora limit 1);
+    set @utilizador = (select id from ltutilizador where source = in_source and source_id = in_utilizador);
+    set @maquina = (select id from ltmaquina where source = in_source and source_id = in_maquina);
+    set @produto = (select id from ltproduto where source = in_source and source_id = in_produto);
+    if 
+		@data is not null and
+        @hora is not null and
+        @utilizador is not null and
+        @maquina is not null and
+        @produto is not null 
+	then
+		INSERT INTO factVendas (precoV,precoA,lucro,data,hora,utilizador,maquina,produto,validade,idade) VALUES
+			(in_precoV,in_precoA,in_lucro,@data,@hora,@utilizador,@maquina,@produto,in_validade,in_idade);
+	else
+		INSERT INTO quarFactVendas(source,precoV,precoA,lucro,source_data,data,source_hora,hora,
+			source_utilizador,utilizador,source_maquina,maquina,source_produto,produto,validade,idade,
+            quar_descricao) 
+		VALUES
+			(in_source,in_precoV,in_precoA,in_lucro,in_data,@data,in_hora,@hora,
+             in_utilizador,@utilizador,in_maquina,@maquina,in_produto,@produto,in_validade,in_idade,
+             'Dimensoes nao existentes');
+	END IF;
+END $$
+DELIMITER ;
+
 -- TESTES
 -- select * from quarProduto;
 -- select * from updateProduto;
