@@ -594,6 +594,66 @@
       <to>Email</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Extrair Maquinas Mongo</from>
+      <to>Adicionar Source Maquina</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Adicionar Source Maquina</from>
+      <to>Parsing Horas Maquinas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Parsing Horas Maquinas</from>
+      <to>Acertar Campos Maquinas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Acertar Campos Maquinas</from>
+      <to>Codigo Postal</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Adicionar Source Utilizadores</from>
+      <to>Parsing Horas Utilizadore</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Extrair Utilizadores Mongo</from>
+      <to>Adicionar Source Utilizadores</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Parsing Horas Utilizadore</from>
+      <to>Acertar Campos Utilizadores</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Acertar Campos Utilizadores</from>
+      <to>Extrair Utilizadores</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Adicionar Source Produtos</from>
+      <to>Parsing Horas Produtos</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Extrair Produtos Mongo</from>
+      <to>Adicionar Source Produtos</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Parsing Horas Produtos</from>
+      <to>Acertar Campos Produtos</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Acertar Campos Produtos</from>
+      <to>Extrair Produtos</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Capitalizar Nome</name>
@@ -629,8 +689,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>848</xloc>
-      <yloc>352</yloc>
+      <xloc>1200</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -669,7 +729,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>704</xloc>
       <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
@@ -709,7 +769,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>704</xloc>
       <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
@@ -881,8 +941,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>848</xloc>
-      <yloc>816</yloc>
+      <xloc>1200</xloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -961,7 +1021,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>704</xloc>
       <yloc>816</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1091,7 +1151,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <script><![CDATA[[0-9]{4}-[0-9]{3}]]></script>    <matcher>cod_postal</matcher>
+    <script><![CDATA[([0-9]{4}-[0-9]{3})|([0-9]{5})]]></script>    <matcher>cod_postal</matcher>
     <resultfieldname>cod_postal_valido</resultfieldname>
     <usevar>N</usevar>
     <allowcapturegroups>N</allowcapturegroups>
@@ -1193,7 +1253,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>704</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1232,7 +1292,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
+      <xloc>864</xloc>
       <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1266,7 +1326,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>704</xloc>
       <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1284,7 +1344,7 @@
       <schema_name/>
     </partitioning>
     <connection>source_bivm</connection>
-    <sql>SELECT&#xa;  1 as source&#xa;, id&#xa;, id_maquina as source_id&#xa;, Modelo&#xa;, Renda&#xa;, Capacidade&#xa;, Cod_Postal&#xa;, Freguesia&#xa;, Rua&#xa;, Cidade&#xa;, Distrito&#xa;, Pais&#xa;, DataOp&#xa;, Op&#xa;FROM auditMaquina&#xa;</sql>
+    <sql>SELECT&#xa;  1 as source&#xa;, CAST&#x28;id as CHAR&#x28;75&#x29;&#x29; as id&#xa;, id_maquina as source_id&#xa;, Modelo&#xa;, Renda&#xa;, Capacidade&#xa;, Cod_Postal&#xa;, Freguesia&#xa;, Rua&#xa;, Cidade&#xa;, Distrito&#xa;, Pais&#xa;, DataOp&#xa;, Op&#xa;FROM auditMaquina&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1330,8 +1390,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>848</xloc>
-      <yloc>48</yloc>
+      <xloc>1200</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1362,7 +1422,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>704</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1618,7 +1678,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
+      <xloc>864</xloc>
       <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1707,7 +1767,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>704</xloc>
       <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1746,8 +1806,772 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>704</xloc>
       <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Acertar Campos Maquinas</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>      <field>        <name>source</name>
+        <rename/>
+      </field>      <field>        <name>id</name>
+        <rename/>
+      </field>      <field>        <name>source_id</name>
+        <rename/>
+      </field>      <field>        <name>Modelo</name>
+        <rename/>
+      </field>      <field>        <name>Renda</name>
+        <rename/>
+      </field>      <field>        <name>Capacidade</name>
+        <rename/>
+      </field>      <field>        <name>Cod_Postal</name>
+        <rename/>
+      </field>      <field>        <name>Freguesia</name>
+        <rename/>
+      </field>      <field>        <name>Rua</name>
+        <rename/>
+      </field>      <field>        <name>Cidade</name>
+        <rename/>
+      </field>      <field>        <name>Distrito</name>
+        <rename/>
+      </field>      <field>        <name>Pais</name>
+        <rename/>
+      </field>      <field>        <name>DataOp</name>
+        <rename/>
+      </field>      <field>        <name>Op</name>
+        <rename/>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Adicionar Source Maquina</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>source</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Extrair Maquinas Mongo</name>
+    <type>MongoDbInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <hostname>localhost</hostname>
+    <port/>
+    <use_all_replica_members>N</use_all_replica_members>
+    <db_name>BIVM</db_name>
+    <fields_name/>
+    <collection>auditMaquinas</collection>
+    <json_field_name>json</json_field_name>
+    <json_query/>
+    <auth_database/>
+    <auth_user/>
+    <auth_password>Encrypted </auth_password>
+    <auth_mech/>
+    <auth_kerberos>N</auth_kerberos>
+    <connect_timeout/>
+    <socket_timeout/>
+    <read_preference/>
+    <output_json>N</output_json>
+    <query_is_pipeline>N</query_is_pipeline>
+    <execute_for_each_row>N</execute_for_each_row>
+
+    <mongo_fields>
+      <mongo_field>
+        <field_name>id</field_name>
+
+        <field_path>renda</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>source_id</field_name>
+
+        <field_path>idMaquina</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Modelo</field_name>
+
+        <field_path>modelo</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Renda</field_name>
+
+        <field_path>renda</field_path>
+
+        <field_type>Number</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Capacidade</field_name>
+
+        <field_path>capacidade</field_path>
+
+        <field_type>Integer</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Cod_Postal</field_name>
+
+        <field_path>&#x24;.morada.Cod_Postal</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Freguesia</field_name>
+
+        <field_path>&#x24;.morada.Freguesia</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Rua</field_name>
+
+        <field_path>&#x24;.morada.Rua</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Cidade</field_name>
+
+        <field_path>&#x24;.morada.Cidade</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Distrito</field_name>
+
+        <field_path>&#x24;.morada.Distrito</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Pais</field_name>
+
+        <field_path>&#x24;.morada.Pais</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>DataOp_str</field_name>
+
+        <field_path>DataOp</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Op</field_name>
+
+        <field_path>Op</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+    </mongo_fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Parsing Horas Maquinas</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>        <select_unspecified>Y</select_unspecified>
+      <meta>        <name>DataOp_str</name>
+        <rename>DataOp</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd HH&#x3a;mm&#x3a;ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Acertar Campos Utilizadores</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>      <field>        <name>source</name>
+        <rename/>
+      </field>      <field>        <name>id</name>
+        <rename/>
+      </field>      <field>        <name>source_id</name>
+        <rename/>
+      </field>      <field>        <name>Email</name>
+        <rename/>
+      </field>      <field>        <name>Nome</name>
+        <rename/>
+      </field>      <field>        <name>Profissao</name>
+        <rename/>
+      </field>      <field>        <name>Genero</name>
+        <rename/>
+      </field>      <field>        <name>Data_Nascimento</name>
+        <rename/>
+      </field>      <field>        <name>DataOp</name>
+        <rename/>
+      </field>      <field>        <name>Op</name>
+        <rename/>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Adicionar Source Utilizadores</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>source</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Extrair Utilizadores Mongo</name>
+    <type>MongoDbInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <hostname>localhost</hostname>
+    <port/>
+    <use_all_replica_members>N</use_all_replica_members>
+    <db_name>BIVM</db_name>
+    <fields_name/>
+    <collection>auditUtilizadores</collection>
+    <json_field_name>json</json_field_name>
+    <json_query/>
+    <auth_database/>
+    <auth_user/>
+    <auth_password>Encrypted </auth_password>
+    <auth_mech/>
+    <auth_kerberos>N</auth_kerberos>
+    <connect_timeout/>
+    <socket_timeout/>
+    <read_preference/>
+    <output_json>N</output_json>
+    <query_is_pipeline>N</query_is_pipeline>
+    <execute_for_each_row>N</execute_for_each_row>
+
+    <mongo_fields>
+      <mongo_field>
+        <field_name>Op</field_name>
+
+        <field_path>&#x24;.Op</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>id</field_name>
+
+        <field_path>&#x24;.Email</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>DataOp_str</field_name>
+
+        <field_path>&#x24;.DataOp</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Email</field_name>
+
+        <field_path>&#x24;.Email</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Profissao</field_name>
+
+        <field_path>&#x24;.Profissao</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Genero</field_name>
+
+        <field_path>&#x24;.Genero</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Data_Nascimento</field_name>
+
+        <field_path>&#x24;.Data_Nascimento</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Nome</field_name>
+
+        <field_path>&#x24;.Nome</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>source_id</field_name>
+
+        <field_path>&#x24;.Email</field_path>
+
+        <field_type/>
+
+      </mongo_field>
+    </mongo_fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Parsing Horas Utilizadore</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>        <select_unspecified>Y</select_unspecified>
+      <meta>        <name>DataOp_str</name>
+        <rename>DataOp</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd HH&#x3a;mm&#x3a;ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Acertar Campos Produtos</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>      <field>        <name>source</name>
+        <rename/>
+      </field>      <field>        <name>id</name>
+        <rename/>
+      </field>      <field>        <name>source_id</name>
+        <rename/>
+      </field>      <field>        <name>pais</name>
+        <rename/>
+      </field>      <field>        <name>PrecoA</name>
+        <rename/>
+      </field>      <field>        <name>PrecoV</name>
+        <rename/>
+      </field>      <field>        <name>DataOp</name>
+        <rename/>
+      </field>      <field>        <name>Op</name>
+        <rename/>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1408</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Adicionar Source Produtos</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>source</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>pais</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Portugal</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1632</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Extrair Produtos Mongo</name>
+    <type>MongoDbInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <hostname>localhost</hostname>
+    <port/>
+    <use_all_replica_members>N</use_all_replica_members>
+    <db_name>BIVM</db_name>
+    <fields_name/>
+    <collection>auditProdutos</collection>
+    <json_field_name>json</json_field_name>
+    <json_query/>
+    <auth_database/>
+    <auth_user/>
+    <auth_password>Encrypted </auth_password>
+    <auth_mech/>
+    <auth_kerberos>N</auth_kerberos>
+    <connect_timeout/>
+    <socket_timeout/>
+    <read_preference/>
+    <output_json>N</output_json>
+    <query_is_pipeline>N</query_is_pipeline>
+    <execute_for_each_row>N</execute_for_each_row>
+
+    <mongo_fields>
+      <mongo_field>
+        <field_name>Op</field_name>
+
+        <field_path>&#x24;.Op</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>Nome</field_name>
+
+        <field_path>&#x24;.Nome</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>PrecoA</field_name>
+
+        <field_path>&#x24;.PrecoA</field_path>
+
+        <field_type>Number</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>DataOp_Str</field_name>
+
+        <field_path>&#x24;.DataOp</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>PrecoV</field_name>
+
+        <field_path>&#x24;.PrecoV</field_path>
+
+        <field_type>Number</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>id</field_name>
+
+        <field_path>&#x24;.Nome</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+      <mongo_field>
+        <field_name>source_id</field_name>
+
+        <field_path>&#x24;.Nome</field_path>
+
+        <field_type>String</field_type>
+
+      </mongo_field>
+    </mongo_fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1408</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Parsing Horas Produtos</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>        <select_unspecified>Y</select_unspecified>
+      <meta>        <name>DataOp_str</name>
+        <rename>DataOp</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd HH&#x3a;mm&#x3a;ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1632</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
