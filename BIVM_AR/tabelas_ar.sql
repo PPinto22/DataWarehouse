@@ -37,7 +37,7 @@ insert into etl value(null);
 drop table if exists predimproduto;
 create table preDimProduto (
     source int,
-    source_id varchar(75),
+    source_id varchar(45),
     nome varchar(45),
     pais varchar(45),
     precoV decimal(6,2),
@@ -49,7 +49,7 @@ create table preDimProduto (
 drop table if exists predimutilizador;
 create table preDimUtilizador (
     source int,
-    source_id varchar(15),
+    source_id varchar(75),
     email varchar(75),
     nome varchar(75),
     profissao varchar(45),
