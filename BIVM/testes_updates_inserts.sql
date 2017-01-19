@@ -31,10 +31,12 @@ update bivm.produto set precoV = 3.0 where id = 1;
 INSERT INTO bivm.Venda
   (Data, PrecoV, PrecoA, Utilizador, Remessa, Maquina)
   VALUES
-  ('2017-01-20 13:00:00','0.8','0.5',9,1,1),
+  ('2017-01-20 13:00:00','0.8','0.5',21,1,1),
   ('2017-01-21 21:30:00','0.8','0.5',8,2,2);
 
 -- Delete/Revert
+delete from bivm.Venda where data in ('2017-01-20 13:00:00','2017-01-21 21:30:00');
+
 delete from bivm.utilizador where id in(20,21);
 delete from bivm.produto where id in (20,21);
 update bivm.morada set pais = 'Portugal' 
@@ -51,5 +53,3 @@ update bivm.maquina set capacidade = "150"
 update bivm.maquina set renda = 200.00 where id = 1;
 delete from bivm.utilizador where id in (50,51);
 update bivm.produto set precoV = 0.8 where id = 1;
-
-delete from bivm.Venda where data in ('2017-01-20 13:00:00','2017-01-21 21:30:00');

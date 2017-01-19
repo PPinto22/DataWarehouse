@@ -1868,7 +1868,7 @@
         <name>source_id</name>
         <path>idMaquina</path>
         <type>Integer</type>
-        <format>&#x23;</format>
+        <format/>
         <currency/>
         <decimal/>
         <group/>

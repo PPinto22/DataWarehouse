@@ -2,6 +2,19 @@ USE `bivm` ;
 
 SET SQL_SAFE_UPDATES = 0;
 
+delete from venda;
+alter table venda auto_increment = 1;
+delete from utilizador;
+alter table utilizador auto_increment = 1;
+delete from remessa;
+alter table remessa auto_increment = 1;
+delete from produto;
+alter table produto auto_increment = 1;
+delete from maquina;
+alter table maquina auto_increment = 1;
+delete from morada;
+alter table morada auto_increment = 1;
+
 INSERT INTO Morada
   (Cod_Postal, Freguesia, Rua, Porta, Pais, Cidade, Distrito)
   VALUES
@@ -81,26 +94,26 @@ INSERT INTO Utilizador
 INSERT INTO Venda
   (Data, PrecoV, PrecoA, Utilizador, Remessa, Maquina)
   VALUES
-  ('2016-11-28','0.8','0.5',9,1,1),#lanche
-  ('2016-11-26','0.8','0.5',7,2,2),#lanche
-  ('2016-11-30','0.6','0.5',8,2,2),#lanche promocao(ultimo dia validade)
-  ('2016-11-29','0.5','0.3',10,3,1),#croissant
-  ('2016-01-20','0.6','0.1',7,2,5),#agua
-  ('2016-12-03','0.8','0.5',1,6,5),#cola
-  ('2016-12-17','0.4','0.2',2,7,6),#maria
-  ('2016-01-03','0.7','0.4',15,8,4),#kinder
-  ('2015-12-30','0.55','0.3',4,9,7),#kit kat
-  ('2015-12-15','0.8','0.5',11,10,3),#ice tea
-  ('2016-01-05','0.5','0.3',14,11,3),#croissant
-  ('2016-01-09','1','0.7',15,12,3),#bolachaChocolate
-  ('2016-01-12','0.8','0.5',12,13,7),#lanche
-  ('2016-01-20','0.5','0.3',13,14,6),#croissant
-  ('2016-01-02','0.8','0.5',3,15,5),#lanche
-  ('2016-01-01','0.55','0.3',5,9,7),#kitkat
-  ('2016-12-03','0.8','0.5',6,6,5),#cola
-  ('2016-01-24','0.4','0.3',10,14,6),#croissant promocao
-  ('2016-01-15','0.6','0.5',3,13,7),#lanche promoçao
-  ('2016-01-06','0.8','0.5',11,10,3);#icetea
+  ('2016-11-28 12:45:07','0.8','0.5',9,1,1),#lanche
+  ('2016-11-26 18:38:12','0.8','0.5',7,2,2),#lanche
+  ('2016-11-30 05:29:31','0.6','0.5',8,2,2),#lanche promocao(ultimo dia validade)
+  ('2016-11-29 09:12:34','0.5','0.3',10,3,1),#croissant
+  ('2016-01-20 20:48:23','0.6','0.1',7,2,5),#agua
+  ('2016-12-03 23:30:13','0.8','0.5',1,6,5),#cola
+  ('2016-12-17 23:19:20','0.4','0.2',2,7,6),#maria
+  ('2016-01-03 17:57:28','0.7','0.4',15,8,4),#kinder
+  ('2015-12-30 08:10:20','0.55','0.3',4,9,7),#kit kat
+  ('2015-12-15 07:39:20','0.8','0.5',11,10,3),#ice tea
+  ('2016-01-05 04:38:29','0.5','0.3',14,11,3),#croissant
+  ('2016-01-09 14:23:12','1','0.7',15,12,3),#bolachaChocolate
+  ('2016-01-12 14:34:12','0.8','0.5',12,13,7),#lanche
+  ('2016-01-20 15:38:29','0.5','0.3',13,14,6),#croissant
+  ('2016-01-02 16:39:28','0.8','0.5',3,15,5),#lanche
+  ('2016-01-01 16:40:40','0.55','0.3',5,9,7),#kitkat
+  ('2016-12-03 17:29:20','0.8','0.5',6,6,5),#cola
+  ('2016-01-24 17:40:20','0.4','0.3',10,14,6),#croissant promocao
+  ('2016-01-15 19:12:43','0.6','0.5',3,13,7),#lanche promoçao
+  ('2016-01-06 19:13:00','0.8','0.5',11,10,3);#icetea
 
 
 

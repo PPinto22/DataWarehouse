@@ -2,6 +2,10 @@ use bivm;
 
 SET SQL_SAFE_UPDATES = 0;
 
+-- select * from bivm.auditProduto;
+-- select * from bivm.auditUtilizador;
+-- select * from bivm.auditMaquina;
+
 delete from auditProduto;
 alter table auditProduto auto_increment = 1;
 

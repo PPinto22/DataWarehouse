@@ -500,6 +500,29 @@
       <xloc>272</xloc>
       <yloc>176</yloc>
     </entry>
+    <entry>
+      <name>Clear Mongo Audit</name>
+      <description/>
+      <type>SHELL</type>
+      <filename/>
+      <work_directory/>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <set_append_logfile>N</set_append_logfile>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <insertScript>Y</insertScript>
+      <script>mongo BIVM --eval &#x22;db.auditMaquinas.drop&#x28;&#x29;&#x22; &#xd;&#xa;mongo BIVM --eval &#x22;db.auditVendas.drop&#x28;&#x29;&#x22; &#xd;&#xa;mongo BIVM --eval &#x22;db.auditUtilizadores.drop&#x28;&#x29;&#x22; &#xd;&#xa;mongo BIVM --eval &#x22;db.auditProdutos.drop&#x28;&#x29;&#x22; </script>
+      <loglevel>Basic</loglevel>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1168</xloc>
+      <yloc>176</yloc>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -556,28 +579,16 @@
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>Clear AuditTables</from>
+      <to>Clear Mongo Audit</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
-    <notepad>
-      <note>Limpar audit tables do mongo&#x3f;&#x3f;</note>
-      <xloc>928</xloc>
-      <yloc>112</yloc>
-      <width>269</width>
-      <heigth>34</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
 </job>
