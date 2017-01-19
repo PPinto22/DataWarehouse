@@ -616,7 +616,7 @@
     </hop>
     <hop>
       <from>Adicionar Source Utilizadores</from>
-      <to>Parsing Horas Utilizadore</to>
+      <to>Parsing Horas Utilizador</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -625,7 +625,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Parsing Horas Utilizadore</from>
+      <from>Parsing Horas Utilizador</from>
       <to>Acertar Campos Utilizadores</to>
       <enabled>Y</enabled>
     </hop>
@@ -2200,7 +2200,7 @@
     </step>
 
   <step>
-    <name>Parsing Horas Utilizadore</name>
+    <name>Parsing Horas Utilizador</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
