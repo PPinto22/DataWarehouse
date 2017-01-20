@@ -63,7 +63,8 @@ BEGIN
             INSERT INTO LTProduto (id,source,source_id,nome,pais) values
 				(@id,in_source,in_source_id,in_nome,in_pais);
 			INSERT INTO quarproduto  (source,source_id,nome,pais,precoV,precoA,descricao,op) values
-				(in_source,in_source_id,in_nome,in_pais,in_precoV,in_precoA,"Produto repetido. Inserido novo mapeamento em LTProduto",'I');
+				(in_source,in_source_id,in_nome,in_pais,in_precoV,in_precoA,
+					"Produto repetido. Inserido novo mapeamento em LTProduto",'I');
 			COMMIT;
 		ELSE 
 			START TRANSACTION;
