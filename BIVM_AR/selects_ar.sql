@@ -29,3 +29,10 @@ select * from bivm_ar.quarfactvendas;
 select * from bivm.auditproduto;
 select * from bivm.auditutilizador;
 select * from bivm.auditmaquina;
+
+select TF.precoV, TF.precoA, TF.lucro, D.data, H.tempo, U.email as utilizador, TF.maquina, P.nome as produto, P.pais, TF.validade, TF.idade
+	FROM bivm_ar.factvendas as TF
+    INNER JOIN bivm_ar.dimData as D ON TF.data = D.id
+    INNER JOIN bivm_ar.dimHora as H on TF.hora = H.id
+    INNER JOIN bivm_ar.dimutilizador as U on TF.utilizador = U.id
+    INNER JOIN bivm_ar.dimproduto as P on TF.produto = P.id;
