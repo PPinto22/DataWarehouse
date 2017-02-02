@@ -26,11 +26,17 @@ update bivm.morada set cod_postal = '000000'
 	where id = 2;
 
 update bivm.maquina set renda = 300.00 where id = 1;
+select sleep(1);
 update bivm.maquina set renda = 350.00 where id = 1;
-update bivm.maquina set morada = 2 where id = 1;
+select sleep(1);
+update bivm.maquina set morada = 3 where id = 1;
+
+select * from bivm.auditmaquina;
 
 update bivm.produto set precoV = 1.2, precoA=0.4 where id = 1;
+select sleep(1);
 update bivm.produto set precoV = 1.5, precoA=0.6 where id = 1;
+select sleep(1);
 update bivm.produto set precoV = 1.3, precoA=0.3 where id = 1;
 
 INSERT INTO bivm.Venda
