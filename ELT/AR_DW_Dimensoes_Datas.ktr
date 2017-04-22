@@ -527,8 +527,8 @@
           <stream_name>id</stream_name>
         </field>
         <field>
-          <column_name>data</column_name>
-          <stream_name>data</stream_name>
+          <column_name>dia</column_name>
+          <stream_name>dia</stream_name>
         </field>
         <field>
           <column_name>ano</column_name>
@@ -537,10 +537,6 @@
         <field>
           <column_name>mes</column_name>
           <stream_name>mes</stream_name>
-        </field>
-        <field>
-          <column_name>dia_mes</column_name>
-          <stream_name>dia_mes</stream_name>
         </field>
         <field>
           <column_name>dia_semana</column_name>
@@ -577,7 +573,7 @@
       <schema_name/>
     </partitioning>
     <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  id&#xd;&#xa;, data&#xd;&#xa;, ano&#xd;&#xa;, mes&#xd;&#xa;, dia_mes&#xd;&#xa;, dia_semana&#xd;&#xa;, fim_de_semana&#xd;&#xa;FROM dimdata&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  id&#xd;&#xa;, dia&#xd;&#xa;, mes&#xd;&#xa;, ano&#xd;&#xa;, dia_semana&#xd;&#xa;, fim_de_semana&#xd;&#xa;FROM dimdata&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

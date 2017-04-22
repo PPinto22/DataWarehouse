@@ -4,8 +4,6 @@ SET SQL_SAFE_UPDATES = 0;
 
 delete from dimdata;
 ALTER TABLE dimdata AUTO_INCREMENT = 1;
-delete from dimhora;
-ALTER TABLE dimhora AUTO_INCREMENT = 1;
 
 delete from dimproduto;
 delete from dimmaquina;

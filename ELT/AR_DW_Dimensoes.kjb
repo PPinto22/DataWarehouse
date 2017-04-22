@@ -364,7 +364,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>800</xloc>
+      <xloc>704</xloc>
       <yloc>176</yloc>
     </entry>
     <entry>
@@ -399,7 +399,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>640</xloc>
+      <xloc>544</xloc>
       <yloc>176</yloc>
     </entry>
     <entry>
@@ -420,26 +420,6 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>320</xloc>
-      <yloc>176</yloc>
-    </entry>
-    <entry>
-      <name>Carregar Horas&#x3f;</name>
-      <description/>
-      <type>EVAL_TABLE_CONTENT</type>
-      <connection>bivm_dw</connection>
-      <schemaname/>
-      <tablename>dimhora</tablename>
-      <success_condition>rows_count_equal</success_condition>
-      <limit>0</limit>
-      <is_custom_sql>N</is_custom_sql>
-      <is_usevars>N</is_usevars>
-      <custom_sql/>
-      <add_rows_result>N</add_rows_result>
-      <clear_result_rows>Y</clear_result_rows>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>480</xloc>
       <yloc>176</yloc>
     </entry>
     <entry>
@@ -477,41 +457,6 @@
       <xloc>320</xloc>
       <yloc>352</yloc>
     </entry>
-    <entry>
-      <name>Carregar Horas</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;AR_DW_Dimensoes_Horas.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>480</xloc>
-      <yloc>352</yloc>
-    </entry>
   </entries>
   <hops>
     <hop>
@@ -542,34 +487,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Carregar Datas&#x3f;</from>
-      <to>Carregar Horas&#x3f;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Carregar Datas</from>
-      <to>Carregar Horas&#x3f;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Carregar Horas&#x3f;</from>
-      <to>Carregar Horas</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Carregar Horas</from>
       <to>Inserts</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -578,7 +496,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Carregar Horas&#x3f;</from>
+      <from>Carregar Datas&#x3f;</from>
       <to>Inserts</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>

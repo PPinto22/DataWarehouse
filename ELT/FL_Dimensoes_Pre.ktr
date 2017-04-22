@@ -499,11 +499,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Extrair Horas</from>
-      <to>Carregar DimHora</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Extrair Produtos</from>
       <to>Capitalizar Nome</to>
       <enabled>Y</enabled>
@@ -613,342 +608,7 @@
       <to>Capitalizar Nome 2</to>
       <enabled>Y</enabled>
     </hop>
-    <hop>
-      <from>Adicionar Source e Op M</from>
-      <to>Acertar Campos M</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Extrair Atributos Maquina</from>
-      <to>Extrair Morada</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Extrair Morada</from>
-      <to>Adicionar Source e Op M</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Acertar Campos M</from>
-      <to>Codigo Postal</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Extrair Maquinas Mongo</from>
-      <to>Extrair Atributos Maquina</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Extrair Utilizadores Mongo</from>
-      <to>Extrair Atributos Utilizador</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Extrair Atributos Utilizador</from>
-      <to>Adicionar Source e Op U</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Adicionar Source e Op U</from>
-      <to>Acertar Campos U</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Acertar Campos U</from>
-      <to>Email</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Extrair Produtos Mongo</from>
-      <to>Extrair Atributos Produto</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Extrair Atributos Produto</from>
-      <to>Adicionar Source e Op Produto</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Adicionar Source e Op Produto</from>
-      <to>Acertar Campos P</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Acertar Campos P</from>
-      <to>Capitalizar Nome</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
-  <step>
-    <name>Acertar Campos M</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>source</name>
-      </field>      <field>        <name>source_id</name>
-      </field>      <field>        <name>modelo</name>
-      </field>      <field>        <name>renda</name>
-      </field>      <field>        <name>capacidade</name>
-      </field>      <field>        <name>cod_postal</name>
-      </field>      <field>        <name>freguesia</name>
-      </field>      <field>        <name>rua</name>
-      </field>      <field>        <name>cidade</name>
-      </field>      <field>        <name>distrito</name>
-      </field>      <field>        <name>pais</name>
-      </field>      <field>        <name>op</name>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1632</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Acertar Campos P</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>source</name>
-      </field>      <field>        <name>id</name>
-      </field>      <field>        <name>nome</name>
-      </field>      <field>        <name>pais</name>
-      </field>      <field>        <name>precoA</name>
-      </field>      <field>        <name>precoV</name>
-      </field>      <field>        <name>op</name>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Acertar Campos U</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>source</name>
-      </field>      <field>        <name>source_id</name>
-      </field>      <field>        <name>email</name>
-      </field>      <field>        <name>nome</name>
-      </field>      <field>        <name>profissao</name>
-      </field>      <field>        <name>genero</name>
-      </field>      <field>        <name>data_nascimento</name>
-      </field>      <field>        <name>op</name>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1088</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Adicionar Source e Op M</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>source</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>2</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>op</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>I</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1808</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Adicionar Source e Op Produto</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>source</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>2</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>op</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>I</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>pais</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Espanha</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>304</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Adicionar Source e Op U</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>source</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>2</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>op</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>I</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1312</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
   <step>
     <name>Capitalizar Nome</name>
     <type>StringOperations</type>
@@ -983,7 +643,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
+      <xloc>368</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1023,7 +683,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>608</xloc>
       <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1063,7 +723,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>608</xloc>
       <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1099,8 +759,8 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>data</column_name>
-          <stream_name>data</stream_name>
+          <column_name>dia</column_name>
+          <stream_name>dia</stream_name>
         </field>
         <field>
           <column_name>ano</column_name>
@@ -1109,10 +769,6 @@
         <field>
           <column_name>mes</column_name>
           <stream_name>mes</stream_name>
-        </field>
-        <field>
-          <column_name>dia_mes</column_name>
-          <stream_name>dia_mes</stream_name>
         </field>
         <field>
           <column_name>dia_semana</column_name>
@@ -1132,66 +788,6 @@
     </remotesteps>
     <GUI>
       <xloc>128</xloc>
-      <yloc>896</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Carregar DimHora</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <schema/>
-    <table>dimhora</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>tempo</column_name>
-          <stream_name>tempo</stream_name>
-        </field>
-        <field>
-          <column_name>hora</column_name>
-          <stream_name>hora</stream_name>
-        </field>
-        <field>
-          <column_name>minuto</column_name>
-          <stream_name>minuto</stream_name>
-        </field>
-        <field>
-          <column_name>periodo</column_name>
-          <stream_name>periodo</stream_name>
-        </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
       <yloc>896</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1279,7 +875,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
+      <xloc>928</xloc>
       <yloc>896</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1351,7 +947,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
+      <xloc>368</xloc>
       <yloc>896</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1427,7 +1023,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>608</xloc>
       <yloc>896</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1467,7 +1063,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
+      <xloc>928</xloc>
       <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1501,7 +1097,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
+      <xloc>928</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1540,7 +1136,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1664</xloc>
+      <xloc>1104</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1579,7 +1175,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
+      <xloc>928</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1677,7 +1273,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
+      <xloc>928</xloc>
       <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1717,7 +1313,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>608</xloc>
       <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1756,7 +1352,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1056</xloc>
+      <xloc>768</xloc>
       <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1790,371 +1386,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>608</xloc>
       <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Extrair Atributos Maquina</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>N</ignoreMissingPath>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>renda</name>
-        <path>renda</path>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal>.</decimal>
-        <group/>
-        <length>6</length>
-        <precision>2</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>modelo</name>
-        <path>modelo</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>capacidade</name>
-        <path>capacidade</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_id</name>
-        <path>idMaquina</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>morada</name>
-        <path>morada</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>json</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1968</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Extrair Atributos Produto</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>N</ignoreMissingPath>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>id</name>
-        <path>_id</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>nome</name>
-        <path>_id</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>precoA</name>
-        <path>PrecoA</path>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal>.</decimal>
-        <group/>
-        <length>6</length>
-        <precision>2</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>precoV</name>
-        <path>PrecoV</path>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal>.</decimal>
-        <group/>
-        <length>6</length>
-        <precision>2</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>json</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Extrair Atributos Utilizador</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>N</ignoreMissingPath>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>source_id</name>
-        <path>Email</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>email</name>
-        <path>Email</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>nome</name>
-        <path>Nome</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>profissao</name>
-        <path>Profissao</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>genero</name>
-        <path>Genero</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>data_nascimento</name>
-        <path>Data_Nascimento</path>
-        <type>Date</type>
-        <format>yyyy-MM-dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>json</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1312</xloc>
-      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2185,7 +1418,18 @@
     <encoding/>
     <fields>
       <field>
-        <name>data</name>
+        <name>dia</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>mes</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -2197,28 +1441,6 @@
       </field>
       <field>
         <name>ano</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>mes</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>dia_mes</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -2266,90 +1488,6 @@
     </step>
 
   <step>
-    <name>Extrair Horas</name>
-    <type>CsvInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;horas.csv</filename>
-    <filename_field/>
-    <rownum_field/>
-    <include_filename>N</include_filename>
-    <separator>,</separator>
-    <enclosure>&#x22;</enclosure>
-    <header>Y</header>
-    <buffer_size>50000</buffer_size>
-    <lazy_conversion>Y</lazy_conversion>
-    <add_filename_result>N</add_filename_result>
-    <parallel>N</parallel>
-    <newline_possible>N</newline_possible>
-    <encoding/>
-    <fields>
-      <field>
-        <name>tempo</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>hora</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>minuto</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>periodo</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
     <name>Extrair Maquinas</name>
     <type>TableInput</type>
     <description/>
@@ -2375,186 +1513,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
+      <xloc>928</xloc>
       <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Extrair Maquinas Mongo</name>
-    <type>MongoDbInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <hostname>localhost</hostname>
-    <port/>
-    <use_all_replica_members>N</use_all_replica_members>
-    <db_name>BIVM</db_name>
-    <fields_name/>
-    <collection>maquinas</collection>
-    <json_field_name>json</json_field_name>
-    <json_query/>
-    <auth_database/>
-    <auth_user/>
-    <auth_password>Encrypted </auth_password>
-    <auth_mech/>
-    <auth_kerberos>N</auth_kerberos>
-    <connect_timeout/>
-    <socket_timeout/>
-    <read_preference/>
-    <output_json>Y</output_json>
-    <query_is_pipeline>N</query_is_pipeline>
-    <execute_for_each_row>N</execute_for_each_row>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1744</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Extrair Morada</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>N</ignoreMissingPath>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>freguesia</name>
-        <path>Freguesia</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>rua</name>
-        <path>Rua</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>cidade</name>
-        <path>Cidade</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>distrito</name>
-        <path>Distrito</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>cod_postal</name>
-        <path>Cod_Postal</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>pais</name>
-        <path>Pais</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>morada</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1968</xloc>
-      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2585,51 +1545,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Extrair Produtos Mongo</name>
-    <type>MongoDbInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <hostname>localhost</hostname>
-    <port/>
-    <use_all_replica_members>N</use_all_replica_members>
-    <db_name>BIVM</db_name>
-    <fields_name/>
-    <collection>maquinas</collection>
-    <json_field_name>json</json_field_name>
-    <json_query>db.maquinas.aggregate&#x28;&#x5b;&#x7b;&#x24;unwind &#x3a; &#x22;&#x24;stock&#x22;&#x7d;,  &#x7b;&#x24;group&#x3a;&#x7b;_id&#x3a;&#x22;&#x24;stock.Produto.Nome&#x22;,PrecoA&#x3a;&#x7b;&#x24;avg&#x3a;&#x22;&#x24;stock.Produto.PrecoA&#x22;&#x7d;, PrecoV&#x3a;&#x7b;&#x24;avg&#x3a;&#x22;&#x24;stock.Produto.PrecoV&#x22;&#x7d;&#x7d;&#x7d;&#x5d;&#x29;.pretty&#x28;&#x29;</json_query>
-    <auth_database/>
-    <auth_user/>
-    <auth_password>Encrypted </auth_password>
-    <auth_mech/>
-    <auth_kerberos>N</auth_kerberos>
-    <connect_timeout/>
-    <socket_timeout/>
-    <read_preference/>
-    <output_json>Y</output_json>
-    <query_is_pipeline>Y</query_is_pipeline>
-    <execute_for_each_row>N</execute_for_each_row>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
+      <xloc>368</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2661,51 +1577,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Extrair Utilizadores Mongo</name>
-    <type>MongoDbInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <hostname>localhost</hostname>
-    <port/>
-    <use_all_replica_members>N</use_all_replica_members>
-    <db_name>BIVM</db_name>
-    <fields_name/>
-    <collection>utilizadores</collection>
-    <json_field_name>json</json_field_name>
-    <json_query/>
-    <auth_database/>
-    <auth_user/>
-    <auth_password>Encrypted </auth_password>
-    <auth_mech/>
-    <auth_kerberos>N</auth_kerberos>
-    <connect_timeout/>
-    <socket_timeout/>
-    <read_preference/>
-    <output_json>Y</output_json>
-    <query_is_pipeline>N</query_is_pipeline>
-    <execute_for_each_row>N</execute_for_each_row>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1088</xloc>
+      <xloc>608</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2783,7 +1655,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
+      <xloc>928</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2823,7 +1695,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
+      <xloc>928</xloc>
       <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2919,7 +1791,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1664</xloc>
+      <xloc>1104</xloc>
       <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2999,7 +1871,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1056</xloc>
+      <xloc>768</xloc>
       <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3039,7 +1911,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
+      <xloc>928</xloc>
       <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3088,7 +1960,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>608</xloc>
       <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3127,7 +1999,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>608</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>

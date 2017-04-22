@@ -349,27 +349,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>192</xloc>
-      <yloc>240</yloc>
-    </entry>
-    <entry>
-      <name>DimHora</name>
-      <description/>
-      <type>EVAL_TABLE_CONTENT</type>
-      <connection>bivm_ar</connection>
-      <schemaname/>
-      <tablename>dimhora</tablename>
-      <success_condition>rows_count_equal</success_condition>
-      <limit>0</limit>
-      <is_custom_sql>N</is_custom_sql>
-      <is_usevars>N</is_usevars>
-      <custom_sql/>
-      <add_rows_result>N</add_rows_result>
-      <clear_result_rows>Y</clear_result_rows>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>80</xloc>
+      <xloc>96</xloc>
       <yloc>240</yloc>
     </entry>
     <entry>
@@ -509,7 +489,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>80</xloc>
+      <xloc>96</xloc>
       <yloc>384</yloc>
     </entry>
     <entry>
@@ -658,24 +638,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>DimData</from>
-      <to>DimHora</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>DimHora</from>
-      <to>LTProduto</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>LTProduto</from>
       <to>LTUtilizador</to>
       <from_nr>0</from_nr>
@@ -705,6 +667,15 @@
     <hop>
       <from>preFactVendas</from>
       <to>factVendas</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>DimData</from>
+      <to>LTProduto</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

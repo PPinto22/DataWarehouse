@@ -12,7 +12,6 @@ delete from dimmaquina;
 delete from dimutilizador;
 
 delete from dimdata;
-delete from dimhora;
 
 delete from factvendas;
 

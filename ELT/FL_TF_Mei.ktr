@@ -484,7 +484,7 @@
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>call sp_insert_venda&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;&#x3b;</sql>
+    <sql>call sp_insert_venda&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;&#x3b;</sql>
     <set_params>Y</set_params>
     <insert_field/>
     <update_field/>
@@ -495,12 +495,13 @@
        <argument><name>precoV</name></argument>
        <argument><name>precoA</name></argument>
        <argument><name>lucro</name></argument>
+       <argument><name>validade</name></argument>
        <argument><name>data</name></argument>
-       <argument><name>hora</name></argument>
        <argument><name>utilizador</name></argument>
        <argument><name>maquina</name></argument>
        <argument><name>produto</name></argument>
-       <argument><name>validade</name></argument>
+       <argument><name>hora</name></argument>
+       <argument><name>periodo</name></argument>
        <argument><name>idade</name></argument>
     </arguments>
     <cluster_schema/>
@@ -529,7 +530,7 @@
       <schema_name/>
     </partitioning>
     <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, precoV&#xd;&#xa;, precoA&#xd;&#xa;, lucro&#xd;&#xa;, data&#xd;&#xa;, hora&#xd;&#xa;, utilizador&#xd;&#xa;, maquina&#xd;&#xa;, produto&#xd;&#xa;, validade&#xd;&#xa;, idade&#xd;&#xa;FROM prefactvendas&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, precoV&#xd;&#xa;, precoA&#xd;&#xa;, lucro&#xd;&#xa;, data&#xd;&#xa;, hora&#xd;&#xa;, utilizador&#xd;&#xa;, maquina&#xd;&#xa;, produto&#xd;&#xa;, validade&#xd;&#xa;, idade&#xd;&#xa;, periodo&#xd;&#xa;FROM prefactvendas&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

@@ -31,7 +31,7 @@ update bivm.maquina set renda = 350.00 where id = 1;
 select sleep(1);
 update bivm.maquina set morada = 3 where id = 1;
 
-select * from bivm.auditmaquina;
+-- select * from bivm.auditmaquina;
 
 update bivm.produto set precoV = 1.2, precoA=0.4 where id = 1;
 select sleep(1);
@@ -42,11 +42,11 @@ update bivm.produto set precoV = 1.3, precoA=0.3 where id = 1;
 INSERT INTO bivm.Venda
   (Data, PrecoV, PrecoA, Utilizador, Remessa, Maquina)
   VALUES
-  ('2017-02-20 13:00:00','0.8','0.5',21,1,1),
-  ('2017-02-21 21:30:00','0.8','0.5',8,2,2);
+  ('2017-05-20 13:00:00','0.8','0.5',21,1,1),
+  ('2017-05-21 21:30:00','0.8','0.5',8,2,2);
 
 -- Delete/Revert
-delete from bivm.Venda where data in ('2017-02-20 13:00:00','2017-02-21 21:30:00');
+delete from bivm.Venda where data in ('2017-05-20 13:00:00','2017-05-21 21:30:00');
 
 delete from bivm.utilizador where id in(20,21,50,51);
 delete from bivm.produto where id in (20,21);

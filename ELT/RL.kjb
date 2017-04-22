@@ -501,29 +501,6 @@
       <yloc>176</yloc>
     </entry>
     <entry>
-      <name>Clear Mongo Audit</name>
-      <description/>
-      <type>SHELL</type>
-      <filename/>
-      <work_directory/>
-      <arg_from_previous>N</arg_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <set_append_logfile>N</set_append_logfile>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <insertScript>Y</insertScript>
-      <script>mongo BIVM --eval &#x22;db.auditMaquinas.drop&#x28;&#x29;&#x22; &#xd;&#xa;mongo BIVM --eval &#x22;db.auditVendas.drop&#x28;&#x29;&#x22; &#xd;&#xa;mongo BIVM --eval &#x22;db.auditUtilizadores.drop&#x28;&#x29;&#x22; &#xd;&#xa;mongo BIVM --eval &#x22;db.auditProdutos.drop&#x28;&#x29;&#x22; </script>
-      <loglevel>Basic</loglevel>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>1088</xloc>
-      <yloc>176</yloc>
-    </entry>
-    <entry>
       <name>Load DW</name>
       <description/>
       <type>JOB</type>
@@ -551,7 +528,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1216</xloc>
+      <xloc>1056</xloc>
       <yloc>176</yloc>
     </entry>
   </entries>
@@ -612,15 +589,6 @@
     </hop>
     <hop>
       <from>Clear AuditTables</from>
-      <to>Clear Mongo Audit</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Clear Mongo Audit</from>
       <to>Load DW</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
