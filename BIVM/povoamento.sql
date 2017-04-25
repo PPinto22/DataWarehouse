@@ -27,13 +27,13 @@ INSERT INTO Morada
 INSERT INTO Maquina
   (Descriçao, Modelo, Renda, Capacidade, Morada)
   VALUES
-  ('CP1 no segundo piso','A', '200', '300', 1),
-  ('CP3 no primeito piso','A', '150', '250', 1),
-  ('Nave','B', '350', '400', 5),
-  ('Entrada da escola','B', '250', '150', 2),
-  ('Ala Norte','A1', '500', '450', 3),
-  ('Ala Sul','B2', '500', '450', 3),
-  ('Entrada do Hospital','C', '300', '250', 4);
+  ('CP1 no segundo piso','A', '200', '10', 1),
+  ('CP3 no primeito piso','A', '150', '10', 1),
+  ('Nave','B', '350', '8', 5),
+  ('Entrada da escola','B', '250', '8', 2),
+  ('Ala Norte','A1', '500', '8', 3),
+  ('Ala Sul','B2', '500', '5', 3),
+  ('Entrada do Hospital','C', '300', '5', 4);
   
 
 INSERT INTO Produto
@@ -114,9 +114,3 @@ INSERT INTO Venda
   ('2016-01-24 17:40:20','0.4','0.3',10,14,6),#croissant promocao
   ('2016-01-15 19:12:43','0.6','0.5',3,13,7),#lanche promoçao
   ('2016-01-06 19:13:00','0.8','0.5',11,10,3);#icetea
-
-
-
-
-
-SET SQL_SAFE_UPDATES = 1;
