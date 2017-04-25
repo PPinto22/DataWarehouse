@@ -1,0 +1,22 @@
+<Schema name="New Schema1">
+  <Cube name="Cubo" visible="true" cache="true" enabled="true">
+    <Table name="factvendas">
+    </Table>
+    <Dimension type="TimeDimension" visible="true" foreignKey="data" highCardinality="false" name="Data">
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="utilizador" highCardinality="false" name="Utilizador">
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="produto" highCardinality="false" name="Produto">
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="maquina" highCardinality="false" name="Maquina">
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="hora" highCardinality="false" name="Hora">
+    </Dimension>
+    <Measure name="precoV" column="precoV" datatype="Numeric" aggregator="avg" description="Preco de venda" visible="true">
+    </Measure>
+    <Measure name="precoA" column="precoA" datatype="Numeric" aggregator="avg" description="Preco de aquisi&#231;&#227;o" visible="true">
+    </Measure>
+    <Measure name="lucro" column="lucro" datatype="Numeric" aggregator="sum" description="Lucro" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
