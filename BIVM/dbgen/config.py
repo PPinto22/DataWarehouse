@@ -1,13 +1,13 @@
 # -*- coding: UTF-8 -*-
 from datetime import datetime
 
-malePopulation = 0.6
+malePopulation = 0.45
 
-NUtilizadores = 400
-NMaquinas = 45
-AVGVendasDia = 45
-DesvioVendasDia = 10
-DiasEntreRemessas = 10
+NUtilizadores = 10024
+NMaquinas = 56
+AVGVendasDia = 5600
+DesvioVendasDia = 1200
+DiasEntreRemessas = 2
 
 initialBalance = [9000] * 10 + [8000] * 6
 
@@ -29,7 +29,7 @@ produtos = [('Lanche','0.5', '0.8', 7),
 NProdutos = len(produtos)
 
 # fstSell = datetime.strptime('2012-04-30', "%Y-%m-%d").date()
-fstSell = datetime.strptime('2017-04-25', "%Y-%m-%d").date()
+fstSell = datetime.strptime('2016-04-25', "%Y-%m-%d").date()
 lstBuy = datetime.strptime('2017-04-30', "%Y-%m-%d").date()
 sellingPeriod = lstBuy - fstSell
 
