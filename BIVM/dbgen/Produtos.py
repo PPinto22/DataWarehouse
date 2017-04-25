@@ -12,6 +12,7 @@ class Produtos:
       self.name = produtos[Produtos.pCount][0]
       self.APrice = produtos[Produtos.pCount][1]
       self.SPrice = produtos[Produtos.pCount][2]
+      self.expirationDate = produtos[Produtos.pCount][3]
       self.id = -1
 
       Produtos.pCount = Produtos.pCount + 1

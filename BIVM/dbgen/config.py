@@ -3,28 +3,28 @@ from datetime import datetime
 
 malePopulation = 0.6
 
-NUtilizadores = 80
+NUtilizadores = 400
 NMaquinas = 45
 AVGVendasDia = 45
 DesvioVendasDia = 10
-DiasEntreRemessas = 2
+DiasEntreRemessas = 10
 
-initialBalance = [5] * 10 + [10] * 6 + [15] * 7 + [20] * 6 + [50] * 1
+initialBalance = [9000] * 10 + [8000] * 6
 
 jobs = ["Construtor Civil"] * 10 + ["Electricista"] * 6 + ["Advogado"] * 7 + ["Estudante"] * 60 + ["Médico"] * 1 + ["Engenheiro"] * 1 + ["Dentista"] * 1 + ["Padeiro"] * 1 + ["Carteirista"] * 1 + ["Outro"] * 1
 
 
 
 # Nome, precoA, precoV
-produtos = [('Lanche','0.5', '0.8'),
-            ('Bolacha Maria','0.2','0.4'),
-            ('Bolacha Chocolate','0.7','1'),
-            ('Croissant','0.3','0.5'),
-            ('Kinder Bueno','0.4','0.7'),
-            ('Kit Kat','0.3','0.55'),
-            ('Ice Tea','0.5','0.8'),
-            ('Agua','0.1','0.6'),
-            ('Coca Cola','0.5','0.8')]
+produtos = [('Lanche','0.5', '0.8', 7),
+            ('Bolacha Maria','0.2','0.4', 365),
+            ('Bolacha Chocolate','0.7','1', 90),
+            ('Croissant','0.3','0.5', 7),
+            ('Kinder Bueno','0.4','0.7', 365),
+            ('Kit Kat','0.3','0.55', 365),
+            ('Ice Tea','0.5','0.8', 90),
+            ('Agua','0.1','0.6', 365),
+            ('Coca Cola','0.5','0.8', 365)]
 
 NProdutos = len(produtos)
 
