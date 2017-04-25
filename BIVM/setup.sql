@@ -298,8 +298,6 @@ DELIMITER ;
 
 
 
-
-
 -- Procedimentos
 drop procedure if exists sp_stock_cleaning;
 delimiter $$
@@ -307,7 +305,7 @@ create procedure sp_stock_cleaning(in currentDate date)
 begin
 
 update remessa
-	set Quantidade = 0
+  set Quantidade = 0
     where Quantidade > 0 and currentDate > Validade;
     
 END $$
@@ -316,7 +314,7 @@ delimiter ;
 
 drop procedure if exists sp_venda;
 delimiter $$
-create procedure sp_venda(in maquina int, in utilizador int, in produto int)
+create procedure sp_venda(in sellDate datetime, in maquina int, in utilizador int, in produto int)
 begin
 
 SET @remessa = (select id FROM Remessa as R
@@ -325,11 +323,11 @@ SET @remessa = (select id FROM Remessa as R
                 LIMIT 1);
 
 IF (@remessa IS NULL) THEN
-  signal sqlstate '45000' SET MESSAGE_TEXT = "Não há stock"; 	
+  signal sqlstate '45000' SET MESSAGE_TEXT = "Não há stock";  
 END IF;
 
-IF ((select Validade from Remessa as R where R.id = @remessa) < NOW()) THEN
-  signal sqlstate '45000' SET MESSAGE_TEXT = "Produto fora de validade"; 	
+IF ((select Validade from Remessa as R where R.id = @remessa) < sellDate) THEN
+  signal sqlstate '45000' SET MESSAGE_TEXT = "Produto fora de validade";  
 END IF;
 
 IF ((select Saldo from Utilizador as U where U.id = utilizador) < 
@@ -346,7 +344,7 @@ set @precoA = (select precoA FROM Produto
                WHERE id = produto );
 
 INSERT INTO Venda (Data, PrecoV, PrecoA, Maquina, Utilizador, Remessa) value 
-  (NOW(), @precoV, @precoA, maquina, utilizador,@remessa);
+  (sellDate, @precoV, @precoA, maquina, utilizador,@remessa);
 
 UPDATE Remessa as R
 SET Quantidade = Quantidade - 1
@@ -364,31 +362,3 @@ commit;
 END $$
 delimiter ;
 
-
-
-
-
--- Views
-
-create view v_faturacao as (
-	select Mor.Cod_Postal, Mor.Freguesia, Mor.Cidade, Mor.Pais, 
-			M.Id as Id_maquina, M.Descriçao as Descricao_maquina,
-            P.Nome as Produto, Date(V.Data) as Dia, sum(V.precoV - V.precoA) as Lucro
-            from Venda as V
-            inner join Remessa as R on V.remessa = R.id
-            inner join Produto as P on R.produto = P.id
-            inner join Maquina as M on V.maquina = M.id
-            inner join Morada as Mor on M.morada = Mor.id
-            group by Dia
-);
-
-create view v_stock as (
-	select Mor.Cod_Postal, Mor.Freguesia, Mor.Cidade, Mor.Pais, 
-			M.Id as Id_maquina, M.Descriçao as Descricao_maquina,
-			M.Modelo, R.Validade, R.Quantidade, P.Nome as Produto
-		from Remessa as R
-		inner join Maquina as M on R.maquina = M.id
-        inner join Produto as P on R.produto = P.id
-        inner join Morada as Mor on M.morada = Mor.id
-        where R.Quantidade > 0
-);
