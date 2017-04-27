@@ -29,7 +29,6 @@ for i in range(NProdutos):
     p = Produtos()
     p.insertInDB(db)
     products.append(p)
-    print p
 print "Criados " + str(NProdutos) + " produtos"
 
 print "A criar Maquinas"
