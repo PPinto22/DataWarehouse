@@ -7,12 +7,15 @@ import MySQLdb
 class Produtos:
 
     pCount = 0
+    
+    listProdutos = list(set(produtos))
 
     def __init__(self):
-      self.name = produtos[Produtos.pCount][0]
-      self.APrice = produtos[Produtos.pCount][1]
-      self.SPrice = produtos[Produtos.pCount][2]
-      self.expirationDate = produtos[Produtos.pCount][3]
+
+      self.name = Produtos.listProdutos[Produtos.pCount][0]
+      self.APrice = Produtos.listProdutos[Produtos.pCount][1]
+      self.SPrice = Produtos.listProdutos[Produtos.pCount][2]
+      self.expirationDate = Produtos.listProdutos[Produtos.pCount][3]
       self.id = -1
 
       Produtos.pCount = Produtos.pCount + 1
