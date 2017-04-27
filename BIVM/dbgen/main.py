@@ -7,6 +7,7 @@ from Vendas import Vendas
 from config import *
 from datetime import *
 import random
+import math
 import MySQLdb
 
 
@@ -37,9 +38,21 @@ for i in range(NMaquinas):
     machines.append(m)
 print "Criados " + str(NMaquinas) + " maquinas"
 
+# Making so that some district are more likely to sell than the others
+allDistricts = set()
+
+for d in adresses:
+    allDistricts.add(d[2])
+
+machines = sorted(machines, key=lambda x: x.address[6])
+
+machinesT = []
+
+for i in range(len(machines)):
+    machinesT += [machines[i]] * int(math.ceil(len(allDistricts) * ((len(machines) - i)/float(len(machines))) * random.random()))
+
 print "Vamos às vendas!"
 totalSales = 0
-
 for i in range(sellingPeriod.days + 1):
     if i % DiasEntreRemessas == 0:
         cursor = db.cursor()
