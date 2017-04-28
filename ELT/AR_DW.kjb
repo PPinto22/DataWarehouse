@@ -407,7 +407,7 @@
       <name>Clear StagingArea</name>
       <description/>
       <type>SQL</type>
-      <sql>delete from dimmaquina&#x3b;&#xd;&#xa;delete from dimproduto&#x3b;&#xd;&#xa;delete from dimutilizador&#x3b;&#xd;&#xa;&#xd;&#xa;delete from updatemaquina&#x3b;&#xd;&#xa;delete from updateproduto&#x3b;&#xd;&#xa;delete from updateutilizador&#x3b;&#xd;&#xa;&#xd;&#xa;delete from factvendas&#x3b;</sql>
+      <sql>delete from dimmaquina&#x3b;&#xd;&#xa;delete from dimproduto&#x3b;&#xd;&#xa;delete from dimutilizador&#x3b;&#xd;&#xa;delete from dimlocal&#x3b;&#xd;&#xa;&#xd;&#xa;delete from updatemaquina&#x3b;&#xd;&#xa;delete from updateproduto&#x3b;&#xd;&#xa;delete from updateutilizador&#x3b;&#xd;&#xa;delete from updatelocal&#x3b;&#xd;&#xa;&#xd;&#xa;delete from factvendas&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>

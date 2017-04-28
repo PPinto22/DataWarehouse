@@ -476,10 +476,15 @@
       <to>Carregar DimMaquina</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>PreDimLocal</from>
+      <to>Carregar DimLocal</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
-    <name>PreDimMaquina</name>
-    <type>TableInput</type>
+    <name>Carregar DimMaquina</name>
+    <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -489,12 +494,23 @@
       <schema_name/>
     </partitioning>
     <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, modelo&#xd;&#xa;, renda&#xd;&#xa;, capacidade&#xd;&#xa;, cod_postal&#xd;&#xa;, freguesia&#xd;&#xa;, rua&#xd;&#xa;, cidade&#xd;&#xa;, distrito&#xd;&#xa;, pais&#xd;&#xa;FROM predimmaquina&#xd;&#xa;WHERE op &#x3d; &#x27;I&#x27;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <execute_each_row>Y</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>call sp_insert_maquina&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;&#x3b;</sql>
+    <set_params>Y</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+       <argument><name>source</name></argument>
+       <argument><name>source_id</name></argument>
+       <argument><name>modelo</name></argument>
+       <argument><name>renda</name></argument>
+       <argument><name>capacidade</name></argument>
+    </arguments>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -504,71 +520,7 @@
     </remotesteps>
     <GUI>
       <xloc>672</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>PreDimProduto</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, nome&#xd;&#xa;, pais&#xd;&#xa;, precoV&#xd;&#xa;, precoA&#xd;&#xa;FROM predimproduto&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>PreDimUtilizador</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, email&#xd;&#xa;, nome&#xd;&#xa;, profissao&#xd;&#xa;, genero&#xd;&#xa;, data_nascimento&#xd;&#xa;FROM predimutilizador&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>96</yloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -663,7 +615,103 @@
     </step>
 
   <step>
-    <name>Carregar DimMaquina</name>
+    <name>PreDimMaquina</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, modelo&#xd;&#xa;, renda&#xd;&#xa;, capacidade&#xd;&#xa;FROM predimmaquina&#xd;&#xa;WHERE op &#x3d; &#x27;I&#x27;&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>PreDimProduto</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, nome&#xd;&#xa;, pais&#xd;&#xa;, precoV&#xd;&#xa;, precoA&#xd;&#xa;FROM predimproduto&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>PreDimUtilizador</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, email&#xd;&#xa;, nome&#xd;&#xa;, profissao&#xd;&#xa;, genero&#xd;&#xa;, data_nascimento&#xd;&#xa;FROM predimutilizador&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Carregar DimLocal</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -678,7 +726,7 @@
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>call sp_insert_maquina&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;&#x3b;</sql>
+    <sql>call sp_insert_local&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;&#x3b;</sql>
     <set_params>Y</set_params>
     <insert_field/>
     <update_field/>
@@ -687,9 +735,6 @@
     <arguments>
        <argument><name>source</name></argument>
        <argument><name>source_id</name></argument>
-       <argument><name>modelo</name></argument>
-       <argument><name>renda</name></argument>
-       <argument><name>capacidade</name></argument>
        <argument><name>cod_postal</name></argument>
        <argument><name>freguesia</name></argument>
        <argument><name>rua</name></argument>
@@ -705,8 +750,40 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>880</xloc>
       <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>PreDimLocal</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, source_id&#xd;&#xa;, cod_postal&#xd;&#xa;, freguesia&#xd;&#xa;, rua&#xd;&#xa;, cidade&#xd;&#xa;, distrito&#xd;&#xa;, pais&#xd;&#xa;FROM predimlocal&#xd;&#xa;where op &#x3d; &#x27;I&#x27;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>880</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
