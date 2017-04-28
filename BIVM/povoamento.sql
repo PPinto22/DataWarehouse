@@ -15,11 +15,21 @@ alter table maquina auto_increment = 1;
 delete from morada;
 alter table morada auto_increment = 1;
 
+delete from auditUtilizador;
+alter table auditUtilizador auto_increment = 1;
+delete from auditproduto;
+alter table auditproduto auto_increment = 1;
+delete from auditmaquina;
+alter table auditmaquina auto_increment = 1;
+delete from auditmorada;
+alter table auditmorada auto_increment = 1;
+
+
 INSERT INTO Morada
   (Cod_Postal, Freguesia, Rua, Porta, Pais, Cidade, Distrito)
   VALUES
   ('4710-057', 'Campus de Gualtar', 'Campus de Gualtar', null, 'Portugal', 'Braga', 'Braga'),
-  ('4715-086', 'São José de São Lázaro', ' Rua Álvaro Carneiro', null, 'Portugal', 'Braga', 'Braga'),
+  ('4715-086', 'São José de São Lázaro', 'Rua Álvaro Carneiro', null, 'Portugal', 'Braga', 'Braga'),
   ('4810-525', 'São Paio', 'Avenida de São Gonçalo', null, 'Portugal', 'Guimarães', 'Braga'),
   ('4835-044', 'Creixomil', 'R. dos Cutileiros', null, 'Portugal', 'Guimarães', 'Braga'),
   ('4800-058', 'Campus de Azurem', 'Campus de Azurem', null, 'Portugal', 'Guimarães', 'Braga');

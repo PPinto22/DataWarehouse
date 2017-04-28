@@ -541,16 +541,16 @@
           <stream_name>lucro</stream_name>
         </field>
         <field>
+          <column_name>Validade</column_name>
+          <stream_name>Validade</stream_name>
+        </field>
+        <field>
           <column_name>Data</column_name>
           <stream_name>Data</stream_name>
         </field>
         <field>
           <column_name>Hora</column_name>
           <stream_name>Hora</stream_name>
-        </field>
-        <field>
-          <column_name>Validade</column_name>
-          <stream_name>Validade</stream_name>
         </field>
         <field>
           <column_name>idade</column_name>
@@ -563,6 +563,10 @@
         <field>
           <column_name>Maquina</column_name>
           <stream_name>Maquina</stream_name>
+        </field>
+        <field>
+          <column_name>Local</column_name>
+          <stream_name>Local</stream_name>
         </field>
         <field>
           <column_name>Produto</column_name>
@@ -595,7 +599,7 @@
       <schema_name/>
     </partitioning>
     <connection>source_bivm</connection>
-    <sql>SELECT&#xd;&#xa;  1 As source&#xd;&#xa;, PrecoV&#xd;&#xa;, PrecoA&#xd;&#xa;, &#x28;PrecoV - PrecoA&#x29; As lucro&#xd;&#xa;, DATEDIFF&#x28;R.Validade,Data&#x29; as Validade&#xd;&#xa;, Date&#x28;Data&#x29; As Data&#xd;&#xa;, Hour&#x28;Data&#x29; As Hora&#xd;&#xa;, Floor&#x28;&#x28;DATEDIFF&#x28;V.data, U.data_nascimento&#x29;&#x2f;365.25&#x29;&#x29; as idade&#xd;&#xa;, CAST&#x28;Utilizador as CHAR&#x28;75&#x29;&#x29; as Utilizador&#xd;&#xa;, CAST&#x28;V.Maquina as CHAR&#x28;75&#x29;&#x29; as Maquina&#xd;&#xa;, CAST&#x28;R.Produto as CHAR&#x28;75&#x29;&#x29; as Produto&#xd;&#xa;FROM venda as V&#xd;&#xa;	JOIN Utilizador as U on V.utilizador &#x3d; U.id&#xd;&#xa;	JOIN Remessa as R on R.id &#x3d; V.Remessa&#xd;&#xa;WHERE V.Data &#x3e; &#x27;&#x24;&#x7b;last_load&#x7d;&#x27;&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  1 As source&#xd;&#xa;, PrecoV&#xd;&#xa;, PrecoA&#xd;&#xa;, &#x28;PrecoV - PrecoA&#x29; As lucro&#xd;&#xa;, DATEDIFF&#x28;R.Validade,Data&#x29; as Validade&#xd;&#xa;, Date&#x28;Data&#x29; As Data&#xd;&#xa;, Hour&#x28;Data&#x29; As Hora&#xd;&#xa;, Floor&#x28;&#x28;DATEDIFF&#x28;V.data, U.data_nascimento&#x29;&#x2f;365.25&#x29;&#x29; as idade&#xd;&#xa;, CAST&#x28;Utilizador as CHAR&#x28;75&#x29;&#x29; as Utilizador&#xd;&#xa;, CAST&#x28;V.Maquina as CHAR&#x28;75&#x29;&#x29; as Maquina&#xd;&#xa;, CAST&#x28;M.Morada as CHAR&#x28;75&#x29;&#x29; as Local&#xd;&#xa;, CAST&#x28;R.Produto as CHAR&#x28;75&#x29;&#x29; as Produto&#xd;&#xa;FROM venda as V&#xd;&#xa;	JOIN Utilizador as U on V.utilizador &#x3d; U.id&#xd;&#xa;	JOIN Remessa as R on R.id &#x3d; V.Remessa&#xd;&#xa;	JOIN Maquina as M on V.Maquina &#x3d; M.id&#xd;&#xa;WHERE V.Data &#x3e; &#x27;&#x24;&#x7b;last_load&#x7d;&#x27;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

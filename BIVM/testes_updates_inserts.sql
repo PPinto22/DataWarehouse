@@ -3,9 +3,17 @@ SET SQL_SAFE_UPDATES = 0;
 delete from bivm.auditproduto;
 delete from bivm.auditutilizador;
 delete from bivm.auditmaquina;
+delete from bivm.auditmorada;
+
+select * from bivm.auditproduto;
+select * from bivm.auditutilizador;
+select * from bivm.auditmaquina;
+select * from bivm.auditmorada;
+
 select * from bivm.morada;
 select * from bivm.maquina;
 select * from bivm.produto;
+select * from bivm.utilizador;
 
 -- Insert/Update
 insert into bivm.produto (id,Nome,PrecoV,PrecoA) values
@@ -22,8 +30,7 @@ insert into bivm.maquina (id,descriçao,modelo,renda,capacidade,morada) values
 	(20,'maquina 20...','A',100,300,5);
 update bivm.utilizador set profissao = "Dentista" 
 	where id = 1;   
-update bivm.morada set cod_postal = '000000' 
-	where id = 2;
+update bivm.morada set cidade = 'Trofa' where cidade = 'Guimarães';
 
 update bivm.maquina set renda = 300.00 where id = 1;
 select sleep(1);
@@ -42,8 +49,11 @@ update bivm.produto set precoV = 1.3, precoA=0.3 where id = 1;
 INSERT INTO bivm.Venda
   (Data, PrecoV, PrecoA, Utilizador, Remessa, Maquina)
   VALUES
-  ('2017-05-20 13:00:00','0.8','0.5',21,1,1),
+  ('2017-05-20 13:00:00','0.8','0.5',51,1,1),
   ('2017-05-21 21:30:00','0.8','0.5',8,2,2);
+
+select * from bivm.maquina where id =2; 
+select * from bivm.morada where id = 1;
 
 -- Delete/Revert
 delete from bivm.Venda where data in ('2017-05-20 13:00:00','2017-05-21 21:30:00');
@@ -52,8 +62,8 @@ delete from bivm.utilizador where id in(20,21,50,51);
 delete from bivm.produto where id in (20,21);
 delete from bivm.maquina where id in (20);
 
-update bivm.morada set cod_postal = '4715-086'
-	where id = 2;
+update bivm.morada set cidade = 'Guimarães' where cidade = 'Trofa';
+
 update bivm.utilizador set profissao = "Sapateiro" 
 	where id = 1;
 
