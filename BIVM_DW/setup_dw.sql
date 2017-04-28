@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `BIVM_DW`.`DimData` (
   `dia` DATE NOT NULL,
   `mes` VARCHAR(20) NOT NULL,
   `ano` INT NOT NULL,
-  `dia_semana` VARCHAR(10) NOT NULL,
+  `dia_semana` VARCHAR(20) NOT NULL,
   `fim_de_semana` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;

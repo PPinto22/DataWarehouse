@@ -1263,31 +1263,31 @@
     <fields>
       <field>
         <source_value>1</source_value>
-        <target_value>Segunda</target_value>
+        <target_value>&#x5b;1&#x5d; Segunda</target_value>
       </field>
       <field>
         <source_value>2</source_value>
-        <target_value>Terca</target_value>
+        <target_value>&#x5b;2&#x5d; Terca</target_value>
       </field>
       <field>
         <source_value>3</source_value>
-        <target_value>Quarta</target_value>
+        <target_value>&#x5b;3&#x5d; Quarta</target_value>
       </field>
       <field>
         <source_value>4</source_value>
-        <target_value>Quinta</target_value>
+        <target_value>&#x5b;4&#x5d; Quinta</target_value>
       </field>
       <field>
         <source_value>5</source_value>
-        <target_value>Sexta</target_value>
+        <target_value>&#x5b;5&#x5d; Sexta</target_value>
       </field>
       <field>
         <source_value>6</source_value>
-        <target_value>Sabado</target_value>
+        <target_value>&#x5b;6&#x5d; Sabado</target_value>
       </field>
       <field>
         <source_value>7</source_value>
-        <target_value>Domingo</target_value>
+        <target_value>&#x5b;7&#x5d; Domingo</target_value>
       </field>
     </fields>
     <cluster_schema/>
