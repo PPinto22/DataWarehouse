@@ -93,7 +93,7 @@ INSERT INTO Utilizador
   ('andreiabarros@gmail.com','4321','10','Andreia Barros','Estudante','F','1995-10-01'),
   ('joaofernandes@gmail.com','5432','10','João Fernandes','Estudante','M','1995-04-10'),
   ('armandocosta@hotmail.com','6543','30','Armando Costa','Professor','M','1970-06-07'),
-  ('marianaabreu@hotmail.com','7654','20','Mariana Abreu','Enfermeira','F','1984-03-09'),
+  ('marianaabreu@hotmail.com','7654','20','Mariana Abreu','Enfermeiro','F','1984-03-09'),
   ('duartealves@hotmail.com','8765','20','Duarte Alves','Secretario','M','1982-02-28'),
   ('martimcardoso@gmail.com','9876','30','Martim Cardoso','Professor','M','1976-12-24'),
   ('diogomartins@hotmail.com','0987','5','Diogo Martins','Estudante','M','2000-11-06');
