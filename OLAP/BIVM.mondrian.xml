@@ -13,9 +13,9 @@
     <Hierarchy name="Dia semana" visible="true" hasAll="true" primaryKey="id">
       <Table name="dimdata">
       </Table>
-      <Level name="Dia semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
+      <Level name="Dia semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeWeeks" hideMemberIf="Never">
       </Level>
-      <Level name="Dia" visible="true" column="dia" type="Date" uniqueMembers="false">
+      <Level name="Dia" visible="true" column="dia" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
       </Level>
     </Hierarchy>
     <Hierarchy name="Fim de semana" visible="true" hasAll="true" primaryKey="id">
@@ -23,7 +23,7 @@
       </Table>
       <Level name="Fim de semana" visible="true" column="fim_de_semana" type="Boolean" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
       </Level>
-      <Level name="Dia" visible="true" column="dia" uniqueMembers="false">
+      <Level name="Dia" visible="true" column="dia" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -39,9 +39,9 @@
       </Level>
       <Level name="Freguesia" visible="true" column="freguesia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="Rua" visible="true" column="rua" type="String" uniqueMembers="false">
+      <Level name="Rua" visible="true" column="rua" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="Codigo Postal" visible="true" column="cod_postal" type="String" uniqueMembers="false" description="Atributo descritivo">
+      <Level name="Codigo Postal" visible="true" column="cod_postal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -53,9 +53,9 @@
       </Level>
       <Level name="Maquina" visible="true" column="id" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="Capacidade" visible="true" column="capacidade" type="Integer" uniqueMembers="false" description="Atributo descritivo">
+      <Level name="Capacidade" visible="true" column="capacidade" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
-      <Level name="Renda" visible="true" column="renda" type="Numeric" uniqueMembers="false" description="Atributo descritivo">
+      <Level name="Renda" visible="true" column="renda" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -83,7 +83,7 @@
       </Level>
       <Level name="UtilizadorID" visible="true" column="id" type="String" internalType="int" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" description="Atributo descritivo">
+      <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
       <Level name="Email" visible="true" column="email" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
@@ -95,9 +95,9 @@
       </Level>
       <Level name="Utilizador" visible="true" column="id" type="Integer" internalType="int" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" description="Atributo descritivo">
+      <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
-      <Level name="Email" visible="true" column="email" type="String" uniqueMembers="false" description="Atributo descritivo">
+      <Level name="Email" visible="true" column="email" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
     </Hierarchy>
   </Dimension>
