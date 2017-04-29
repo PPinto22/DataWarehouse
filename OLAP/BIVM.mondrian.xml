@@ -15,15 +15,11 @@
       </Table>
       <Level name="Dia semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeWeeks" hideMemberIf="Never">
       </Level>
-      <Level name="Dia" visible="true" column="dia" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
-      </Level>
     </Hierarchy>
     <Hierarchy name="Fim de semana" visible="true" hasAll="true" primaryKey="id">
       <Table name="dimdata">
       </Table>
       <Level name="Fim de semana" visible="true" column="fim_de_semana" type="Boolean" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
-      </Level>
-      <Level name="Dia" visible="true" column="dia" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
