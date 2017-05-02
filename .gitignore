@@ -8,6 +8,9 @@ Desktop.ini
 # VSC
 .vscode/
 
+#Backup files
+*.bak
+
 # Python
 *.pyc
 

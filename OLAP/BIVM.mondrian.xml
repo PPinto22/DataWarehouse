@@ -1,0 +1,140 @@
+<Schema name="BIVM">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Dimdata">
+    <Hierarchy name="Data" visible="true" hasAll="true" primaryKey="id">
+      <Table name="dimdata">
+      </Table>
+      <Level name="Ano" visible="true" column="ano" type="Integer" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+      </Level>
+      <Level name="Mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      </Level>
+      <Level name="Dia" visible="true" column="dia" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Dia semana" visible="true" hasAll="true" primaryKey="id">
+      <Table name="dimdata">
+      </Table>
+      <Level name="Dia semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeWeeks" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Fim de semana" visible="true" hasAll="true" primaryKey="id">
+      <Table name="dimdata">
+      </Table>
+      <Level name="Fim de semana" visible="true" column="fim_de_semana" type="Boolean" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Dimlocal">
+    <Hierarchy name="Local" visible="true" hasAll="true" primaryKey="id">
+      <Table name="dimlocal">
+      </Table>
+      <Level name="Pais" visible="true" column="pais" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Distrito" visible="true" column="distrito" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Cidade" visible="true" column="cidade" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Freguesia" visible="true" column="freguesia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Rua" visible="true" column="rua" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Codigo Postal" visible="true" column="cod_postal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Dimmaquina">
+    <Hierarchy name="Maquina" visible="true" hasAll="true" primaryKey="id">
+      <Table name="dimmaquina">
+      </Table>
+      <Level name="Modelo" visible="true" column="modelo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Maquina" visible="true" column="id" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Capacidade" visible="true" column="capacidade" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
+      </Level>
+      <Level name="Renda" visible="true" column="renda" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Dimproduto">
+    <Hierarchy name="Produto" visible="true" hasAll="true" primaryKey="id">
+      <Table name="dimproduto">
+      </Table>
+      <Level name="Pais" visible="true" column="pais" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Produto" visible="true" column="nome" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="ProdutoID" visible="true" column="id" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Preco_Venda" visible="true" column="precoV" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
+      </Level>
+      <Level name="Preco_Aquisicao" visible="true" column="precoA" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Dimutilizador">
+    <Hierarchy name="Utilizador_Genero" visible="true" hasAll="true" primaryKey="id">
+      <Table name="dimutilizador">
+      </Table>
+      <Level name="Genero" visible="true" column="genero" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="UtilizadorID" visible="true" column="id" type="String" internalType="int" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
+      </Level>
+      <Level name="Email" visible="true" column="email" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Utilizador_Profissao" visible="true" hasAll="true" primaryKey="id">
+      <Table name="dimutilizador">
+      </Table>
+      <Level name="Profissao" visible="true" column="profissao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Utilizador" visible="true" column="id" type="Integer" internalType="int" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
+      </Level>
+      <Level name="Email" visible="true" column="email" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="BIVM" visible="true" cache="true" enabled="true">
+    <Table name="factvendas">
+    </Table>
+    <DimensionUsage source="Dimdata" name="Dimdata" visible="true" foreignKey="Data" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dimlocal" name="Local" visible="true" foreignKey="local" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dimmaquina" name="Maquina" visible="true" foreignKey="maquina" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dimproduto" name="Produto" visible="true" foreignKey="produto" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Dimutilizador" name="Utilizador" visible="true" foreignKey="utilizador" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="hora" highCardinality="false" name="Hora">
+      <Hierarchy name="Hora" visible="true" hasAll="true">
+        <Level name="Hora" visible="true" column="hora" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="idade" highCardinality="false" name="Idade">
+      <Hierarchy name="Idade" visible="true" hasAll="true">
+        <Level name="Idade" visible="true" column="idade" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="periodo" highCardinality="false" name="Periodo">
+      <Hierarchy name="Periodo" visible="true" hasAll="true">
+        <Level name="Periodo" visible="true" column="periodo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Lucro" column="lucro" aggregator="sum">
+    </Measure>
+    <Measure name="PrecoA" column="precoA" aggregator="avg">
+    </Measure>
+    <Measure name="PrecoV" column="precoV" aggregator="avg">
+    </Measure>
+    <Measure name="Validade" column="validade" aggregator="avg">
+    </Measure>
+  </Cube>
+</Schema>

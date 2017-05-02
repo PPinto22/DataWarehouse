@@ -1,3 +1,5 @@
+-- MySQL Workbench Forward Engineering
+
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -5,6 +7,11 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema BIVM_AR
 -- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema BIVM_AR
+-- -----------------------------------------------------
+drop schema if exists BIVM_AR;
 CREATE SCHEMA IF NOT EXISTS `BIVM_AR` DEFAULT CHARACTER SET utf8 ;
 USE `BIVM_AR` ;
 
@@ -16,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `BIVM_AR`.`DimData` (
   `dia` DATE NOT NULL,
   `mes` VARCHAR(20) NOT NULL,
   `ano` INT NOT NULL,
-  `dia_semana` VARCHAR(10) NOT NULL,
+  `dia_semana` VARCHAR(20) NOT NULL,
   `fim_de_semana` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -44,12 +51,6 @@ CREATE TABLE IF NOT EXISTS `BIVM_AR`.`DimMaquina` (
   `modelo` VARCHAR(75) NOT NULL,
   `renda` DECIMAL(6,2) NOT NULL,
   `capacidade` INT NOT NULL,
-  `cod_postal` VARCHAR(10) NOT NULL,
-  `freguesia` VARCHAR(75) NOT NULL,
-  `rua` VARCHAR(75) NOT NULL,
-  `cidade` VARCHAR(45) NOT NULL,
-  `distrito` VARCHAR(45) NOT NULL,
-  `pais` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -68,6 +69,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `BIVM_AR`.`DimLocal`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `BIVM_AR`.`DimLocal` (
+  `id` INT NOT NULL,
+  `cod_postal` VARCHAR(10) NOT NULL,
+  `freguesia` VARCHAR(75) NOT NULL,
+  `rua` VARCHAR(75) NOT NULL,
+  `cidade` VARCHAR(45) NOT NULL,
+  `distrito` VARCHAR(45) NOT NULL,
+  `pais` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `BIVM_AR`.`FactVendas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BIVM_AR`.`FactVendas` (
@@ -78,6 +94,7 @@ CREATE TABLE IF NOT EXISTS `BIVM_AR`.`FactVendas` (
   `data` INT NOT NULL,
   `utilizador` INT NOT NULL,
   `maquina` INT NOT NULL,
+  `local` INT NOT NULL,
   `produto` INT NOT NULL,
   `hora` INT NOT NULL,
   `periodo` VARCHAR(45) NOT NULL,
@@ -86,6 +103,7 @@ CREATE TABLE IF NOT EXISTS `BIVM_AR`.`FactVendas` (
   INDEX `utilizador_idx` (`utilizador` ASC),
   INDEX `maquina_idx` (`maquina` ASC),
   INDEX `produto_idx` (`produto` ASC),
+  INDEX `local_idx` (`local` ASC),
   CONSTRAINT `data`
     FOREIGN KEY (`data`)
     REFERENCES `BIVM_AR`.`DimData` (`id`)
@@ -105,13 +123,19 @@ CREATE TABLE IF NOT EXISTS `BIVM_AR`.`FactVendas` (
     FOREIGN KEY (`produto`)
     REFERENCES `BIVM_AR`.`DimProduto` (`id`)
     ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON UPDATE CASCADE,
+  CONSTRAINT `local`
+    FOREIGN KEY (`local`)
+    REFERENCES `BIVM_AR`.`DimLocal` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 
 
@@ -147,6 +171,7 @@ DELIMITER ;
 CALL PROC_DROP_FOREIGN_KEY('factvendas', 'utilizador');
 CALL PROC_DROP_FOREIGN_KEY('factvendas', 'produto');
 CALL PROC_DROP_FOREIGN_KEY('factvendas', 'maquina');
+CALL PROC_DROP_FOREIGN_KEY('factvendas', 'local');
 CALL PROC_DROP_FOREIGN_KEY('factvendas', 'data');
 
 
@@ -198,6 +223,29 @@ create table preDimMaquina (
     op char(1) default 'I'
 );
 
+drop table if exists preDimLocal;
+create table preDimLocal (
+	source int,
+    source_id varchar(10),
+    cod_postal varchar(10),
+    freguesia varchar(75),
+    rua varchar(75),
+    cidade varchar(45),
+    distrito varchar(45),
+    pais varchar(45),
+	data_update datetime default null,
+    op char(1) default 'I'
+);
+
+drop table if exists LTlocal;
+create table LTlocal (
+	id int not null auto_increment,
+	source int not null,
+    source_id varchar(10) not null,
+    cod_postal varchar(10),
+    primary key (id,source,source_id)
+);
+
 drop table if exists LTmaquina;
 create table LTmaquina (
     id int not null auto_increment,
@@ -240,6 +288,7 @@ create table QuarFactVendas (
     source_maquina varchar(15),
     maquina int,
     source_produto varchar(45),
+    local int,
     produto int,
     idade int,
     hora int,
@@ -285,7 +334,17 @@ create table QuarMaquina(
     modelo varchar(75),
     renda decimal(6,2),
     capacidade int,
-    cod_postal varchar(10),
+    descricao varchar(150),
+    op char(1),
+    data datetime default now()
+);
+
+drop table if exists QuarLocal;
+create table QuarLocal(
+	quar_id int primary key auto_increment,
+    source int,
+    source_id varchar(10),
+	cod_postal varchar(10),
     freguesia varchar(75),
     rua varchar(75),
     cidade varchar(45),
@@ -295,6 +354,7 @@ create table QuarMaquina(
     op char(1),
     data datetime default now()
 );
+
 
 drop table if exists preFactVendas;
 create table preFactVendas (
@@ -309,6 +369,7 @@ create table preFactVendas (
     periodo varchar(45),
     utilizador varchar(75),
     maquina varchar(15),
+    local varchar(10),
     produto varchar(45)
 );
 
@@ -339,6 +400,13 @@ create table updateMaquina (
     modelo varchar(45),
 	renda decimal(6,2),
 	capacidade int,
+    data_update datetime
+);
+
+drop table if exists updateLocal;
+create table updateLocal (
+	id int primary key auto_increment,
+    local int,
     cod_postal varchar(10),
     freguesia varchar(75),
     rua varchar(75),
@@ -353,15 +421,9 @@ create table updateMaquina (
 
 
 
-
 -- Procedimentos e triggers --
 use bivm_ar;
 
--- SET SQL_SAFE_UPDATES = 0;
--- insert prefactvendas(source,precoV,precoA,lucro,validade,idade,data,hora,utilizador,maquina,produto) values
--- 	(1,1,3,2,50,20,'2017-01-01',19,'u1','m1','p1');
--- delete from prefactvendas;
--- select * from prefactvendas;
 
 drop trigger if exists tg_periodo;
 delimiter $$
@@ -369,48 +431,50 @@ create trigger tg_periodo
 	before insert on prefactvendas 
     for each row
 BEGIN
-	if new.hora >= 6 and new.hora <= 13 then
-			set new.periodo = 'Manha';
+	if new.hora >= 0 and new.hora <= 5 then
+			set new.periodo = 'Madrugada';
 	else
-		if new.hora >= 13 and new.hora <= 20 then
-			set new.periodo = 'Tarde';
+		if new.hora >= 6 and new.hora <= 13 then
+			set new.periodo = 'Manha';
 		else
-			set new.periodo = 'Noite';
+			if new.hora >= 13 and new.hora <= 20 then
+				set new.periodo = 'Tarde';
+			else
+				set new.periodo = 'Noite';
+			end if;
 		end if;
 	end if;
 END$$
 DELIMITER ;
 
--- Testes
--- select * from factvendas;
--- select * from quarfactvendas;
--- call sp_insert_venda(1,1.0,0.5,0.5,'2000-01-01','01:00:00',1,4,1,100,22);
 
 drop procedure if exists sp_insert_venda;
 DELIMITER $$
 create procedure sp_insert_venda(in in_source int, in in_precoV decimal(6,2), in in_precoA decimal(6,2),
 	in in_lucro decimal(6,2), in in_validade int, in in_data date, in in_utilizador varchar(75),
-    in in_maquina varchar(15), in in_produto varchar(45), in in_hora int, in in_periodo varchar(45), in in_idade int)
+    in in_maquina varchar(15), in in_local varchar(10), in in_produto varchar(45), in in_hora int, in in_periodo varchar(45), in in_idade int)
 BEGIN
 	set @data = (select id from dimdata where dia = in_data limit 1);
     set @utilizador = (select id from ltutilizador where source = in_source and source_id = in_utilizador);
     set @maquina = (select id from ltmaquina where source = in_source and source_id = in_maquina);
+    set @local = (select id from ltlocal where source = in_source and source_id = in_local limit 1);
     set @produto = (select id from ltproduto where source = in_source and source_id = in_produto);
     if 
 		@data is not null and
         @utilizador is not null and
         @maquina is not null and
+        @local is not null and
         @produto is not null 
 	then
-		INSERT INTO factVendas (precoV,precoA,lucro,validade,data,utilizador,maquina,produto,hora,periodo,idade) VALUES
-			(in_precoV,in_precoA,in_lucro,in_validade,@data,@utilizador,@maquina,@produto,in_hora,in_periodo,in_idade);
+		INSERT INTO factVendas (precoV,precoA,lucro,validade,data,utilizador,maquina,local,produto,hora,periodo,idade) VALUES
+			(in_precoV,in_precoA,in_lucro,in_validade,@data,@utilizador,@maquina,@local,@produto,in_hora,in_periodo,in_idade);
 	else
 		INSERT INTO quarFactVendas(source,precoV,precoA,lucro,validade,source_data,data,
-			source_utilizador,utilizador,source_maquina,maquina,source_produto,produto,idade,
+			source_utilizador,utilizador,source_maquina,maquina,local,source_produto,produto,idade,
             hora,periodo,quar_descricao) 
 		VALUES
 			(in_source,in_precoV,in_precoA,in_lucro,in_validade,in_data,@data,
-             in_utilizador,@utilizador,in_maquina,@maquina,in_produto,@produto,in_idade,in_hora,in_periodo,
+             in_utilizador,@utilizador,in_maquina,@maquina,@local,in_produto,@produto,in_idade,in_hora,in_periodo,
              'Dimensoes nao existentes');
 	END IF;
 END $$
@@ -536,58 +600,100 @@ BEGIN
 END $$
 DELIMITER ;
 
--- Testes
--- select * from dimmaquina;
--- select * from quarmaquina;
--- select * from ltmaquina;
--- select * from updateMaquina;
--- call sp_insert_maquina(5,5,'modelo',100,50,'cod','freg','rua','cid','dis','pais');
--- call sp_insert_maquina(5,6,'modelo',100,50,'cod','freg','rua','cid','dis','pais');
--- call sp_update_maquina(5,5,'A',3150.0,300,'4710-057','Campus de Gualtar','Campus de Gualtar','Braga','Braga','Portugal',now());
--- call sp_update_maquina(10,314,'A',3150.0,300,'4710-057','Campus de Gualtar','Campus de Gualtar','Braga','Braga','Alemanha',now());
--- call sp_update_maquina(1,1,'A',3150.0,300,'4710-057','Campus de Gualtar','Campus de Gualtar','Braga','Braga','Alemanha',now());
+
+drop procedure if exists sp_update_maquina;
+DELIMITER $$
+create procedure sp_update_maquina(in in_source int, in in_source_id varchar(15), in in_modelo VARCHAR(75),
+		in in_renda decimal(6,2), in in_capacidade int, in in_data_update datetime)
+BEGIN
+START TRANSACTION;
+	set @id = (select id FROM ltmaquina WHERE source = in_source and source_id = in_source_id);
+	IF @id is not null THEN
+		INSERT INTO updateMaquina (maquina,modelo,renda,capacidade,data_update) values
+			(@id,in_modelo,in_renda,in_capacidade,in_data_update);
+	ELSE 
+		INSERT INTO quarmaquina  (source,source_id,modelo,renda,capacidade,descricao,op) value
+			(in_source,in_source_id,in_modelo,in_renda,in_capacidade,"Update sobre uma maquina nao existente",'U');
+    END IF;
+COMMIT;
+END $$
+DELIMITER ;
+
+
 
 drop procedure if exists sp_insert_maquina;
 DELIMITER $$
 create procedure sp_insert_maquina(in in_source int, in in_source_id varchar(15), in in_modelo VARCHAR(75),
-		in in_renda decimal(6,2), in in_capacidade int, in in_cod_postal varchar(10),
-        in in_freguesia varchar(75), in in_rua varchar(75), in in_cidade varchar(45),
-        in in_distrito varchar(45), in in_pais varchar(45))
+		in in_renda decimal(6,2), in in_capacidade int)
 BEGIN
 	SET @id = ( SELECT id FROM ltmaquina WHERE source = in_source and source_id = in_source_id);
     if @id is not null then
-		INSERT INTO quarmaquina  (source,source_id,renda,capacidade,cod_postal,freguesia,rua,cidade,distrito,pais,descricao,op) value
-			(in_source,in_source_id,in_renda,in_capacidade,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais,
-			"Chave repetida",'U');
+		INSERT INTO quarmaquina  (source,source_id,renda,capacidade,descricao,op) value
+			(in_source,in_source_id,in_renda,in_capacidade,"Chave repetida",'I');
 	else
 		START TRANSACTION;
 		INSERT INTO LTMaquina (source,source_id) values
 			(in_source,in_source_id);
 		set @id = ( SELECT id FROM LTMaquina WHERE source = in_source and source_id = in_source_id);
-		INSERT INTO dimmaquina (id,modelo,renda,capacidade,cod_postal,freguesia,rua,cidade,distrito,pais) values
-			(@id,in_modelo,in_renda,in_capacidade,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais);
+		INSERT INTO dimmaquina (id,modelo,renda,capacidade) values
+			(@id,in_modelo,in_renda,in_capacidade);
 		COMMIT;
     END IF;
 END $$
 DELIMITER ;
 
-drop procedure if exists sp_update_maquina;
+
+
+
+drop procedure if exists sp_update_local;
 DELIMITER $$
-create procedure sp_update_maquina(in in_source int, in in_source_id varchar(15), in in_modelo VARCHAR(75),
-		in in_renda decimal(6,2), in in_capacidade int, in in_cod_postal varchar(10),
-        in in_freguesia varchar(75), in in_rua varchar(75), in in_cidade varchar(45),
-        in in_distrito varchar(45), in in_pais varchar(45), in in_data_update datetime)
+create procedure sp_update_local(in in_source int, in in_source_id varchar(10), in in_cod_postal varchar(10), in in_freguesia VARCHAR(75),
+		in in_rua varchar(75),in in_cidade varchar(45), in in_distrito varchar(45), in in_pais varchar(45), in in_data_update datetime)
 BEGIN
-START TRANSACTION;
-	set @id = (select id FROM ltmaquina WHERE source = in_source and source_id = in_source_id);
+	set @id = (select id FROM LTLocal 
+		WHERE source = in_source and source_id = in_source_id and cod_postal = in_cod_postal);
 	IF @id is not null THEN
-		INSERT INTO updateMaquina (maquina,modelo,renda,capacidade,cod_postal,freguesia,rua,cidade,distrito,pais,data_update) values
-			(@id,in_modelo,in_renda,in_capacidade,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais,in_data_update);
+		INSERT INTO updateLocal (local,cod_postal,freguesia,rua,cidade,distrito,pais,data_update) values
+			(@id,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais,in_data_update);
 	ELSE 
-		INSERT INTO quarmaquina  (source,source_id,modelo,renda,capacidade,cod_postal,freguesia,rua,cidade,distrito,pais,descricao,op) value
-			(in_source,in_source_id,in_modelo,in_renda,in_capacidade,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais,
-			"Update sobre uma maquina nao existente",'U');
+		INSERT INTO QuarLocal  (source,cod_postal,freguesia,rua,cidade,distrito,pais,descricao,op) values
+				(in_source,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais,"Update sobre um local nao existente",'U');
     END IF;
-COMMIT;
 END $$
 DELIMITER ;
+
+
+drop procedure if exists sp_insert_local;
+DELIMITER $$
+create procedure sp_insert_local(in in_source int, in in_source_id varchar(10), in in_cod_postal varchar(10), in in_freguesia VARCHAR(75),
+		in in_rua varchar(75),in in_cidade varchar(45), in in_distrito varchar(45), in in_pais varchar(45))
+BEGIN
+	SET @id = ( SELECT id FROM LTLocal WHERE source = in_source and source_id = in_source_id);
+    if @id is not null then
+		INSERT INTO quarLocal  (source,cod_postal,freguesia,rua,cidade,distrito,pais,descricao,op) value
+			(in_source,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais,
+			"Local repetido",'I');
+	else
+		set @id = ( SELECT id FROM LTLocal WHERE cod_postal = in_cod_postal limit 1);
+        if @id is not null then
+			START TRANSACTION;
+            INSERT INTO LTLocal (id,source,source_id,cod_postal) values
+				(@id,in_source,in_source_id,in_cod_postal);
+			INSERT INTO QuarLocal  (source,cod_postal,freguesia,rua,cidade,distrito,pais,descricao,op) values
+				(in_source,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais,
+				 "Local repetido. Inserido novo mapeamento em LTLocal",'I');
+			COMMIT;
+        ELSE 
+			START TRANSACTION;
+			INSERT INTO LTLocal (source,source_id,cod_postal) values
+				(in_source,in_source_id,in_cod_postal);
+			set @id = ( SELECT id FROM LTLocal WHERE source = in_source and in_source_id = source_id);
+			INSERT INTO dimLocal (id,cod_postal,freguesia,rua,cidade,distrito,pais) values
+					(@id,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais);
+			COMMIT;
+		END IF;
+    END IF;
+END $$
+DELIMITER ;
+
+

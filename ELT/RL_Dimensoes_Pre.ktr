@@ -500,56 +500,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Cidade</from>
-      <to>Distrito</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Cod_Postal Valido&#x3f;</from>
-      <to>Codigo Invalido</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Cod_Postal Valido&#x3f;</from>
-      <to>Freguesia</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Codigo Invalido</from>
-      <to>Quarenta</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Codigo Postal</from>
-      <to>Cod_Postal Valido&#x3f;</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Distrito</from>
-      <to>Pais</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Freguesia</from>
-      <to>Rua</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Rua</from>
-      <to>Cidade</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Extrair Maquinas</from>
-      <to>Codigo Postal</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Pais</from>
-      <to>Carregar PreDimMaquina</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Capitalizar Nome 2</from>
       <to>Capitalizar Profissao</to>
       <enabled>Y</enabled>
@@ -594,6 +544,61 @@
       <to>Email</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Cidade</from>
+      <to>Distrito</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Cod_Postal Valido&#x3f;</from>
+      <to>Codigo Invalido</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Cod_Postal Valido&#x3f;</from>
+      <to>Freguesia</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Codigo Invalido</from>
+      <to>Quarenta</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Codigo Postal</from>
+      <to>Cod_Postal Valido&#x3f;</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Distrito</from>
+      <to>Pais</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Extrair Local</from>
+      <to>Codigo Postal</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Extrair Maquinas</from>
+      <to>Carregar PreDimMaquina</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Freguesia</from>
+      <to>Rua</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Pais</from>
+      <to>Carregar PreDimLocal</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Rua</from>
+      <to>Cidade</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Capitalizar Nome</name>
@@ -629,8 +634,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
-      <yloc>368</yloc>
+      <xloc>480</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -669,8 +674,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>480</yloc>
+      <xloc>176</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -709,104 +714,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>576</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Carregar PreDimMaquina</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <schema/>
-    <table>predimmaquina</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>source</column_name>
-          <stream_name>source</stream_name>
-        </field>
-        <field>
-          <column_name>source_id</column_name>
-          <stream_name>source_id</stream_name>
-        </field>
-        <field>
-          <column_name>modelo</column_name>
-          <stream_name>modelo</stream_name>
-        </field>
-        <field>
-          <column_name>renda</column_name>
-          <stream_name>renda</stream_name>
-        </field>
-        <field>
-          <column_name>capacidade</column_name>
-          <stream_name>capacidade</stream_name>
-        </field>
-        <field>
-          <column_name>cod_postal</column_name>
-          <stream_name>cod_postal</stream_name>
-        </field>
-        <field>
-          <column_name>freguesia</column_name>
-          <stream_name>freguesia</stream_name>
-        </field>
-        <field>
-          <column_name>cidade</column_name>
-          <stream_name>cidade</stream_name>
-        </field>
-        <field>
-          <column_name>distrito</column_name>
-          <stream_name>distrito</stream_name>
-        </field>
-        <field>
-          <column_name>pais</column_name>
-          <stream_name>pais</stream_name>
-        </field>
-        <field>
-          <column_name>op</column_name>
-          <stream_name>Op</stream_name>
-        </field>
-        <field>
-          <column_name>data_update</column_name>
-          <stream_name>DataOp</stream_name>
-        </field>
-        <field>
-          <column_name>rua</column_name>
-          <stream_name>Rua</stream_name>
-        </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>816</yloc>
+      <xloc>176</xloc>
+      <yloc>592</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -853,6 +762,10 @@
           <stream_name>Nome</stream_name>
         </field>
         <field>
+          <column_name>pais</column_name>
+          <stream_name>pais</stream_name>
+        </field>
+        <field>
           <column_name>PrecoA</column_name>
           <stream_name>PrecoA</stream_name>
         </field>
@@ -868,10 +781,6 @@
           <column_name>Op</column_name>
           <stream_name>Op</stream_name>
         </field>
-        <field>
-          <column_name>pais</column_name>
-          <stream_name>pais</stream_name>
-        </field>
     </fields>
     <cluster_schema/>
     <remotesteps>
@@ -881,8 +790,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
-      <yloc>832</yloc>
+      <xloc>480</xloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -925,33 +834,33 @@
           <stream_name>source_id</stream_name>
         </field>
         <field>
-          <column_name>email</column_name>
-          <stream_name>email</stream_name>
+          <column_name>Email</column_name>
+          <stream_name>Email</stream_name>
         </field>
         <field>
-          <column_name>nome</column_name>
-          <stream_name>nome</stream_name>
+          <column_name>Nome</column_name>
+          <stream_name>Nome</stream_name>
         </field>
         <field>
-          <column_name>profissao</column_name>
-          <stream_name>profissao</stream_name>
+          <column_name>Profissao</column_name>
+          <stream_name>Profissao</stream_name>
         </field>
         <field>
-          <column_name>genero</column_name>
-          <stream_name>genero</stream_name>
+          <column_name>Genero</column_name>
+          <stream_name>Genero</stream_name>
         </field>
         <field>
-          <column_name>data_nascimento</column_name>
-          <stream_name>data_nascimento</stream_name>
-        </field>
-        <field>
-          <column_name>op</column_name>
-          <stream_name>Op</stream_name>
+          <column_name>Data_nascimento</column_name>
+          <stream_name>Data_nascimento</stream_name>
         </field>
         <field>
           <column_name>data_update</column_name>
           <stream_name>DataOp</stream_name>
         </field>
+        <field>
+          <column_name>Op</column_name>
+          <stream_name>Op</stream_name>
+        </field>
     </fields>
     <cluster_schema/>
     <remotesteps>
@@ -961,200 +870,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>816</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Cidade</name>
-    <type>StringOperations</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>cidade</in_stream_name>
-        <out_stream_name/>
-        <trim_type>none</trim_type>
-        <lower_upper>lower</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>yes</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>512</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Cod_Postal Valido&#x3f;</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<fieldname>cod_postal_valido</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>String</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>Freguesia</default_target_step>
-<cases><case><value>N</value>
-<target_step>Codigo Invalido</target_step>
-</case></cases>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Codigo Invalido</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>descricao</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x22;Codigo de postal invalido&#x22;</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>64</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Codigo Postal</name>
-    <type>RegexEval</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <script><![CDATA[([0-9]{4}-[0-9]{3})|([0-9]{5})]]></script>    <matcher>cod_postal</matcher>
-    <resultfieldname>cod_postal_valido</resultfieldname>
-    <usevar>N</usevar>
-    <allowcapturegroups>N</allowcapturegroups>
-    <replacefields>N</replacefields>
-    <canoneq>N</canoneq>
-    <caseinsensitive>N</caseinsensitive>
-    <comment>N</comment>
-    <dotall>N</dotall>
-    <multiline>N</multiline>
-    <unicode>N</unicode>
-    <unix>N</unix>
-    <fields>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Distrito</name>
-    <type>StringOperations</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>distrito</in_stream_name>
-        <out_stream_name/>
-        <trim_type>none</trim_type>
-        <lower_upper>lower</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>yes</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>608</yloc>
+      <xloc>176</xloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1193,8 +910,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>144</yloc>
+      <xloc>176</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1232,8 +949,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>368</yloc>
+      <xloc>336</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1266,40 +983,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Extrair Maquinas</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>source_bivm</connection>
-    <sql>SELECT&#xa;  1 as source&#xa;, CAST&#x28;id as CHAR&#x28;15&#x29;&#x29; as id&#xa;, id_maquina as source_id&#xa;, Modelo&#xa;, Renda&#xa;, Capacidade&#xa;, Cod_Postal&#xa;, Freguesia&#xa;, Rua&#xa;, Cidade&#xa;, Distrito&#xa;, Pais&#xa;, DataOp&#xa;, Op&#xa;FROM auditMaquina&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>32</yloc>
+      <xloc>176</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1330,8 +1015,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
-      <yloc>32</yloc>
+      <xloc>480</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1348,7 +1033,7 @@
       <schema_name/>
     </partitioning>
     <connection>source_bivm</connection>
-    <sql>SELECT&#xa;  1 as source&#xa;, cast&#x28;id_utilizador as char&#x29; as source_id&#xa;, Email&#xa;, Nome&#xa;, Profissao&#xa;, Genero&#xa;, Data_nascimento&#xa;, DataOp&#xa;, Op&#xa;FROM auditUtilizador&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  1 as source&#xd;&#xa;, cast&#x28;id_utilizador as char&#x29; as source_id&#xd;&#xa;, Email&#xd;&#xa;, Nome&#xd;&#xa;, Profissao&#xd;&#xa;, Genero&#xd;&#xa;, Data_nascimento&#xd;&#xa;, DataOp&#xd;&#xa;, Op&#xd;&#xa;FROM auditUtilizador&#xd;&#xa;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1362,184 +1047,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Freguesia</name>
-    <type>StringOperations</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>freguesia</in_stream_name>
-        <out_stream_name/>
-        <trim_type>none</trim_type>
-        <lower_upper>lower</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>yes</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Pais</name>
-    <type>StringOperations</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>pais</in_stream_name>
-        <out_stream_name/>
-        <trim_type>none</trim_type>
-        <lower_upper>lower</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>yes</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>704</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Quarenta</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>bivm_ar</connection>
-    <schema/>
-    <table>quarmaquina</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>source</column_name>
-          <stream_name>source</stream_name>
-        </field>
-        <field>
-          <column_name>source_id</column_name>
-          <stream_name>source_id</stream_name>
-        </field>
-        <field>
-          <column_name>modelo</column_name>
-          <stream_name>modelo</stream_name>
-        </field>
-        <field>
-          <column_name>renda</column_name>
-          <stream_name>renda</stream_name>
-        </field>
-        <field>
-          <column_name>capacidade</column_name>
-          <stream_name>capacidade</stream_name>
-        </field>
-        <field>
-          <column_name>cod_postal</column_name>
-          <stream_name>cod_postal</stream_name>
-        </field>
-        <field>
-          <column_name>freguesia</column_name>
-          <stream_name>freguesia</stream_name>
-        </field>
-        <field>
-          <column_name>rua</column_name>
-          <stream_name>rua</stream_name>
-        </field>
-        <field>
-          <column_name>cidade</column_name>
-          <stream_name>cidade</stream_name>
-        </field>
-        <field>
-          <column_name>distrito</column_name>
-          <stream_name>distrito</stream_name>
-        </field>
-        <field>
-          <column_name>pais</column_name>
-          <stream_name>pais</stream_name>
-        </field>
-        <field>
-          <column_name>descricao</column_name>
-          <stream_name>descricao</stream_name>
-        </field>
-        <field>
-          <column_name>op</column_name>
-          <stream_name>op</stream_name>
-        </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>64</xloc>
-      <yloc>400</yloc>
+      <xloc>176</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1618,48 +1127,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Rua</name>
-    <type>StringOperations</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>rua</in_stream_name>
-        <out_stream_name/>
-        <trim_type>none</trim_type>
-        <lower_upper>lower</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>yes</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>416</yloc>
+      <xloc>336</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1707,8 +1176,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>672</yloc>
+      <xloc>176</xloc>
+      <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1746,8 +1215,624 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
+      <xloc>176</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Carregar PreDimLocal</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <schema/>
+    <table>predimlocal</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>source</column_name>
+          <stream_name>source</stream_name>
+        </field>
+        <field>
+          <column_name>source_id</column_name>
+          <stream_name>source_id</stream_name>
+        </field>
+        <field>
+          <column_name>Cod_Postal</column_name>
+          <stream_name>Cod_Postal</stream_name>
+        </field>
+        <field>
+          <column_name>Freguesia</column_name>
+          <stream_name>Freguesia</stream_name>
+        </field>
+        <field>
+          <column_name>Rua</column_name>
+          <stream_name>Rua</stream_name>
+        </field>
+        <field>
+          <column_name>Cidade</column_name>
+          <stream_name>Cidade</stream_name>
+        </field>
+        <field>
+          <column_name>Distrito</column_name>
+          <stream_name>Distrito</stream_name>
+        </field>
+        <field>
+          <column_name>Pais</column_name>
+          <stream_name>Pais</stream_name>
+        </field>
+        <field>
+          <column_name>data_update</column_name>
+          <stream_name>DataOp</stream_name>
+        </field>
+        <field>
+          <column_name>Op</column_name>
+          <stream_name>Op</stream_name>
+        </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>848</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Carregar PreDimMaquina</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <schema/>
+    <table>predimmaquina</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>source</column_name>
+          <stream_name>source</stream_name>
+        </field>
+        <field>
+          <column_name>source_id</column_name>
+          <stream_name>source_id</stream_name>
+        </field>
+        <field>
+          <column_name>Modelo</column_name>
+          <stream_name>Modelo</stream_name>
+        </field>
+        <field>
+          <column_name>Renda</column_name>
+          <stream_name>Renda</stream_name>
+        </field>
+        <field>
+          <column_name>Capacidade</column_name>
+          <stream_name>Capacidade</stream_name>
+        </field>
+        <field>
+          <column_name>data_update</column_name>
+          <stream_name>DataOp</stream_name>
+        </field>
+        <field>
+          <column_name>Op</column_name>
+          <stream_name>Op</stream_name>
+        </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>960</xloc>
+      <yloc>848</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Cidade</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>cidade</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>lower</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>yes</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Cod_Postal Valido&#x3f;</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+<fieldname>cod_postal_valido</fieldname>
+<use_contains>N</use_contains>
+<case_value_type>String</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step>Freguesia</default_target_step>
+<cases><case><value>N</value>
+<target_step>Codigo Invalido</target_step>
+</case></cases>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
       <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Codigo Invalido</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>descricao</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>&#x22;Codigo de postal invalido&#x22;</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Codigo Postal</name>
+    <type>RegexEval</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <script><![CDATA[([0-9]{4}-[0-9]{3})|([0-9]{5})]]></script>    <matcher>cod_postal</matcher>
+    <resultfieldname>cod_postal_valido</resultfieldname>
+    <usevar>N</usevar>
+    <allowcapturegroups>N</allowcapturegroups>
+    <replacefields>N</replacefields>
+    <canoneq>N</canoneq>
+    <caseinsensitive>N</caseinsensitive>
+    <comment>N</comment>
+    <dotall>N</dotall>
+    <multiline>N</multiline>
+    <unicode>N</unicode>
+    <unix>N</unix>
+    <fields>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Distrito</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>distrito</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>lower</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>yes</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>640</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Extrair Local</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>source_bivm</connection>
+    <sql>SELECT&#xd;&#xa;  1 as source&#xd;&#xa;, cast&#x28;id_morada as char&#x29; as source_id&#xd;&#xa;, Cod_Postal&#xd;&#xa;, Freguesia&#xd;&#xa;, Rua&#xd;&#xa;, Cidade&#xd;&#xa;, Distrito&#xd;&#xa;, Pais&#xd;&#xa;, DataOp&#xd;&#xa;, Op&#xd;&#xa;FROM auditmorada</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Extrair Maquinas</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>source_bivm</connection>
+    <sql>SELECT&#xd;&#xa;  1 as source&#xd;&#xa;, cast&#x28;id_maquina as char&#x29; as source_id&#xd;&#xa;, Modelo&#xd;&#xa;, Renda&#xd;&#xa;, Capacidade&#xd;&#xa;, DataOp&#xd;&#xa;, Op&#xd;&#xa;FROM auditmaquina</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>960</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Freguesia</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>freguesia</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>lower</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>yes</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Pais</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>pais</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>lower</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>yes</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>736</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Quarenta</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>bivm_ar</connection>
+    <schema/>
+    <table>quarlocal</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>source</column_name>
+          <stream_name>source</stream_name>
+        </field>
+        <field>
+          <column_name>source_id</column_name>
+          <stream_name>source_id</stream_name>
+        </field>
+        <field>
+          <column_name>Cod_Postal</column_name>
+          <stream_name>Cod_Postal</stream_name>
+        </field>
+        <field>
+          <column_name>Freguesia</column_name>
+          <stream_name>Freguesia</stream_name>
+        </field>
+        <field>
+          <column_name>Rua</column_name>
+          <stream_name>Rua</stream_name>
+        </field>
+        <field>
+          <column_name>Pais</column_name>
+          <stream_name>Pais</stream_name>
+        </field>
+        <field>
+          <column_name>Cidade</column_name>
+          <stream_name>Cidade</stream_name>
+        </field>
+        <field>
+          <column_name>Distrito</column_name>
+          <stream_name>Distrito</stream_name>
+        </field>
+        <field>
+          <column_name>op</column_name>
+          <stream_name>op</stream_name>
+        </field>
+        <field>
+          <column_name>descricao</column_name>
+          <stream_name>descricao</stream_name>
+        </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Rua</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>rua</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>lower</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>yes</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
     </step>

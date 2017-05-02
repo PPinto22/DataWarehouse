@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>TF_Mei</name>
+    <name>Refresh_Cube</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
     </parameters>
@@ -428,49 +427,24 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017&#x2f;01&#x2f;12 16&#x3a;03&#x3a;52.671</created_date>
+    <created_date>2017&#x2f;04&#x2f;29 21&#x3a;45&#x3a;56.131</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017&#x2f;01&#x2f;12 16&#x3a;03&#x3a;52.671</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <modified_date>2017&#x2f;04&#x2f;29 21&#x3a;45&#x3a;56.131</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>bivm_ar</name>
-    <server>localhost</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>bivm_ar</database>
-    <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
-      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
-      <from>Extrair preFactVendas</from>
-      <to>Carregar factVendas</to>
+      <from>Dummy Step</from>
+      <to>&#x28;HTTP&#x29; Clear Mondrian Cache</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Carregar factVendas</name>
-    <type>ExecSQL</type>
+    <name>&#x28;HTTP&#x29; Clear Mondrian Cache</name>
+    <type>HTTP</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -479,32 +453,25 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>bivm_ar</connection>
-    <execute_each_row>Y</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>call sp_insert_venda&#x28;&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;,&#x3f;&#x29;&#x3b;</sql>
-    <set_params>Y</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-       <argument><name>source</name></argument>
-       <argument><name>precoV</name></argument>
-       <argument><name>precoA</name></argument>
-       <argument><name>lucro</name></argument>
-       <argument><name>validade</name></argument>
-       <argument><name>data</name></argument>
-       <argument><name>utilizador</name></argument>
-       <argument><name>maquina</name></argument>
-       <argument><name>local</name></argument>
-       <argument><name>produto</name></argument>
-       <argument><name>hora</name></argument>
-       <argument><name>periodo</name></argument>
-       <argument><name>idade</name></argument>
-    </arguments>
+    <url>http&#x3a;&#x2f;&#x2f;admin&#x3a;password&#x40;localhost&#x3a;8080&#x2f;pentaho&#x2f;api&#x2f;system&#x2f;refresh&#x2f;mondrianSchemaCache</url>
+    <urlInField>N</urlInField>
+    <urlField/>
+    <encoding>UTF-8</encoding>
+    <httpLogin>admin</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <socketTimeout>5000</socketTimeout>
+    <connectionTimeout>5000</connectionTimeout>
+    <closeIdleConnectionsTime>-1</closeIdleConnectionsTime>
+    <lookup>
+    </lookup>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      <response_header/>
+    </result>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -513,15 +480,15 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>288</yloc>
+      <xloc>352</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>Extrair preFactVendas</name>
-    <type>TableInput</type>
+    <name>Dummy Step</name>
+    <type>RowGenerator</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -530,13 +497,13 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  source&#xd;&#xa;, precoV&#xd;&#xa;, precoA&#xd;&#xa;, lucro&#xd;&#xa;, validade&#xd;&#xa;, idade&#xd;&#xa;, data&#xd;&#xa;, hora&#xd;&#xa;, periodo&#xd;&#xa;, utilizador&#xd;&#xa;, maquina&#xd;&#xa;, local&#xd;&#xa;, produto&#xd;&#xa;FROM prefactvendas&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <fields>
+    </fields>
+    <limit>10</limit>
+    <never_ending>N</never_ending>
+    <interval_in_ms>5000</interval_in_ms>
+    <row_time_field>now</row_time_field>
+    <last_time_field>FiveSecondsAgo</last_time_field>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -545,8 +512,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>64</yloc>
+      <xloc>208</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
     </step>

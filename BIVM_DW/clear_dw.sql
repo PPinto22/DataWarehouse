@@ -10,7 +10,7 @@ ALTER TABLE histmaquina AUTO_INCREMENT = 1;
 delete from dimproduto;
 delete from dimmaquina;
 delete from dimutilizador;
-
+delete from dimlocal;
 delete from dimdata;
 
 delete from factvendas;

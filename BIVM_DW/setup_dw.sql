@@ -1,4 +1,5 @@
 DROP DATABASE IF EXISTS BIVM_DW;  
+-- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -22,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `BIVM_DW`.`DimData` (
   `dia` DATE NOT NULL,
   `mes` VARCHAR(20) NOT NULL,
   `ano` INT NOT NULL,
-  `dia_semana` VARCHAR(10) NOT NULL,
+  `dia_semana` VARCHAR(20) NOT NULL,
   `fim_de_semana` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -50,12 +51,6 @@ CREATE TABLE IF NOT EXISTS `BIVM_DW`.`DimMaquina` (
   `modelo` VARCHAR(75) NOT NULL,
   `renda` DECIMAL(6,2) NOT NULL,
   `capacidade` INT NOT NULL,
-  `cod_postal` VARCHAR(10) NOT NULL,
-  `freguesia` VARCHAR(75) NOT NULL,
-  `rua` VARCHAR(75) NOT NULL,
-  `cidade` VARCHAR(45) NOT NULL,
-  `distrito` VARCHAR(45) NOT NULL,
-  `pais` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -74,6 +69,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `BIVM_DW`.`DimLocal`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `BIVM_DW`.`DimLocal` (
+  `id` INT NOT NULL,
+  `cod_postal` VARCHAR(10) NOT NULL,
+  `freguesia` VARCHAR(75) NOT NULL,
+  `rua` VARCHAR(75) NOT NULL,
+  `cidade` VARCHAR(45) NOT NULL,
+  `distrito` VARCHAR(45) NOT NULL,
+  `pais` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `BIVM_DW`.`FactVendas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BIVM_DW`.`FactVendas` (
@@ -84,6 +94,7 @@ CREATE TABLE IF NOT EXISTS `BIVM_DW`.`FactVendas` (
   `data` INT NOT NULL,
   `utilizador` INT NOT NULL,
   `maquina` INT NOT NULL,
+  `local` INT NOT NULL,
   `produto` INT NOT NULL,
   `hora` INT NOT NULL,
   `periodo` VARCHAR(10) NOT NULL,
@@ -92,6 +103,7 @@ CREATE TABLE IF NOT EXISTS `BIVM_DW`.`FactVendas` (
   INDEX `utilizador_idx` (`utilizador` ASC),
   INDEX `maquina_idx` (`maquina` ASC),
   INDEX `produto_idx` (`produto` ASC),
+  INDEX `local_idx` (`local` ASC),
   CONSTRAINT `data`
     FOREIGN KEY (`data`)
     REFERENCES `BIVM_DW`.`DimData` (`id`)
@@ -111,7 +123,12 @@ CREATE TABLE IF NOT EXISTS `BIVM_DW`.`FactVendas` (
     FOREIGN KEY (`produto`)
     REFERENCES `BIVM_DW`.`DimProduto` (`id`)
     ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON UPDATE CASCADE,
+  CONSTRAINT `local`
+    FOREIGN KEY (`local`)
+    REFERENCES `BIVM_DW`.`DimLocal` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -144,18 +161,6 @@ CREATE TABLE IF NOT EXISTS `BIVM_DW`.`HistMaquina` (
   `maquina` INT NOT NULL,
   `renda_anterior` DECIMAL(6,2) NOT NULL,
   `renda` DECIMAL(6,2) NOT NULL,
-  `cod_postal_anterior` VARCHAR(10) NOT NULL,
-  `cod_postal` VARCHAR(10) NOT NULL,
-  `freguesia_anterior` VARCHAR(75) NOT NULL,
-  `freguesia` VARCHAR(75) NOT NULL,
-  `rua_anterior` VARCHAR(45) NOT NULL,
-  `rua` VARCHAR(45) NOT NULL,
-  `cidade_anterior` VARCHAR(45) NOT NULL,
-  `cidade` VARCHAR(45) NOT NULL,
-  `distrito_anterior` VARCHAR(45) NOT NULL,
-  `distrito` VARCHAR(45) NOT NULL,
-  `pais_anterior` VARCHAR(45) NOT NULL,
-  `pais` VARCHAR(45) NOT NULL,
   `data_update` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_maquina_idx` (`maquina` ASC),
@@ -170,7 +175,6 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
 
 
 
@@ -232,41 +236,31 @@ BEGIN
 END $$
 DELIMITER ;
 
--- Testes
--- 
--- select * from dimmaquina;
--- select * from histmaquina;
--- delete from dimmaquina;
--- insert into dimmaquina values (1,'modelo',100,50,'cod','freg','rua','cid','dis','pais');
--- call sp_update_maquina(1,'modelo2',100,500,'cod','freg','rua','cid','dis','pais',now());
--- call sp_update_maquina(1,'A',3150.0,300,'4710-057','Campus de Gualtar','Campus de Gualtar','Braga','Braga','Alemanha',now());
--- call sp_update_maquina(1,'A',3150.0,300,'4710-057','Campus de Gualtar','Campus de Gualtar','Braga','Braga','Portugal',now());
-
 drop procedure if exists sp_update_maquina;
 DELIMITER $$
 create procedure sp_update_maquina(in in_id int, in in_modelo VARCHAR(75),
-		in in_renda decimal(6,2), in in_capacidade int, in in_cod_postal varchar(10),
-        in in_freguesia varchar(75), in in_rua varchar(75), in in_cidade varchar(45),
-        in in_distrito varchar(45), in in_pais varchar(45), in in_data_update datetime)
+		in in_renda decimal(6,2), in in_capacidade int, in in_data_update datetime)
 BEGIN
 START TRANSACTION;
-	INSERT INTO histMaquina (maquina,renda_anterior,cod_postal_anterior,freguesia_anterior,rua_anterior,
-		cidade_anterior,distrito_anterior,pais_anterior,
-        renda,cod_postal,freguesia,rua,cidade,distrito,pais,data_update)
-	SELECT Dim.id,Dim.renda,Dim.cod_postal,Dim.freguesia,Dim.rua,Dim.cidade,Dim.distrito,Dim.pais,
-		   in_renda,in_cod_postal,in_freguesia,in_rua,in_cidade,in_distrito,in_pais,in_data_update
-		FROM DimMaquina as Dim where Dim.id = in_id AND (
-			renda <> in_renda OR 
-            cod_postal <> in_cod_postal OR
-            freguesia <> in_freguesia OR
-            rua <> in_rua OR
-            cidade <> in_cidade OR
-            distrito <> in_distrito OR
-            pais <> in_pais);
+	INSERT INTO histMaquina (maquina,renda_anterior,renda,data_update)
+	SELECT Dim.id,Dim.renda,in_renda,in_data_update
+		FROM DimMaquina as Dim where Dim.id = in_id AND renda <> in_renda;
 	UPDATE DimMaquina SET
 			modelo = in_modelo,
 			renda = in_renda,
-            capacidade = in_capacidade,
+            capacidade = in_capacidade
+        WHERE id = in_id;
+COMMIT;
+END $$
+DELIMITER ;
+
+drop procedure if exists sp_update_local;
+DELIMITER $$
+create procedure sp_update_local(in in_id int, in in_cod_postal varchar(10),
+        in in_freguesia varchar(75), in in_rua varchar(75), in in_cidade varchar(45),
+        in in_distrito varchar(45), in in_pais varchar(45), in in_data_update datetime)
+BEGIN
+	UPDATE DimLocal SET
 			cod_postal = in_cod_postal,
 			freguesia = in_freguesia,
 			rua = in_rua,
@@ -274,7 +268,6 @@ START TRANSACTION;
 			distrito = in_distrito,
 			pais = in_pais
         WHERE id = in_id;
-COMMIT;
 END $$
 DELIMITER ;
 

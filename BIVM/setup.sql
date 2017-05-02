@@ -1,5 +1,4 @@
 -- MySQL Workbench Forward Engineering
-
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -185,6 +184,14 @@ create table auditMaquina (
     Modelo varchar(75) not null,
     Renda decimal(6,2) not null,
     Capacidade int not null,
+    DataOp DateTime not null default now(),
+    Op char(1) not null
+);
+
+drop table if exists auditMorada;
+create table auditMorada (
+	id int not null primary key auto_increment,
+    id_morada int not null,
     Cod_Postal varchar(10) not null,
     Freguesia varchar(75) not null,
     Rua varchar(75) not null,
@@ -241,11 +248,23 @@ create trigger tg_insert_auditMaquina
 	after insert on maquina 
     for each row
 BEGIN
-    insert into auditmaquina (id_maquina,modelo,renda,capacidade,cod_postal,freguesia,rua,cidade,distrito,pais,op) 
-		select new.id, new.modelo, new.renda, new.capacidade, cod_postal, freguesia, rua, cidade, distrito, pais, 'I' 
-			from Morada where new.morada = Morada.id;
+    insert into auditmaquina (id_maquina,modelo,renda,capacidade,op) values
+		(new.id, new.modelo, new.renda, new.capacidade,'I');
 END$$
 DELIMITER ;
+
+
+drop trigger if exists tg_insert_auditMorada;
+DELIMITER $$
+create trigger tg_insert_auditMorada
+	after insert on morada 
+    for each row
+BEGIN
+    insert into auditMorada (id_morada,cod_postal,freguesia,rua,cidade,distrito,pais,op) values
+			(new.id,new.cod_postal, new.freguesia, new.rua, new.cidade, new.distrito, new.pais, 'I');
+END$$
+DELIMITER ;
+
 
 drop trigger if exists tg_update_auditUtilizador;
 DELIMITER $$
@@ -274,25 +293,22 @@ BEGIN
     IF 
 		new.modelo <> old.modelo OR
         new.renda <> old.renda OR
-        new.capacidade <> old.capacidade OR
-        new.morada <> old.morada
+        new.capacidade <> old.capacidade
 	THEN
-		insert into auditmaquina (id_maquina,modelo,renda,capacidade,cod_postal,freguesia,rua,cidade,distrito,pais,op) 
-			select new.id, new.modelo, new.renda, new.capacidade, cod_postal, freguesia, rua, cidade, distrito, pais, 'U' 
-				from Morada where new.morada = Morada.id;
+		insert into auditmaquina (id_maquina,modelo,renda,capacidade,op) values
+			(new.id, new.modelo, new.renda, new.capacidade, 'U');
 	END IF;
 END$$
 DELIMITER ;
 
-drop trigger if exists tg_update_auditMaquina_Morada;
+drop trigger if exists tg_update_auditMorada;
 DELIMITER $$
-create trigger tg_update_auditMaquina_Morada
+create trigger tg_update_auditMorada
 	after update on morada 
     for each row
 BEGIN
-	insert into auditmaquina (id_maquina,modelo,renda,capacidade,cod_postal,freguesia,rua,cidade,distrito,pais,op) 
-		select M.id, M.modelo, M.renda, M.capacidade, new.cod_postal, new.freguesia, new.rua, new.cidade, new.distrito, new.pais, 'U' 
-			from Maquina as M where M.morada = new.id;
+	insert into auditMorada (id_morada,cod_postal,freguesia,rua,cidade,distrito,pais,op) values
+		(new.id, new.cod_postal, new.freguesia, new.rua, new.cidade, new.distrito, new.pais, 'U');
 END$$
 DELIMITER ;
 

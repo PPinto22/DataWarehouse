@@ -551,6 +551,10 @@
           <stream_name>maquina</stream_name>
         </field>
         <field>
+          <column_name>local</column_name>
+          <stream_name>local</stream_name>
+        </field>
+        <field>
           <column_name>produto</column_name>
           <stream_name>produto</stream_name>
         </field>
@@ -593,7 +597,7 @@
       <schema_name/>
     </partitioning>
     <connection>bivm_ar</connection>
-    <sql>SELECT&#xd;&#xa;  precoV&#xd;&#xa;, precoA&#xd;&#xa;, lucro&#xd;&#xa;, data&#xd;&#xa;, hora&#xd;&#xa;, utilizador&#xd;&#xa;, maquina&#xd;&#xa;, produto&#xd;&#xa;, validade&#xd;&#xa;, idade&#xd;&#xa;, periodo&#xd;&#xa;FROM factvendas&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  precoV&#xd;&#xa;, precoA&#xd;&#xa;, lucro&#xd;&#xa;, data&#xd;&#xa;, hora&#xd;&#xa;, utilizador&#xd;&#xa;, maquina&#xd;&#xa;, local&#xd;&#xa;, produto&#xd;&#xa;, validade&#xd;&#xa;, idade&#xd;&#xa;, periodo&#xd;&#xa;FROM factvendas&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
