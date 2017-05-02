@@ -83,17 +83,21 @@
       </Level>
       <Level name="Email" visible="true" column="email" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
+      <Level name="DataNascimento" visible="true" column="data_nascimento" type="Date" uniqueMembers="false" levelType="Regular" description="Atributo descritivo">
+      </Level>
     </Hierarchy>
     <Hierarchy name="Utilizador_Profissao" visible="true" hasAll="true" primaryKey="id">
       <Table name="dimutilizador">
       </Table>
       <Level name="Profissao" visible="true" column="profissao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="Utilizador" visible="true" column="id" type="Integer" internalType="int" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="UtilizadorID" visible="true" column="id" type="Integer" internalType="int" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
       <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
       <Level name="Email" visible="true" column="email" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
+      </Level>
+      <Level name="DataNascimento" visible="true" column="data_nascimento" type="Date" uniqueMembers="false" description="Atributo descritivo">
       </Level>
     </Hierarchy>
   </Dimension>
