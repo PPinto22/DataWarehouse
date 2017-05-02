@@ -1,10 +1,10 @@
 <Schema name="bivm">
   <Cube name="Cubo" visible="true" cache="true" enabled="true">
-    <Table name="factvendas">
+    <Table name="FactVendas">
     </Table>
     <Dimension type="TimeDimension" visible="true" foreignKey="data" highCardinality="false" name="Data">
       <Hierarchy name="data1" visible="true" hasAll="true" primaryKey="id">
-        <Table name="dimdata">
+        <Table name="DimData">
         </Table>
         <Level name="dia" visible="true" column="dia" parentColumn="id" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
         </Level>
@@ -14,13 +14,13 @@
         </Level>
       </Hierarchy>
       <Hierarchy name="data2" visible="true" hasAll="true" primaryKey="id">
-        <Table name="dimdata">
+        <Table name="DimData">
         </Table>
         <Level name="fim_semana" visible="true" column="fim_de_semana" parentColumn="id" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="data3" visible="true" hasAll="false">
-        <Table name="dimdata">
+        <Table name="DimData">
         </Table>
         <Level name="dia_semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
         </Level>
@@ -28,13 +28,13 @@
     </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="utilizador" highCardinality="false" name="Utilizador">
       <Hierarchy name="utilizador1" visible="true" hasAll="true" primaryKey="id">
-        <Table name="dimutilizador">
+        <Table name="DimUtilizador">
         </Table>
         <Level name="genero" visible="true" column="genero" parentColumn="id" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="utilizador2" visible="true" hasAll="true">
-        <Table name="dimutilizador">
+        <Table name="DimUtilizador">
         </Table>
         <Level name="profissao" visible="true" column="profissao" parentColumn="id" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -42,7 +42,7 @@
     </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="produto" highCardinality="false" name="Produto">
       <Hierarchy name="produto" visible="true" hasAll="true" primaryKey="id">
-        <Table name="dimproduto">
+        <Table name="DimProduto">
         </Table>
         <Level name="pais" visible="true" column="pais" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
@@ -50,13 +50,13 @@
     </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="maquina" highCardinality="false" name="Maquina">
       <Hierarchy name="maquina1" visible="true" hasAll="true" primaryKey="id">
-        <Table name="dimmaquina">
+        <Table name="DimMaquina">
         </Table>
         <Level name="modelo" visible="true" column="modelo" parentColumn="id" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="maquina2" visible="true" hasAll="true" primaryKey="id">
-        <Table name="dimmaquina">
+        <Table name="DimMaquina">
         </Table>
         <Level name="freguesia" visible="true" column="freguesia" parentColumn="id" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>

@@ -6,6 +6,7 @@ import string
 from datetime import *
 
 allNames = set()
+adressesUsed = 0
 
 def getRandomUniqName(s):
 
@@ -44,8 +45,9 @@ def genAge():
 	return fstBornDate + timedelta(days=int(bornPeriod.days*random.normalvariate(0.5, 0.12)))
 
 def genRandomAddress():
-	n = random.randint(0, len(adresses) - 1)
+	n = adressesUsed
 
 	add = (adresses[n][0], adresses[n][4], adresses[n][1], random.randint(0, 1000), "Portugal", adresses[n][3], adresses[n][2])
+	adressesUsed = adressesUsed + 1
 
 	return add
