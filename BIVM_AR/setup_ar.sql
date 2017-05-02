@@ -213,12 +213,6 @@ create table preDimMaquina (
     modelo varchar(75),
     renda decimal(6,2),
     capacidade int,
-    cod_postal varchar(10),
-    freguesia varchar(75),
-    rua varchar(75),
-    cidade varchar(45),
-    distrito varchar(45),
-    pais varchar(45),
 	data_update datetime default null,
     op char(1) default 'I'
 );
