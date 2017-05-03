@@ -57,7 +57,7 @@ adresses = [
             ('4730-260','Rua Padre António José de Araújo','Braga','Vila Verde','Lanhas'),
             ('4720-119','Rua do Rio Homem','Braga','Amares','Rendufe'),
             ('4450-038','Rua Álvaro Castelões','Porto','Matosinhos','Matosinhos'),
-            ('4705-086','Rua Cidade do Porto','Braga','Braga','Braga'),
+            ('4600-752','Travessa dos Moínhos','Porto','Amarante','Telões'),
             ('4575-218','Avenida Doutor Carvalho Mendes','Porto','Penafiel','Eja'),
             ('4580-177','Rua Nova Torre da Madureira','Porto','Paredes','Beire'),
             ('4300-342','Rua Monte da Estação','Porto','Porto','Porto'),
@@ -72,7 +72,8 @@ adresses = [
             ('3505-563','Rua da Lapa','Viseu','Viseu','Viseu'),
             ('5400-195','Travessa Cavaleiro','Vila Real','Chaves','Santa Maria Maior'),
             ('4880-127','Rua do Calvário','Vila Real','Mondim de Basto','Ermelo'),
-            ('8900-229','Largo António Aleixo','Faro','Vila Real de Santo António','Vila Real de Santo António'),
+            ('5070-017','Travessa da Lameira','Vila Real','Alijó','Alijó'),
             ('5030-101','Rua de Aveleira','Vila Real','Santa Marta de Penaguião','Fontes'),
             ('5430-492','Rua Cidade de Bruxelas','Vila Real','Valpaços','Valpaços'),
+
            ]
