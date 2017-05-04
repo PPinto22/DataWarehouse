@@ -431,7 +431,7 @@ BEGIN
 		if new.hora >= 6 and new.hora <= 13 then
 			set new.periodo = 'Manha';
 		else
-			if new.hora >= 13 and new.hora <= 20 then
+			if new.hora >= 13 and new.hora <= 17 then
 				set new.periodo = 'Tarde';
 			else
 				set new.periodo = 'Noite';
