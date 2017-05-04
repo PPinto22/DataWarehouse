@@ -1,23 +1,28 @@
 <Schema name="BIVM">
   <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Dimdata">
     <Hierarchy name="Data" visible="true" hasAll="true" primaryKey="id">
-      <Table name="dimdata">
+      <Table name="DimData">
       </Table>
       <Level name="Ano" visible="true" column="ano" type="Integer" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
       </Level>
       <Level name="Mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
       </Level>
       <Level name="Dia" visible="true" column="dia" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="AnalyzerDateFormat">
+            <![CDATA[yyyy-MM-dd]]>
+          </Annotation>
+        </Annotations>
       </Level>
     </Hierarchy>
     <Hierarchy name="Dia semana" visible="true" hasAll="true" primaryKey="id">
-      <Table name="dimdata">
+      <Table name="DimData">
       </Table>
       <Level name="Dia semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeWeeks" hideMemberIf="Never">
       </Level>
     </Hierarchy>
     <Hierarchy name="Fim de semana" visible="true" hasAll="true" primaryKey="id">
-      <Table name="dimdata">
+      <Table name="DimData">
       </Table>
       <Level name="Fim de semana" visible="true" column="fim_de_semana" type="Boolean" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
       </Level>
@@ -25,25 +30,65 @@
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="Dimlocal">
     <Hierarchy name="Local" visible="true" hasAll="true" primaryKey="id">
-      <Table name="dimlocal">
+      <Table name="DimLocal">
       </Table>
       <Level name="Pais" visible="true" column="pais" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="Geo.Role">
+            <![CDATA[country]]>
+          </Annotation>
+          <Annotation name="Data.Role">
+            <![CDATA[Geography]]>
+          </Annotation>
+        </Annotations>
       </Level>
       <Level name="Distrito" visible="true" column="distrito" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="Geo.Role">
+            <![CDATA[state]]>
+          </Annotation>
+          <Annotation name="Data.Role">
+            <![CDATA[Geography]]>
+          </Annotation>
+        </Annotations>
       </Level>
       <Level name="Cidade" visible="true" column="cidade" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Annotations>
+          <Annotation name="Geo.Role">
+            <![CDATA[city]]>
+          </Annotation>
+          <Annotation name="Data.Role">
+            <![CDATA[Geography]]>
+          </Annotation>
+          <Annotation name="Geo.RequiredParents">
+            <![CDATA[country]]>
+          </Annotation>
+        </Annotations>
       </Level>
       <Level name="Freguesia" visible="true" column="freguesia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Local" visible="true" column="id" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
       <Level name="Rua" visible="true" column="rua" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
       <Level name="Codigo Postal" visible="true" column="cod_postal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
+        <Annotations>
+          <Annotation name="Geo.Role">
+            <![CDATA[postalcode]]>
+          </Annotation>
+          <Annotation name="Data.Role">
+            <![CDATA[Geography]]>
+          </Annotation>
+          <Annotation name="Geo.RequiredParents">
+            <![CDATA[]]>
+          </Annotation>
+        </Annotations>
       </Level>
     </Hierarchy>
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="Dimmaquina">
     <Hierarchy name="Maquina" visible="true" hasAll="true" primaryKey="id">
-      <Table name="dimmaquina">
+      <Table name="DimMaquina">
       </Table>
       <Level name="Modelo" visible="true" column="modelo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
@@ -57,7 +102,7 @@
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="Dimproduto">
     <Hierarchy name="Produto" visible="true" hasAll="true" primaryKey="id">
-      <Table name="dimproduto">
+      <Table name="DimProduto">
       </Table>
       <Level name="Pais" visible="true" column="pais" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
@@ -73,7 +118,7 @@
   </Dimension>
   <Dimension visible="true" highCardinality="false" name="Dimutilizador">
     <Hierarchy name="Utilizador_Genero" visible="true" hasAll="true" primaryKey="id">
-      <Table name="dimutilizador">
+      <Table name="DimUtilizador">
       </Table>
       <Level name="Genero" visible="true" column="genero" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
@@ -83,11 +128,11 @@
       </Level>
       <Level name="Email" visible="true" column="email" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
-      <Level name="DataNascimento" visible="true" column="data_nascimento" type="Date" uniqueMembers="false" levelType="Regular" description="Atributo descritivo">
+      <Level name="DataNascimento" visible="true" column="data_nascimento" type="Date" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
     </Hierarchy>
     <Hierarchy name="Utilizador_Profissao" visible="true" hasAll="true" primaryKey="id">
-      <Table name="dimutilizador">
+      <Table name="DimUtilizador">
       </Table>
       <Level name="Profissao" visible="true" column="profissao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
@@ -97,12 +142,12 @@
       </Level>
       <Level name="Email" visible="true" column="email" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
-      <Level name="DataNascimento" visible="true" column="data_nascimento" type="Date" uniqueMembers="false" description="Atributo descritivo">
+      <Level name="DataNascimento" visible="true" column="data_nascimento" type="Date" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
       </Level>
     </Hierarchy>
   </Dimension>
   <Cube name="BIVM" visible="true" cache="true" enabled="true">
-    <Table name="factvendas">
+    <Table name="FactVendas">
     </Table>
     <DimensionUsage source="Dimdata" name="Dimdata" visible="true" foreignKey="Data" highCardinality="false">
     </DimensionUsage>
@@ -134,9 +179,9 @@
     </Dimension>
     <Measure name="Lucro" column="lucro" aggregator="sum">
     </Measure>
-    <Measure name="PrecoA" column="precoA" aggregator="avg">
+    <Measure name="PrecoA" column="precoA" aggregator="sum">
     </Measure>
-    <Measure name="PrecoV" column="precoV" aggregator="avg">
+    <Measure name="PrecoV" column="precoV" aggregator="sum">
     </Measure>
     <Measure name="Validade" column="validade" aggregator="avg">
     </Measure>
