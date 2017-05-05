@@ -45,7 +45,7 @@
       <Level name="Distrito" visible="true" column="distrito" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         <Annotations>
           <Annotation name="Geo.Role">
-            <![CDATA[state]]>
+            <![CDATA[district]]>
           </Annotation>
           <Annotation name="Data.Role">
             <![CDATA[Geography]]>
@@ -54,14 +54,11 @@
       </Level>
       <Level name="Cidade" visible="true" column="cidade" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         <Annotations>
-          <Annotation name="Geo.Role">
-            <![CDATA[city]]>
-          </Annotation>
           <Annotation name="Data.Role">
             <![CDATA[Geography]]>
           </Annotation>
-          <Annotation name="Geo.RequiredParents">
-            <![CDATA[country]]>
+          <Annotation name="Geo.Role">
+            <![CDATA[city]]>
           </Annotation>
         </Annotations>
       </Level>
@@ -72,17 +69,6 @@
       <Level name="Rua" visible="true" column="rua" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
       <Level name="Codigo Postal" visible="true" column="cod_postal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" description="Atributo descritivo">
-        <Annotations>
-          <Annotation name="Geo.Role">
-            <![CDATA[postalcode]]>
-          </Annotation>
-          <Annotation name="Data.Role">
-            <![CDATA[Geography]]>
-          </Annotation>
-          <Annotation name="Geo.RequiredParents">
-            <![CDATA[]]>
-          </Annotation>
-        </Annotations>
       </Level>
     </Hierarchy>
   </Dimension>
@@ -147,7 +133,7 @@
     </Hierarchy>
   </Dimension>
   <Cube name="BIVM" visible="true" cache="true" enabled="true">
-    <Table name="FactVendas">
+    <Table name="factVendas">
     </Table>
     <DimensionUsage source="Dimdata" name="Dimdata" visible="true" foreignKey="Data" highCardinality="false">
     </DimensionUsage>
@@ -184,6 +170,8 @@
     <Measure name="PrecoV" column="precoV" aggregator="sum">
     </Measure>
     <Measure name="Validade" column="validade" aggregator="avg">
+    </Measure>
+    <Measure name="Quantidade" column="quantidade" aggregator="sum" visible="true">
     </Measure>
   </Cube>
 </Schema>
