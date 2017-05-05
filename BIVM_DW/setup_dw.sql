@@ -131,6 +131,7 @@ CREATE TABLE IF NOT EXISTS `BIVM_DW`.`FactVendas` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+ALTER TABLE factvendas ADD COLUMN quantidade int default 1;
 
 -- -----------------------------------------------------
 -- Table `BIVM_DW`.`HistProduto`
