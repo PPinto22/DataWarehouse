@@ -98,7 +98,7 @@ for i in range(totalDays):
     monthOffset = (math.sin((i % 365 - 182) * math.pi/365) + 1) / 2
     n_sales = int(n_sales/2) + int(n_sales * monthOffset)
 
-    increasingOffset = i/totalDays + 0.5
+    increasingOffset = i/float(totalDays) + 0.5
     n_sales = int(n_sales * increasingOffset)
 
     for j in range(n_sales):
