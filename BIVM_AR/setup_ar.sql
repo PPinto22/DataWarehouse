@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `BIVM_AR`.`FactVendas` (
   `produto` INT NOT NULL,
   `hora` INT NOT NULL,
   `periodo` VARCHAR(45) NOT NULL,
-  `idade` INT NOT NULL,
+  `idade` INT NOT NULL/*,
   INDEX `_idx` (`data` ASC),
   INDEX `utilizador_idx` (`utilizador` ASC),
   INDEX `maquina_idx` (`maquina` ASC),
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `BIVM_AR`.`FactVendas` (
     FOREIGN KEY (`local`)
     REFERENCES `BIVM_AR`.`DimLocal` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION*/)
 ENGINE = InnoDB;
 
 
@@ -691,3 +691,9 @@ END $$
 DELIMITER ;
 
 
+# Indices
+create index idx_dimdata on dimdata(dia);
+create index idx_ltlocal on ltlocal(source, source_id);
+create index idx_ltmaquina on ltmaquina(source, source_id);
+create index idx_ltproduto on ltproduto(source, source_id);
+create index idx_ltutilizador on ltutilizador(source, source_id);

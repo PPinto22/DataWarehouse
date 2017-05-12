@@ -380,3 +380,10 @@ commit;
 END $$
 delimiter ;
 
+
+
+# Indices
+create index idx_remessa_maq_prod on remessa(maquina, produto);
+create index idx_remessa_qt on remessa(quantidade);
+
+create index idx_email on utilizador(email);
