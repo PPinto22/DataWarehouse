@@ -78,20 +78,20 @@ for i in range(len(machines)):
 print "Vamos às vendas!"
 totalSales = 0
 totalDays = sellingPeriod.days + 1
+
+cursor = db.cursor()
+
 for i in range(totalDays):
     
     current_date = (fstSell + timedelta(days=i))
 
     if i % DiasEntreRemessas == 0:
-        cursor = db.cursor()
         cursor.callproc('sp_stock_cleaning', [str(current_date).decode('utf-8').encode("latin-1")])
-        cursor.close()
 
         for m in machines:
             for p in products:
                 rs = Remessas(current_date, m, p)
-                rs.insertInDB(db)
-
+                rs.insertInDB(db, cursor)
 
     n_sales = int(random.normalvariate(AVGVendasDia, DesvioVendasDia))
     
@@ -103,10 +103,11 @@ for i in range(totalDays):
 
     for j in range(n_sales):
         v = Vendas(current_date, users, machinesT, products)
-        v.insertInDB(db)
+        v.insertInDB(db, cursor)
         totalSales = totalSales + 1
     print "Dia " + str(i) + " de " + str(sellingPeriod.days + 1)
 
 print "Criadas " + str(totalSales) + " vendas"
 
+cursor.close()
 db.close()

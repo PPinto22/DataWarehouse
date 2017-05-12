@@ -13,12 +13,8 @@ class Vendas:
         self.machine = random.choice(machines).id
         self.product = random.choice(products).id
 
-    def insertInDB(self, db):
-        cursor = db.cursor()
-
+    def insertInDB(self, db, cursor):
         try:
             cursor.callproc('sp_venda', (self.date.decode('utf-8').encode('latin-1'), self.machine, self.user, self.product))
         except:
             pass
-
-        cursor.close()
