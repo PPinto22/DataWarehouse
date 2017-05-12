@@ -38,7 +38,29 @@ for i in range(NMaquinas):
     machines.append(m)
 print "Criados " + str(NMaquinas) + " maquinas"
 
-# Making so that some district are more likely to sell than the others
+# !! Programação triste !!
+# É preciso fazer com que os produtos replicados no config sejam REPLICADOS
+# Isto é bem capaz de ser o pedaço de código mais triste que alguma vez escrevi
+# Espero, verdadeiramente, não ir para o inferno depois disto
+# Tenho, no entanto, a consciência que é exactamente isso que mereço
+# Rezem por mim
+
+tmpP = []
+
+for p in products:
+    tmpP += [p] * len([i for p1 in produtos if p1[0] == p.name])
+
+products = tmpP
+
+# Making so that some users are more likely to buy than others
+tmpU = []
+
+for u in users:
+    tmpU += [u] * int(random.normalvariate(20, 7))
+
+users = tmpU
+
+# Making so that some district are more likely to sell than others
 allDistricts = set()
 
 for d in adresses:
@@ -49,23 +71,38 @@ machines = sorted(machines, key=lambda x: x.address[6])
 machinesT = []
 
 for i in range(len(machines)):
-    machinesT += [machines[i]] * int(math.ceil(len(allDistricts) * ((len(machines) - i)/float(len(machines))) * random.random()))
+    k = int(math.ceil(len(allDistricts) * ((len(machines) - i)/float(len(machines))) * 1))
+    machinesT += [machines[i]] * k
+
 
 print "Vamos às vendas!"
 totalSales = 0
-for i in range(sellingPeriod.days + 1):
+totalDays = sellingPeriod.days + 1
+for i in range(totalDays):
+    
+    current_date = (fstSell + timedelta(days=i))
+
     if i % DiasEntreRemessas == 0:
         cursor = db.cursor()
-        cursor.callproc('sp_stock_cleaning', [str(fstSell + timedelta(days=i)).decode('utf-8').encode("latin-1")])
+        cursor.callproc('sp_stock_cleaning', [str(current_date).decode('utf-8').encode("latin-1")])
         cursor.close()
 
         for m in machines:
             for p in products:
-                rs = Remessas((fstSell + timedelta(days=i)), m, p)
+                rs = Remessas(current_date, m, p)
                 rs.insertInDB(db)
 
-    for j in range(int(random.normalvariate(AVGVendasDia, DesvioVendasDia))):
-        v = Vendas((fstSell + timedelta(days=i)), users, machines, products)
+
+    n_sales = int(random.normalvariate(AVGVendasDia, DesvioVendasDia))
+    
+    monthOffset = (math.sin((i % 365 - 182) * math.pi/365) + 1) / 2
+    n_sales = int(n_sales/2) + int(n_sales * monthOffset)
+
+    increasingOffset = i/totalDays + 0.5
+    n_sales = int(n_sales * increasingOffset)
+
+    for j in range(n_sales):
+        v = Vendas(current_date, users, machinesT, products)
         v.insertInDB(db)
         totalSales = totalSales + 1
     print "Dia " + str(i) + " de " + str(sellingPeriod.days + 1)

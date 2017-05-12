@@ -3,13 +3,13 @@ from datetime import datetime
 
 malePopulation = 0.45
 
-NUtilizadores = 591
+NUtilizadores = 561
 NMaquinas = 25
 AVGVendasDia = NMaquinas * 20
 DesvioVendasDia = AVGVendasDia/4
 DiasEntreRemessas = 2
 
-initialBalance = [9000] * 10 + [8000] * 6
+initialBalance = [9000]
 
 jobs = ["Jardineiro"] * 10 + ["Electricista"] * 6 + ["Advogado"] * 7 + ["Estudante"] * 30 + ["Médico"] * 4 + ["Engenheiro"] * 10 + ["Dentista"] * 1 + ["Padeiro"] * 1 + ["Fotógrafo"] * 1 + ["Assistente Social"] * 3 + ["Cabeleireiro"] * 2 + ["Bombeiro"] * 3 + ["Lenhador"] * 1
 
@@ -27,9 +27,8 @@ produtos = [('Lanche',           '0.5',  '0.8',  7  )] * 10 +\
 
 NProdutos = len(set(produtos))
 
-# fstSell = datetime.strptime('2012-04-30', "%Y-%m-%d").date()
 fstSell = datetime.strptime('2014-01-01', "%Y-%m-%d").date()
-lstBuy = datetime.strptime('2017-01-01', "%Y-%m-%d").date()
+lstBuy = datetime.strptime('2016-12-31', "%Y-%m-%d").date()
 sellingPeriod = lstBuy - fstSell
 
 lstBornDate = datetime.strptime('1999-04-30', "%Y-%m-%d").date()
@@ -51,25 +50,25 @@ machineRent = ["100", "200", "300", "250"]
 
 adresses = [
             ('4760-480','Travessa Dom Nuno Álvares Pereira','Braga','Vila Nova de Famalicão','Esmeriz'),
-            ('4705-509','Rua Nova da Naia','Braga','Braga','Morreira'),
+            ('4705-509','Rua Nova da Naia','Braga','Guimarães','Caldelas'),
             ('4750-079','Rua das Irmãs Franciscanas Missionárias de Maria','Braga','Barcelos','Barcelos'),
-            ('4705-086','Rua Cidade do Porto','Braga','Braga','Braga'),
+            ('4705-086','Rua Cidade do Porto','Braga','Vizela','Santa Eulália'),
             ('4730-260','Rua Padre António José de Araújo','Braga','Vila Verde','Lanhas'),
             ('4720-119','Rua do Rio Homem','Braga','Amares','Rendufe'),
             ('4450-038','Rua Álvaro Castelões','Porto','Matosinhos','Matosinhos'),
             ('4600-752','Travessa dos Moínhos','Porto','Amarante','Telões'),
             ('4575-218','Avenida Doutor Carvalho Mendes','Porto','Penafiel','Eja'),
             ('4580-177','Rua Nova Torre da Madureira','Porto','Paredes','Beire'),
-            ('4300-342','Rua Monte da Estação','Porto','Porto','Porto'),
-            ('4000-382','Rua de Passos Manuel','Porto','Porto','Porto'),
+            ('4300-342','Rua Monte da Estação','Porto','Felgueiras','Vila Cova da Lixa'),
+            ('4000-382','Rua de Passos Manuel','Porto','Gondomar','São Cosme'),
             ('4580-747','Rua da Almuinha','Porto','Paredes','Sobrosa'),
             ('3850-451','Rua Várzea','Aveiro','Albergaria-a-Velha','Angeja'),
             ('3865-018','Rua das Cavadas Sul','Aveiro','Estarreja','Canelas'),
             ('3810-157','Rua da República','Aveiro','Aveiro','Aveiro'),
-            ('3510-927','Rua dos Cruzeiros','Viseu','Viseu','Viseu'),
+            ('3510-927','Rua dos Cruzeiros','Viseu','Armamar','Aldeias'),
             ('5100-114','Rua Arribada','Viseu','Lamego','Lamego'),
-            ('3505-265','Bairro Familiar','Viseu','Viseu','Carragoso'),
-            ('3505-563','Rua da Lapa','Viseu','Viseu','Viseu'),
+            ('3505-265','Bairro Familiar','Viseu','Castro Daire','Reriz'),
+            ('3505-563','Rua da Lapa','Viseu','Moimenta da Beira','Alvite'),
             ('5400-195','Travessa Cavaleiro','Vila Real','Chaves','Santa Maria Maior'),
             ('4880-127','Rua do Calvário','Vila Real','Mondim de Basto','Ermelo'),
             ('5070-017','Travessa da Lameira','Vila Real','Alijó','Alijó'),

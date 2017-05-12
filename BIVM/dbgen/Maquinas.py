@@ -28,7 +28,7 @@ class Maquinas:
 
 
     def __str__(self):
-        return self.description + " " + self.model + " " + self.capacity + " " + self.rent
+        return self.description + " " + self.model + " " + str(self.capacity) + " " + str(self.rent)
 
     def insertInDB(self, db):
         

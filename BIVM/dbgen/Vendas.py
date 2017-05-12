@@ -8,7 +8,7 @@ import MySQLdb
 class Vendas:
 
     def __init__(self, date, users, machines, products):
-        self.date = str(date) + " " + format(random.randint(0, 23), '02d') + ":" + format(random.randint(0, 59), '02d') + ":" + format(random.randint(0, 59), '02d')
+        self.date = str(date) + " " + format(int(random.normalvariate(16, 4)) % 24, '02d') + ":" + format(random.randint(0, 59), '02d') + ":" + format(random.randint(0, 59), '02d')
         self.user = random.choice(users).id
         self.machine = random.choice(machines).id
         self.product = random.choice(products).id

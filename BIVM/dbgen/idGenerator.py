@@ -13,7 +13,6 @@ def getRandomUniqName(s):
 	name = getRandomName(s)
 
 	while(name in allNames):
-		print "123"
 		name = getRandomName(s)
 
 	allNames.add(name)
